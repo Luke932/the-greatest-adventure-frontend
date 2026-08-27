@@ -1,0 +1,163 @@
+<section class="rsvp-form">
+
+  @if (currentStatus === RsvpStatus.PENDING) {
+
+    <div class="rsvp-intro">
+
+      <span class="rsvp-quote">
+        ✦ THE CHOICE IS YOURS ✦
+      </span>
+
+      <p>
+        La compagnia sta per partire.
+        Saresti dei nostri?
+      </p>
+
+    </div>
+
+
+    <div class="rsvp-buttons">
+
+      <button
+        type="button"
+        class="rsvp-button confirm"
+        [disabled]="loading"
+        (click)="updateRsvp(RsvpStatus.CONFIRMED)"
+      >
+
+        <span class="button-icon">
+          ⚔
+        </span>
+
+        <span class="button-content">
+
+          <strong>
+            ACCETTO LA QUEST
+          </strong>
+
+          <small>
+            Confermo la mia presenza
+          </small>
+
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="rsvp-button decline"
+        [disabled]="loading"
+        (click)="updateRsvp(RsvpStatus.DECLINED)"
+      >
+
+        <span class="button-icon">
+          ✕
+        </span>
+
+        <span class="button-content">
+
+          <strong>
+            NON POSSO PARTIRE
+          </strong>
+
+          <small>
+            Mi dispiace non esserci
+          </small>
+
+        </span>
+
+      </button>
+
+    </div>
+
+  }
+
+
+  @if (currentStatus === RsvpStatus.CONFIRMED) {
+
+    <div class="rsvp-status confirmed">
+
+      <div class="status-icon">
+        ♥
+      </div>
+
+      <span class="status-label">
+        QUEST ACCEPTED
+      </span>
+
+      <strong>
+        Hai confermato la tua presenza!
+      </strong>
+
+      <p>
+        Non vediamo l'ora di festeggiare insieme.
+      </p>
+
+      <button
+        type="button"
+        class="change-button"
+        [disabled]="loading"
+        (click)="updateRsvp(RsvpStatus.DECLINED)"
+      >
+        Modifica · non posso venire
+      </button>
+
+    </div>
+
+  }
+
+
+  @if (currentStatus === RsvpStatus.DECLINED) {
+
+    <div class="rsvp-status declined">
+
+      <div class="status-icon">
+        ♡
+      </div>
+
+      <span class="status-label">
+        QUEST DECLINED
+      </span>
+
+      <strong>
+        Ci dispiace non averti con noi.
+      </strong>
+
+      <p>
+        Ma puoi sempre cambiare idea.
+      </p>
+
+      <button
+        type="button"
+        class="change-button"
+        [disabled]="loading"
+        (click)="updateRsvp(RsvpStatus.CONFIRMED)"
+      >
+        Modifica · confermo la mia presenza
+      </button>
+
+    </div>
+
+  }
+
+
+  @if (loading) {
+
+    <div class="rsvp-loading">
+      <span>✦</span>
+      Aggiornamento della quest...
+    </div>
+
+  }
+
+
+  @if (error) {
+
+    <div class="rsvp-error">
+      ⚠ Si è verificato un errore. Riprova.
+    </div>
+
+  }
+
+</section>

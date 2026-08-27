@@ -1,0 +1,344 @@
+<div class="guests-page">
+
+  <!-- HEADER -->
+
+  <header class="guests-header">
+
+    <div class="header-left">
+
+      <button
+        type="button"
+        class="back-button"
+        (click)="backToDashboard()"
+        aria-label="Torna alla dashboard"
+      >
+        ←
+      </button>
+
+      <div class="brand-text">
+
+        <span class="section-kicker">
+          THE GREATEST ADVENTURE
+        </span>
+
+        <h1>
+          Invitati
+        </h1>
+
+      </div>
+
+    </div>
+
+    <div class="guest-count">
+      <strong>
+        {{ filteredGuests.length }}
+      </strong>
+
+      <span>
+        invitati
+      </span>
+    </div>
+
+  </header>
+
+
+  <main class="guests-content">
+
+    <!-- INTRO -->
+
+    <section class="intro-section">
+
+      <span class="section-kicker">
+        GESTIONE INVITATI
+      </span>
+
+      <h2>
+        La tua compagnia di viaggio
+      </h2>
+
+      <p>
+        Qui puoi visualizzare e gestire tutte le persone
+        che prenderanno parte alla vostra grande avventura.
+      </p>
+
+    </section>
+
+
+    <!-- FILTRI -->
+
+    <section class="filters-section">
+
+      <!-- RICERCA -->
+
+      <div class="search-box">
+
+        <label for="guest-search">
+          Cerca invitato
+        </label>
+
+        <div class="search-input-wrapper">
+
+          <span class="search-icon">
+            🔎
+          </span>
+
+          <input
+            id="guest-search"
+            type="search"
+            placeholder="Nome, cognome, email o telefono..."
+            [value]="searchTerm"
+            (input)="onSearch($event)"
+          />
+
+        </div>
+
+      </div>
+
+
+      <!-- STATO RSVP -->
+
+      <div class="status-filters">
+
+        <span class="filter-label">
+          Stato RSVP
+        </span>
+
+        <div class="filter-buttons">
+
+          <button
+            type="button"
+            [class.active]="selectedStatus === 'ALL'"
+            (click)="setStatusFilter('ALL')"
+          >
+            Tutti
+          </button>
+
+          <button
+            type="button"
+            [class.active]="selectedStatus === 'CONFIRMED'"
+            (click)="setStatusFilter('CONFIRMED')"
+          >
+            Confermati
+          </button>
+
+          <button
+            type="button"
+            [class.active]="selectedStatus === 'PENDING'"
+            (click)="setStatusFilter('PENDING')"
+          >
+            In attesa
+          </button>
+
+          <button
+            type="button"
+            [class.active]="selectedStatus === 'DECLINED'"
+            (click)="setStatusFilter('DECLINED')"
+          >
+            Rifiutati
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- LOADING -->
+
+    @if (isLoading) {
+
+      <section class="state-section">
+
+        <div class="loading-spinner"></div>
+
+        <p>
+          Stiamo recuperando gli invitati...
+        </p>
+
+      </section>
+
+    }
+
+
+    <!-- ERRORE -->
+
+    @if (!isLoading && errorMessage) {
+
+      <section class="state-section error-state">
+
+        <span class="state-icon">
+          ⚠️
+        </span>
+
+        <h3>
+          Qualcosa è andato storto
+        </h3>
+
+        <p>
+          {{ errorMessage }}
+        </p>
+
+      </section>
+
+    }
+
+
+    <!-- LISTA -->
+
+    @if (!isLoading && !errorMessage) {
+
+      @if (filteredGuests.length > 0) {
+
+        <section class="guests-list">
+
+          @for (guest of filteredGuests; track guest.id) {
+
+            <article
+              class="guest-card"
+              (click)="openGuest(guest.id)"
+              tabindex="0"
+              role="button"
+              [attr.aria-label]="'Apri il dettaglio di ' + guest.name + ' ' + guest.surname"
+            >
+
+              <!-- AVATAR -->
+
+              <div class="guest-avatar">
+
+                <span>
+                  {{ guest.name.charAt(0).toUpperCase() }}{{ guest.surname.charAt(0).toUpperCase() }}
+                </span>
+
+              </div>
+
+
+              <!-- DATI -->
+
+              <div class="guest-info">
+
+                <div class="guest-name-row">
+
+                  <h3>
+                    {{ guest.name }} {{ guest.surname }}
+                  </h3>
+
+                  @if (guest.rsvpStatus === 'CONFIRMED') {
+
+                    <span class="status-badge confirmed">
+                      Confermato
+                    </span>
+
+                  }
+
+                  @if (guest.rsvpStatus === 'PENDING') {
+
+                    <span class="status-badge pending">
+                      In attesa
+                    </span>
+
+                  }
+
+                  @if (guest.rsvpStatus === 'DECLINED') {
+
+                    <span class="status-badge declined">
+                      Rifiutato
+                    </span>
+
+                  }
+
+                </div>
+
+
+                <div class="guest-details">
+
+                  @if (guest.email) {
+
+                    <span>
+                      ✉️ {{ guest.email }}
+                    </span>
+
+                  }
+
+                  @if (guest.phone) {
+
+                    <span>
+                      📞 {{ guest.phone }}
+                    </span>
+
+                  }
+
+                </div>
+
+              </div>
+
+
+              <!-- MENU -->
+
+              <div class="guest-menu">
+
+                <span class="menu-label">
+                  MENU
+                </span>
+
+                <strong>
+                  {{ guest.menuType }}
+                </strong>
+
+              </div>
+
+
+              <!-- AZIONE -->
+
+              <div class="guest-arrow">
+                →
+              </div>
+
+            </article>
+
+          }
+
+        </section>
+
+      } @else {
+
+        <!-- NESSUN RISULTATO -->
+
+        <section class="state-section empty-state">
+
+          <span class="state-icon">
+            🗺️
+          </span>
+
+          <h3>
+            Nessun invitato trovato
+          </h3>
+
+          <p>
+            Non ci sono invitati che corrispondono ai criteri selezionati.
+          </p>
+
+        </section>
+
+      }
+
+    }
+
+
+    <!-- EASTER EGG -->
+
+    <section class="dashboard-quote">
+
+      <span>
+        🎲 QUEST LOG
+      </span>
+
+      <p>
+        Ogni grande avventura è più bella quando si è in buona compagnia.
+      </p>
+
+    </section>
+
+  </main>
+
+</div>

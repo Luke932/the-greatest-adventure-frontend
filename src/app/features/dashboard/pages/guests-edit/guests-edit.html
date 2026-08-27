@@ -1,0 +1,510 @@
+<div class="guests-edit-page">
+
+  <!-- HEADER -->
+
+  <header class="edit-header">
+
+    <div class="header-left">
+
+      <button
+        type="button"
+        class="back-button"
+        (click)="cancel()"
+      >
+        ←
+        <span>Torna al dettaglio</span>
+      </button>
+
+    </div>
+
+
+    <div class="header-title">
+
+      <span class="section-kicker">
+        AREA PRIVATA
+      </span>
+
+      <h1>
+        Modifica invitato
+      </h1>
+
+      @if (guest) {
+
+        <p>
+          {{ guest.name }} {{ guest.surname }}
+        </p>
+
+      }
+
+    </div>
+
+  </header>
+
+
+  <!-- LOADING -->
+
+  @if (isLoading) {
+
+    <main class="state-container">
+
+      <div class="loading-symbol">
+        💍
+      </div>
+
+      <p>
+        Caricamento dei dati dell'invitato...
+      </p>
+
+    </main>
+
+  }
+
+
+  <!-- ERRORE -->
+
+  @else if (errorMessage && !guest) {
+
+    <main class="state-container error-state">
+
+      <div class="state-icon">
+        ⚠️
+      </div>
+
+      <h2>
+        Qualcosa è andato storto
+      </h2>
+
+      <p>
+        {{ errorMessage }}
+      </p>
+
+      <button
+        type="button"
+        class="secondary-button"
+        (click)="cancel()"
+      >
+        Torna agli invitati
+      </button>
+
+    </main>
+
+  }
+
+
+  <!-- FORM -->
+
+  @else if (guest) {
+
+    <main class="edit-content">
+
+      <form
+        [formGroup]="guestForm"
+        (ngSubmit)="submit()"
+        novalidate
+      >
+
+        <!-- DATI PERSONALI -->
+
+        <section class="form-section">
+
+          <div class="section-heading">
+
+            <div>
+
+              <span class="section-kicker">
+                IDENTITÀ
+              </span>
+
+              <h2>
+                Dati personali
+              </h2>
+
+            </div>
+
+            <span class="section-icon">
+              👤
+            </span>
+
+          </div>
+
+
+          <div class="form-grid">
+
+            <!-- NOME -->
+
+            <div class="form-field">
+
+              <label for="name">
+                Nome
+              </label>
+
+              <input
+                id="name"
+                type="text"
+                formControlName="name"
+                autocomplete="given-name"
+                placeholder="Nome"
+              >
+
+              @if (
+                guestForm.controls.name.touched &&
+                guestForm.controls.name.invalid
+              ) {
+
+                <small class="field-error">
+                  Il nome è obbligatorio.
+                </small>
+
+              }
+
+            </div>
+
+
+            <!-- COGNOME -->
+
+            <div class="form-field">
+
+              <label for="surname">
+                Cognome
+              </label>
+
+              <input
+                id="surname"
+                type="text"
+                formControlName="surname"
+                autocomplete="family-name"
+                placeholder="Cognome"
+              >
+
+              @if (
+                guestForm.controls.surname.touched &&
+                guestForm.controls.surname.invalid
+              ) {
+
+                <small class="field-error">
+                  Il cognome è obbligatorio.
+                </small>
+
+              }
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- CONTATTI -->
+
+        <section class="form-section">
+
+          <div class="section-heading">
+
+            <div>
+
+              <span class="section-kicker">
+                CONTATTI
+              </span>
+
+              <h2>
+                Come contattarlo
+              </h2>
+
+            </div>
+
+            <span class="section-icon">
+              📱
+            </span>
+
+          </div>
+
+
+          <div class="form-grid">
+
+            <!-- EMAIL -->
+
+            <div class="form-field">
+
+              <label for="email">
+                Email
+              </label>
+
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                autocomplete="email"
+                placeholder="nome@email.com"
+              >
+
+              @if (
+                guestForm.controls.email.touched &&
+                guestForm.controls.email.invalid
+              ) {
+
+                <small class="field-error">
+                  Inserisci un indirizzo email valido.
+                </small>
+
+              }
+
+            </div>
+
+
+            <!-- TELEFONO -->
+
+            <div class="form-field">
+
+              <label for="phone">
+                Telefono
+              </label>
+
+              <input
+                id="phone"
+                type="tel"
+                formControlName="phone"
+                autocomplete="tel"
+                placeholder="+39..."
+              >
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- RSVP -->
+
+        <section class="form-section">
+
+          <div class="section-heading">
+
+            <div>
+
+              <span class="section-kicker">
+                RSVP
+              </span>
+
+              <h2>
+                Partecipazione
+              </h2>
+
+            </div>
+
+            <span class="section-icon">
+              💌
+            </span>
+
+          </div>
+
+
+          <div class="form-field">
+
+            <label for="rsvpStatus">
+              Stato della partecipazione
+            </label>
+
+            <select
+              id="rsvpStatus"
+              formControlName="rsvpStatus"
+            >
+
+              @for (status of rsvpStatuses; track status) {
+
+                <option [value]="status">
+                  {{ rsvpLabels[status] }}
+                </option>
+
+              }
+
+            </select>
+
+          </div>
+
+        </section>
+
+
+        <!-- MENU -->
+
+        <section class="form-section">
+
+          <div class="section-heading">
+
+            <div>
+
+              <span class="section-kicker">
+                RICEVIMENTO
+              </span>
+
+              <h2>
+                Preferenze alimentari
+              </h2>
+
+            </div>
+
+            <span class="section-icon">
+              🍽️
+            </span>
+
+          </div>
+
+
+          <div class="form-grid">
+
+            <!-- MENU -->
+
+            <div class="form-field">
+
+              <label for="menuType">
+                Tipo di menu
+              </label>
+
+              <select
+                id="menuType"
+                formControlName="menuType"
+              >
+
+                @for (menu of menuTypes; track menu) {
+
+                  <option [value]="menu">
+                    {{ menuLabels[menu] }}
+                  </option>
+
+                }
+
+              </select>
+
+            </div>
+
+
+            <!-- ALLERGIE -->
+
+            <div class="form-field">
+
+              <label for="allergies">
+                Allergie / intolleranze
+              </label>
+
+              <input
+                id="allergies"
+                type="text"
+                formControlName="allergies"
+                placeholder="Es. frutta secca, lattosio..."
+              >
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- NOTE -->
+
+        <section class="form-section">
+
+          <div class="section-heading">
+
+            <div>
+
+              <span class="section-kicker">
+                NOTE
+              </span>
+
+              <h2>
+                Informazioni aggiuntive
+              </h2>
+
+            </div>
+
+            <span class="section-icon">
+              📝
+            </span>
+
+          </div>
+
+
+          <div class="form-field">
+
+            <label for="notes">
+              Note
+            </label>
+
+            <textarea
+              id="notes"
+              formControlName="notes"
+              rows="5"
+              placeholder="Aggiungi eventuali informazioni utili..."
+            ></textarea>
+
+          </div>
+
+        </section>
+
+
+        <!-- MESSAGGI -->
+
+        @if (errorMessage) {
+
+          <div class="form-message error-message">
+            ⚠️ {{ errorMessage }}
+          </div>
+
+        }
+
+
+        @if (successMessage) {
+
+          <div class="form-message success-message">
+            ✨ {{ successMessage }}
+          </div>
+
+        }
+
+
+        <!-- AZIONI -->
+
+        <div class="form-actions">
+
+          <button
+            type="button"
+            class="secondary-button"
+            (click)="cancel()"
+            [disabled]="isSaving"
+          >
+            Annulla
+          </button>
+
+
+          <button
+            type="submit"
+            class="primary-button"
+            [disabled]="isSaving"
+          >
+
+            @if (isSaving) {
+
+              <span>
+                Salvataggio...
+              </span>
+
+            } @else {
+
+              <span>
+                ✨ Salva modifiche
+              </span>
+
+            }
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </main>
+
+  }
+
+</div>

@@ -1,0 +1,166 @@
+<form
+  [formGroup]="companionForm"
+  (ngSubmit)="submit()"
+>
+
+  <div>
+    <label for="name">
+      Nome *
+    </label>
+
+    <input
+      id="name"
+      type="text"
+      formControlName="name"
+      autocomplete="given-name"
+    />
+
+    @if (
+      companionForm.controls.name.touched &&
+      companionForm.controls.name.hasError('required')
+    ) {
+      <small>
+        Il nome è obbligatorio.
+      </small>
+    }
+  </div>
+
+
+  <div>
+    <label for="surname">
+      Cognome *
+    </label>
+
+    <input
+      id="surname"
+      type="text"
+      formControlName="surname"
+      autocomplete="family-name"
+    />
+
+    @if (
+      companionForm.controls.surname.touched &&
+      companionForm.controls.surname.hasError('required')
+    ) {
+      <small>
+        Il cognome è obbligatorio.
+      </small>
+    }
+  </div>
+
+
+  <div>
+    <label for="email">
+      Email
+    </label>
+
+    <input
+      id="email"
+      type="email"
+      formControlName="email"
+      autocomplete="email"
+    />
+
+    @if (
+      companionForm.controls.email.touched &&
+      companionForm.controls.email.hasError('email')
+    ) {
+      <small>
+        Inserisci un indirizzo email valido.
+      </small>
+    }
+  </div>
+
+
+  <div>
+    <label for="phone">
+      Telefono
+    </label>
+
+    <input
+      id="phone"
+      type="tel"
+      formControlName="phone"
+      autocomplete="tel"
+    />
+  </div>
+
+
+  <div>
+    <label for="allergies">
+      Allergie / intolleranze
+    </label>
+
+    <input
+      id="allergies"
+      type="text"
+      formControlName="allergies"
+      placeholder="Es. Frutta secca"
+    />
+  </div>
+
+
+  <div>
+    <label for="menuType">
+      Menu *
+    </label>
+
+    <select
+      id="menuType"
+      formControlName="menuType"
+    >
+
+      <option [ngValue]="null">
+        Seleziona un menu
+      </option>
+
+      @for (menu of menuTypes; track menu) {
+        <option [ngValue]="menu">
+          {{ menuLabels[menu] }}
+        </option>
+      }
+
+    </select>
+
+    @if (
+      companionForm.controls.menuType.touched &&
+      companionForm.controls.menuType.hasError('required')
+    ) {
+      <small>
+        Seleziona un menu.
+      </small>
+    }
+  </div>
+
+
+  <div>
+    <label for="notes">
+      Note
+    </label>
+
+    <textarea
+      id="notes"
+      rows="4"
+      formControlName="notes"
+      placeholder="Eventuali informazioni aggiuntive..."
+    ></textarea>
+  </div>
+
+
+  <div>
+    <button
+      type="submit"
+      [disabled]="companionForm.invalid"
+    >
+      Aggiungi accompagnatore
+    </button>
+
+    <button
+      type="button"
+      (click)="cancel()"
+    >
+      Annulla
+    </button>
+  </div>
+
+</form>

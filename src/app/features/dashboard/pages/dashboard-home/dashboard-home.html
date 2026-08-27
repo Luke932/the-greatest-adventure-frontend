@@ -1,0 +1,307 @@
+<div class="dashboard-page">
+
+  <!-- HEADER -->
+
+  <header class="dashboard-header">
+
+    <div class="brand">
+
+      <span class="brand-symbol">
+        💍
+      </span>
+
+      <div class="brand-text">
+
+        <span class="brand-kicker">
+          THE GREATEST ADVENTURE
+        </span>
+
+        <h1>
+          Dashboard
+        </h1>
+
+      </div>
+
+    </div>
+
+
+    <button
+      type="button"
+      class="logout-button"
+      (click)="logout()"
+    >
+      <span>↪</span>
+      Esci
+    </button>
+
+  </header>
+
+
+  <!-- CONTENUTO -->
+
+  <main class="dashboard-content">
+
+    <!-- BENVENUTO -->
+
+    <section class="welcome-section">
+
+      <span class="section-kicker">
+        AREA PRIVATA
+      </span>
+
+      <h2>
+        Bentornati, sposi ✨
+      </h2>
+
+      <p>
+        Da qui potrete gestire invitati, conferme di partecipazione
+        e tutte le informazioni del vostro grande giorno.
+      </p>
+
+    </section>
+
+
+    <!-- ERRORE -->
+
+    @if (errorMessage) {
+
+      <div class="dashboard-error">
+        {{ errorMessage }}
+      </div>
+
+    }
+
+
+    <!-- STATISTICHE -->
+
+    <section class="stats-grid">
+
+      <!-- INVITATI -->
+
+      <article class="stat-card">
+
+        <span class="stat-icon">
+          👥
+        </span>
+
+        <div>
+
+          <span class="stat-label">
+            INVITATI
+          </span>
+
+          <strong class="stat-value">
+            {{ stats?.totalGuests ?? '—' }}
+          </strong>
+
+        </div>
+
+      </article>
+
+
+      <!-- CONFERMATI -->
+
+      <article class="stat-card">
+
+        <span class="stat-icon">
+          💚
+        </span>
+
+        <div>
+
+          <span class="stat-label">
+            CONFERMATI
+          </span>
+
+          <strong class="stat-value">
+            {{ stats?.confirmedGuests ?? '—' }}
+          </strong>
+
+        </div>
+
+      </article>
+
+
+      <!-- IN ATTESA -->
+
+      <article class="stat-card">
+
+        <span class="stat-icon">
+          ⏳
+        </span>
+
+        <div>
+
+          <span class="stat-label">
+            IN ATTESA
+          </span>
+
+          <strong class="stat-value">
+            {{ stats?.pendingGuests ?? '—' }}
+          </strong>
+
+        </div>
+
+      </article>
+
+
+      <!-- ACCOMPAGNATORI -->
+
+      <article class="stat-card">
+
+        <span class="stat-icon">
+          🍽️
+        </span>
+
+        <div>
+
+          <span class="stat-label">
+            ACCOMPAGNATORI
+          </span>
+
+          <strong class="stat-value">
+            {{ stats?.totalCompanions ?? '—' }}
+          </strong>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- AZIONI -->
+
+    <section class="dashboard-section">
+
+      <div class="section-heading">
+
+        <div>
+
+          <span class="section-kicker">
+            GESTIONE
+          </span>
+
+          <h2>
+            Organizza la tua avventura
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <div class="actions-grid">
+
+        <!-- INVITATI -->
+
+        <button
+        type="button"
+        class="action-card"
+        (click)="openGuests()"
+        >
+
+          <span class="action-icon">
+            👥
+          </span>
+
+          <span class="action-content">
+
+            <strong>
+              Invitati
+            </strong>
+
+            <small>
+              Visualizza e gestisci tutti gli invitati
+            </small>
+
+          </span>
+
+          <span class="action-arrow">
+            →
+          </span>
+
+        </button>
+
+
+        <!-- ACCOMPAGNATORI -->
+
+        <button
+          type="button"
+          class="action-card"
+        >
+
+          <span class="action-icon">
+            🧙
+          </span>
+
+          <span class="action-content">
+
+            <strong>
+              Accompagnatori
+            </strong>
+
+            <small>
+              Gestisci gli accompagnatori degli invitati
+            </small>
+
+          </span>
+
+          <span class="action-arrow">
+            →
+          </span>
+
+        </button>
+
+
+        <!-- STATISTICHE -->
+
+        <button
+          type="button"
+          class="action-card"
+        >
+
+          <span class="action-icon">
+            📊
+          </span>
+
+          <span class="action-content">
+
+            <strong>
+              Statistiche
+            </strong>
+
+            <small>
+              Analizza RSVP e necessità alimentari
+            </small>
+
+          </span>
+
+          <span class="action-arrow">
+            →
+          </span>
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- EASTER EGG -->
+
+    <section class="dashboard-quote">
+
+      <span>
+        🎲 QUEST STATUS
+      </span>
+
+      <p>
+        La più grande avventura sta per iniziare.
+      </p>
+
+    </section>
+
+  </main>
+
+</div>

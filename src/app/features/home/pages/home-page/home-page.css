@@ -1,0 +1,364 @@
+:host {
+  display: block;
+
+  --sage: #a9bd96;
+  --sage-light: #d3dfc5;
+
+  --forest: #24372a;
+  --forest-deep: #17251b;
+
+  --cream: #fffaf0;
+
+  --gold: #d9ad4f;
+  --gold-light: #f0d58c;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+
+.home-page {
+  min-height: 100vh;
+
+  background: var(--forest-deep);
+
+  color: var(--cream);
+
+  font-family:
+    'Trebuchet MS',
+    Arial,
+    sans-serif;
+}
+
+
+.hero {
+  min-height: 100svh;
+
+  position: relative;
+
+  display: grid;
+
+  place-items: center;
+
+  overflow: hidden;
+
+  background-image:
+    url('/images/wedding-background.jpg');
+
+  background-size: cover;
+
+  background-position: center;
+}
+
+
+.hero-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20, 36, 25, 0.38),
+      rgba(20, 36, 25, 0.52),
+      rgba(20, 36, 25, 0.82)
+    );
+}
+
+
+.hero-content {
+  position: relative;
+
+  z-index: 2;
+
+  width: min(760px, 90%);
+
+  padding: 120px 20px 80px;
+
+  text-align: center;
+}
+
+
+.hero-kicker,
+.section-kicker {
+  display: block;
+
+  color: var(--gold-light);
+
+  font-family:
+    'Courier New',
+    monospace;
+
+  font-size: 0.68rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.24em;
+}
+
+
+.hero-welcome {
+  margin: 30px 0 12px;
+
+  color: rgba(255, 250, 240, 0.82);
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-style: italic;
+}
+
+
+.hero h1 {
+  margin: 0;
+
+  color: var(--cream);
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size:
+    clamp(3.5rem, 12vw, 7rem);
+
+  font-weight: 400;
+
+  line-height: 0.9;
+
+  text-shadow:
+    0 8px 35px rgba(0, 0, 0, 0.45);
+}
+
+
+.hero h1 span {
+  display: block;
+
+  margin: 8px 0;
+
+  color: var(--gold-light);
+
+  font-size: 0.42em;
+
+  font-style: italic;
+}
+
+
+.hero-date {
+  margin: 30px 0 0;
+
+  color: var(--sage-light);
+
+  font-family:
+    'Courier New',
+    monospace;
+
+  font-size: 0.78rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.2em;
+}
+
+
+.hero-divider {
+  display: flex;
+
+  justify-content: center;
+
+  margin: 25px 0;
+
+  color: var(--gold);
+
+  font-size: 1rem;
+}
+
+
+.hero-description {
+  max-width: 500px;
+
+  margin: 0 auto;
+
+  color: rgba(255, 250, 240, 0.78);
+
+  line-height: 1.8;
+
+  font-size: 0.95rem;
+}
+
+
+.hero-button,
+.rsvp-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 30px;
+
+  padding: 14px 22px;
+
+  border:
+    1px solid
+    rgba(240, 213, 140, 0.6);
+
+  border-radius: 999px;
+
+  background:
+    rgba(214, 181, 109, 0.12);
+
+  color: var(--gold-light);
+
+  text-decoration: none;
+
+  font-size: 0.74rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.05em;
+
+  backdrop-filter: blur(6px);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.hero-button:hover,
+.rsvp-button:hover {
+  transform: translateY(-3px);
+
+  background:
+    rgba(214, 181, 109, 0.22);
+}
+
+
+.hero-scroll {
+  position: absolute;
+
+  z-index: 2;
+
+  bottom: 25px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: rgba(255, 250, 240, 0.5);
+
+  font-family:
+    'Courier New',
+    monospace;
+
+  font-size: 0.52rem;
+
+  letter-spacing: 0.16em;
+}
+
+
+.scroll-arrow {
+  color: var(--gold-light);
+
+  font-size: 1rem;
+}
+
+
+.intro-section,
+.rsvp-section {
+  max-width: 850px;
+
+  margin: 0 auto;
+
+  padding: 110px 25px;
+
+  text-align: center;
+}
+
+
+.intro-section h2,
+.rsvp-section h2 {
+  margin: 18px 0;
+
+  color: var(--cream);
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size:
+    clamp(2rem, 5vw, 3.4rem);
+
+  font-weight: 400;
+
+  line-height: 1.1;
+}
+
+
+.intro-section p,
+.rsvp-section p {
+  max-width: 570px;
+
+  margin: 0 auto;
+
+  color: rgba(255, 250, 240, 0.62);
+
+  line-height: 1.8;
+}
+
+
+.rsvp-section {
+  padding-top: 80px;
+
+  padding-bottom: 120px;
+
+  border-top:
+    1px solid
+    rgba(214, 181, 109, 0.15);
+}
+
+
+.rsvp-button {
+  margin-top: 25px;
+}
+
+
+@media (max-width: 600px) {
+
+  .hero-content {
+    padding-top: 100px;
+  }
+
+
+  .hero-kicker {
+    font-size: 0.55rem;
+
+    letter-spacing: 0.17em;
+  }
+
+
+  .hero-description {
+    font-size: 0.88rem;
+  }
+
+
+  .intro-section,
+  .rsvp-section {
+    padding: 80px 20px;
+  }
+
+}

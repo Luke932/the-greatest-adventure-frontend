@@ -1,0 +1,687 @@
+:host {
+  --sage: #a9bd96;
+  --sage-light: #d3dfc5;
+  --sage-pale: #e7eedf;
+  --sage-dark: #6f8762;
+
+  --forest: #304936;
+  --forest-light: #47624a;
+  --forest-deep: #24372a;
+
+  --cream: #fffaf0;
+  --ivory: #f7f1e3;
+  --parchment: #eee4cf;
+
+  --gold: #d9ad4f;
+  --gold-light: #f0d58c;
+
+  --magic-purple: #8b6fa8;
+  --magic-purple-light: #bca6d0;
+
+  --text: #304334;
+  --text-muted: #aeb9a9;
+
+  display: block;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* ========================================
+   PAGINA LOGIN
+   ======================================== */
+
+.login-page {
+  min-height: 100vh;
+
+  padding: 30px 16px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(31, 55, 39, 0.42),
+      rgba(17, 29, 21, 0.72)
+    ),
+    url('/images/wedding-background.jpg');
+
+  background-size: cover;
+
+  background-position: center;
+
+  background-attachment: fixed;
+
+  font-family:
+    'Trebuchet MS',
+    Arial,
+    sans-serif;
+}
+
+
+/* ========================================
+   LUCI DECORATIVE
+   ======================================== */
+
+.login-page::before {
+  content: '';
+
+  position: fixed;
+
+  width: 600px;
+  height: 600px;
+
+  top: -300px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(156, 175, 136, 0.18),
+      transparent 68%
+    );
+
+  pointer-events: none;
+}
+
+
+.login-page::after {
+  content: '';
+
+  position: fixed;
+
+  width: 500px;
+  height: 500px;
+
+  right: -250px;
+  bottom: -250px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(118, 101, 138, 0.14),
+      transparent 68%
+    );
+
+  pointer-events: none;
+}
+
+
+/* ========================================
+   PETALI
+   ======================================== */
+
+.petals {
+  position: fixed;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+
+.petals span {
+  position: absolute;
+
+  top: -10%;
+
+  color:
+    rgba(255, 255, 255, 0.72);
+
+  font-size: 18px;
+
+  opacity: 0;
+
+  animation:
+    fallingPetal linear infinite;
+}
+
+
+.petals span:nth-child(1) {
+  left: 5%;
+  animation-duration: 16s;
+}
+
+
+.petals span:nth-child(2) {
+  left: 17%;
+  animation-duration: 19s;
+  animation-delay: 3s;
+}
+
+
+.petals span:nth-child(3) {
+  left: 29%;
+  animation-duration: 14s;
+  animation-delay: 7s;
+}
+
+
+.petals span:nth-child(4) {
+  left: 42%;
+  animation-duration: 21s;
+  animation-delay: 2s;
+}
+
+
+.petals span:nth-child(5) {
+  left: 56%;
+  animation-duration: 17s;
+  animation-delay: 6s;
+}
+
+
+.petals span:nth-child(6) {
+  left: 68%;
+  animation-duration: 20s;
+  animation-delay: 1s;
+}
+
+
+.petals span:nth-child(7) {
+  left: 78%;
+  animation-duration: 15s;
+  animation-delay: 8s;
+}
+
+
+.petals span:nth-child(8) {
+  left: 88%;
+  animation-duration: 18s;
+  animation-delay: 4s;
+}
+
+
+.petals span:nth-child(9) {
+  left: 94%;
+  animation-duration: 22s;
+  animation-delay: 10s;
+}
+
+
+.petals span:nth-child(10) {
+  left: 35%;
+  animation-duration: 19s;
+  animation-delay: 11s;
+}
+
+
+@keyframes fallingPetal {
+
+  0% {
+    top: -8%;
+
+    transform:
+      translateX(0)
+      rotate(0deg);
+
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.8;
+  }
+
+  50% {
+    transform:
+      translateX(80px)
+      rotate(180deg);
+  }
+
+  100% {
+    top: 110%;
+
+    transform:
+      translateX(-70px)
+      rotate(360deg);
+
+    opacity: 0;
+  }
+}
+
+
+/* ========================================
+   CARD
+   ======================================== */
+
+.login-card {
+  width: min(100%, 470px);
+
+  position: relative;
+
+  z-index: 3;
+
+  padding: 48px 42px;
+
+  border:
+    2px solid
+    rgba(214, 181, 109, 0.55);
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(38, 56, 44, 0.97),
+      rgba(23, 36, 27, 0.97)
+    );
+
+  box-shadow:
+    0 35px 90px rgba(0, 0, 0, 0.48),
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    inset 0 0 80px rgba(156, 175, 136, 0.045);
+
+  backdrop-filter: blur(14px);
+}
+
+
+.login-card::before {
+  content: '';
+
+  position: absolute;
+
+  inset: 11px;
+
+  border:
+    1px solid
+    rgba(214, 181, 109, 0.18);
+
+  border-radius: 20px;
+
+  pointer-events: none;
+}
+
+
+/* ========================================
+   HEADER
+   ======================================== */
+
+.login-symbol {
+  position: relative;
+
+  text-align: center;
+
+  margin-bottom: 12px;
+
+  color: var(--gold);
+
+  font-size: 1.7rem;
+
+  text-shadow:
+    0 0 18px rgba(214, 181, 109, 0.45);
+}
+
+
+.login-kicker {
+  display: block;
+
+  position: relative;
+
+  text-align: center;
+
+  color: var(--gold-light);
+
+  font-family:
+    'Courier New',
+    monospace;
+
+  font-size: 0.68rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.24em;
+}
+
+
+.login-card h1 {
+  position: relative;
+
+  margin: 18px 0 8px;
+
+  text-align: center;
+
+  color: var(--cream);
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size: 2.8rem;
+
+  font-weight: 400;
+}
+
+
+.login-subtitle {
+  position: relative;
+
+  max-width: 330px;
+
+  margin: 0 auto 32px;
+
+  text-align: center;
+
+  color: var(--text-muted);
+
+  font-size: 0.88rem;
+
+  line-height: 1.6;
+}
+
+
+/* ========================================
+   FORM
+   ======================================== */
+
+.login-card form {
+  position: relative;
+
+  display: grid;
+
+  gap: 20px;
+}
+
+
+.form-field {
+  display: grid;
+
+  gap: 7px;
+}
+
+
+.form-field label {
+  color: var(--sage-light);
+
+  font-family:
+    'Courier New',
+    monospace;
+
+  font-size: 0.65rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+
+.form-field input {
+  width: 100%;
+
+  min-height: 48px;
+
+  padding: 13px 15px;
+
+  border:
+    1px solid
+    rgba(156, 175, 136, 0.28);
+
+  border-radius: 11px;
+
+  outline: none;
+
+  background:
+    rgba(10, 20, 14, 0.42);
+
+  color: var(--cream);
+
+  font-family:
+    'Trebuchet MS',
+    Arial,
+    sans-serif;
+
+  font-size: 0.9rem;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.form-field input::placeholder {
+  color:
+    rgba(211, 223, 197, 0.35);
+}
+
+
+.form-field input:focus {
+  border-color:
+    rgba(214, 181, 109, 0.7);
+
+  background:
+    rgba(10, 20, 14, 0.58);
+
+  box-shadow:
+    0 0 0 3px rgba(214, 181, 109, 0.08);
+}
+
+
+.form-field small {
+  color: #e5aaa0;
+
+  font-size: 0.68rem;
+
+  line-height: 1.4;
+}
+
+
+/* ========================================
+   ERRORE LOGIN
+   ======================================== */
+
+.login-error {
+  padding: 12px 14px;
+
+  border:
+    1px solid
+    rgba(168, 93, 82, 0.4);
+
+  border-radius: 10px;
+
+  background:
+    rgba(168, 93, 82, 0.10);
+
+  color: #e5aaa0;
+
+  font-family:
+    'Courier New',
+    monospace;
+
+  font-size: 0.68rem;
+
+  line-height: 1.5;
+}
+
+
+/* ========================================
+   BUTTON
+   ======================================== */
+
+.login-card button {
+  width: 100%;
+
+  min-height: 50px;
+
+  margin-top: 4px;
+
+  padding: 13px 20px;
+
+  border:
+    1px solid
+    rgba(214, 181, 109, 0.65);
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(214, 181, 109, 0.22),
+      rgba(156, 175, 136, 0.14)
+    );
+
+  color: var(--gold-light);
+
+  font-family:
+    'Trebuchet MS',
+    Arial,
+    sans-serif;
+
+  font-size: 0.78rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.04em;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.login-card button:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  border-color: var(--gold);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(214, 181, 109, 0.3),
+      rgba(156, 175, 136, 0.2)
+    );
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.22);
+}
+
+
+.login-card button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.45;
+}
+
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.login-footer {
+  position: relative;
+
+  margin-top: 28px;
+
+  padding-top: 20px;
+
+  border-top:
+    1px solid
+    rgba(214, 181, 109, 0.14);
+
+  text-align: center;
+
+  color:
+    rgba(234, 211, 154, 0.48);
+
+  font-family:
+    'Courier New',
+    monospace;
+
+  font-size: 0.58rem;
+
+  letter-spacing: 0.12em;
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 600px) {
+
+  .login-page {
+    min-height: 100svh;
+
+    padding: 18px 10px;
+
+    background-attachment: scroll;
+  }
+
+
+  .login-card {
+    padding: 42px 21px;
+
+    border-radius: 22px;
+  }
+
+
+  .login-card::before {
+    inset: 8px;
+
+    border-radius: 16px;
+  }
+
+
+  .login-card h1 {
+    font-size: 2.4rem;
+  }
+
+
+  .login-subtitle {
+    font-size: 0.82rem;
+
+    margin-bottom: 27px;
+  }
+
+
+  .form-field input {
+    min-height: 46px;
+  }
+
+}
+
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .petals span {
+    animation: none;
+  }
+
+
+  .form-field input,
+  .login-card button {
+    transition: none;
+  }
+
+}

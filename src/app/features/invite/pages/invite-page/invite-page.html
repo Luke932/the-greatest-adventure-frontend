@@ -1,0 +1,417 @@
+@if (loading) {
+
+  <main class="invite-page loading-page">
+
+    <div class="petals" aria-hidden="true">
+      <span>❧</span>
+      <span>❧</span>
+      <span>❧</span>
+      <span>❧</span>
+      <span>❧</span>
+      <span>❧</span>
+    </div>
+
+    <div class="loading-card">
+      <div class="loading-icon">✦</div>
+
+      <span class="loading-label">
+        THE GREATEST ADVENTURE
+      </span>
+
+      <p>
+        Caricamento della quest...
+      </p>
+    </div>
+
+  </main>
+
+} @else if (error) {
+
+  <main class="invite-page error-page">
+
+    <div class="petals" aria-hidden="true">
+      <span>❧</span>
+      <span>❧</span>
+      <span>❧</span>
+      <span>❧</span>
+    </div>
+
+    <section class="invite-card error-card">
+
+      <span class="quest-label">
+        ⚠ QUEST ERROR ⚠
+      </span>
+
+      <div class="ornament">
+        ◆
+      </div>
+
+      <h1>
+        Invito non trovato
+      </h1>
+
+      <p>
+        Questo portale non riconosce il tuo token.
+      </p>
+
+      <p class="error-hint">
+        Forse hai imboccato la strada sbagliata.
+      </p>
+
+    </section>
+
+  </main>
+
+} @else if (invite) {
+
+  <main class="invite-page">
+
+    <!-- DECORAZIONE -->
+    <div class="petals" aria-hidden="true">
+      <span>❧</span>
+      <span>❧</span>
+      <span>❧</span>
+      <span>❧</span>
+      <span>❧</span>
+      <span>❧</span>
+      <span>❧</span>
+      <span>❧</span>
+      <span>❧</span>
+      <span>❧</span>
+    </div>
+
+
+    <!-- CARD PRINCIPALE -->
+    <section class="invite-card">
+
+
+      <!-- ================================= -->
+      <!-- HERO -->
+      <!-- ================================= -->
+
+      <header class="hero">
+
+        <div class="hero-symbol">
+          ✦
+        </div>
+
+        <span class="quest-label">
+          ✦ THE GREATEST ADVENTURE ✦
+        </span>
+
+        <p class="hero-subtitle">
+          A WEDDING QUEST
+        </p>
+
+        <div class="divider">
+          <span>◆</span>
+        </div>
+
+        <p class="welcome">
+          La tua prossima avventura
+        </p>
+
+        <h1>
+          Ciao {{ invite.name }}
+        </h1>
+
+        <p class="surname">
+          {{ invite.surname }}
+        </p>
+
+        <p class="intro">
+          Siamo felici di condividere con te
+          questo giorno speciale.
+        </p>
+
+        <div class="quest-badge">
+          <span>MAIN QUEST</span>
+          <strong>WEDDING DAY</strong>
+        </div>
+
+      </header>
+
+
+        <!-- ================================= -->
+        <!-- EASTER EGGS -->
+        <!-- ================================= -->
+
+        <div class="easter-eggs">
+
+        <span class="easter-egg hp">
+            ⚡ Giuro solennemente di non avere buone intenzioni
+        </span>
+
+        <span class="easter-egg friends">
+            🦞 Tu sei la mia aragosta
+        </span>
+
+        <span class="easter-egg lotr">
+            💍 Un anello per... sposarci tutti
+        </span>
+
+        </div>
+
+
+      <!-- ================================= -->
+      <!-- RSVP -->
+      <!-- ================================= -->
+
+      <section class="quest-section rsvp-section">
+
+        <div class="section-heading">
+
+          <span class="section-icon">
+            ⚔
+          </span>
+
+          <div>
+
+            <span class="section-kicker">
+              YOUR NEXT QUEST
+            </span>
+
+            <h2>
+              La tua partecipazione
+            </h2>
+
+          </div>
+
+        </div>
+
+        <p class="section-description">
+          La compagnia sta per partire.
+          Saresti dei nostri?
+        </p>
+
+        <app-rsvp-form
+          [token]="getToken()"
+          [currentStatus]="invite.rsvpStatus"
+          (rsvpUpdated)="onRsvpUpdated($event)"
+        />
+
+      </section>
+
+
+      <!-- ================================= -->
+      <!-- DIVIDER -->
+      <!-- ================================= -->
+
+      <div class="big-divider">
+        <span>✦</span>
+        <span>◆</span>
+        <span>✦</span>
+      </div>
+
+
+      <!-- ================================= -->
+      <!-- PARTY MEMBERS -->
+      <!-- ================================= -->
+
+      <section class="quest-section party-section">
+
+        <div class="section-heading">
+
+          <span class="section-icon party-icon">
+            ♟
+          </span>
+
+          <div>
+
+            <span class="section-kicker">
+              PARTY MEMBERS
+            </span>
+
+            <h2>
+              Accompagnatori
+            </h2>
+
+          </div>
+
+        </div>
+
+        <p class="section-description">
+          Chi verrà con te in questa avventura?
+        </p>
+
+
+        @if (invite.companions.length > 0) {
+
+          <div class="companions-list">
+
+            @for (
+              companion of invite.companions;
+              track companion.id
+            ) {
+
+              <article class="companion-card">
+
+                <div class="companion-icon">
+                  ⚔
+                </div>
+
+                <div class="companion-info">
+
+                  <span class="party-role">
+                    PARTY MEMBER
+                  </span>
+
+                  <h3>
+                    {{ companion.name }}
+                    {{ companion.surname }}
+                  </h3>
+
+                  <span class="companion-menu">
+                    MENU · {{ companion.menuType }}
+                  </span>
+
+                </div>
+
+                <div class="companion-mark">
+                  ✦
+                </div>
+
+              </article>
+
+            }
+
+          </div>
+
+        } @else {
+
+          <div class="empty-party">
+
+            <span class="empty-icon">
+              ◇
+            </span>
+
+            <p>
+              Nessun party member aggiunto.
+            </p>
+
+            <small>
+              La compagnia può ancora crescere.
+            </small>
+
+          </div>
+
+        }
+
+
+        @if (!showCompanionForm) {
+
+          <button
+            class="add-companion-button"
+            type="button"
+            (click)="openCompanionForm()"
+          >
+
+            <span class="add-icon">
+              ＋
+            </span>
+
+            <span>
+              Aggiungi compagno di avventura
+            </span>
+
+          </button>
+
+        }
+
+
+        @if (showCompanionForm) {
+
+          <div class="companion-form-wrapper">
+
+            <div class="form-header">
+
+              <span>
+                ✦ NEW PARTY MEMBER ✦
+              </span>
+
+              <p>
+                Aggiungi qualcuno alla tua compagnia.
+              </p>
+
+            </div>
+
+            <app-companion-form
+              [menuTypes]="menuTypes"
+              (submitted)="addCompanion($event)"
+              (cancelled)="closeCompanionForm()"
+            />
+
+          </div>
+
+        }
+
+
+        @if (addingCompanion) {
+
+          <p class="status-message">
+            ✦ Aggiunta party member in corso...
+          </p>
+
+        }
+
+
+        @if (companionError) {
+
+          <p class="error-message">
+            ⚠ Non è stato possibile aggiungere
+            il party member.
+          </p>
+
+        }
+
+      </section>
+
+
+      <!-- ================================= -->
+      <!-- FINAL EASTER EGG -->
+      <!-- ================================= -->
+
+    <div class="final-easter-egg">
+
+    <span>
+        🎲 TIRO RIUSCITO: AMORE VERO
+    </span>
+
+    <p>
+        La più bella avventura è quella che scegliamo di vivere insieme.
+    </p>
+
+    </div>
+
+
+      <!-- ================================= -->
+      <!-- FOOTER -->
+      <!-- ================================= -->
+
+      <footer class="invite-footer">
+
+        <div class="footer-ornament">
+          <span>✦</span>
+          <span>◆</span>
+          <span>✦</span>
+        </div>
+
+        <p class="footer-main">
+          THE PARTY HAS BEEN SUMMONED
+        </p>
+
+        <p class="footer-sub">
+          LOVE · FRIENDSHIP · ADVENTURE
+        </p>
+
+        <p class="footer-game">
+          GAME ON · LOVE FOREVER
+        </p>
+
+      </footer>
+
+    </section>
+
+  </main>
+
+}

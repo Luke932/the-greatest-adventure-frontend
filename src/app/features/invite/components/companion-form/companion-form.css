@@ -1,0 +1,470 @@
+:host {
+  display: block;
+
+  --sage: #a9bd96;
+  --sage-light: #d8e4cc;
+  --sage-dark: #718761;
+
+  --forest: #24382a;
+  --forest-deep: #1b2b20;
+
+  --cream: #fffaf0;
+  --ivory: #f7f1e3;
+  --parchment: #e9dfcc;
+
+  --gold: #d9ad4f;
+  --gold-light: #f0d58c;
+
+  --purple: #8b6fa8;
+  --purple-light: #bca6d0;
+
+  --text: #304334;
+  --text-muted: #6c7768;
+  --error: #a65d52;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* ========================================
+   FORM
+   ======================================== */
+
+form {
+  position: relative;
+
+  display: grid;
+
+  gap: 20px;
+
+  padding: 26px;
+
+  border:
+    1px solid
+    rgba(214, 181, 109, 0.38);
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(250, 247, 237, 0.97),
+      rgba(235, 229, 211, 0.96)
+    );
+
+  box-shadow:
+    0 16px 35px rgba(28, 42, 31, 0.18),
+    inset 0 0 35px rgba(255, 255, 255, 0.45);
+
+  color: var(--text);
+}
+
+
+/* Decorazione magica */
+
+form::before {
+  content: '✦';
+
+  position: absolute;
+
+  top: 12px;
+  right: 18px;
+
+  color:
+    rgba(139, 111, 168, 0.35);
+
+  font-size: 1.3rem;
+
+  pointer-events: none;
+}
+
+
+/* ========================================
+   CAMPI
+   ======================================== */
+
+form > div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+
+/* ========================================
+   LABEL
+   ======================================== */
+
+label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  color: var(--forest);
+
+  font-family:
+    'Trebuchet MS',
+    Arial,
+    sans-serif;
+
+  font-size: 0.78rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.04em;
+}
+
+
+/* ========================================
+   INPUT / SELECT / TEXTAREA
+   ======================================== */
+
+input,
+select,
+textarea {
+  width: 100%;
+
+  border:
+    1px solid
+    rgba(92, 111, 86, 0.30);
+
+  border-radius: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.72);
+
+  color: var(--text);
+
+  font-family:
+    'Trebuchet MS',
+    Arial,
+    sans-serif;
+
+  font-size: 0.9rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+input,
+select {
+  min-height: 46px;
+
+  padding: 11px 13px;
+}
+
+
+textarea {
+  min-height: 105px;
+
+  padding: 12px 13px;
+
+  resize: vertical;
+
+  line-height: 1.5;
+}
+
+
+/* ========================================
+   PLACEHOLDER
+   ======================================== */
+
+input::placeholder,
+textarea::placeholder {
+  color:
+    rgba(84, 96, 83, 0.55);
+}
+
+
+/* ========================================
+   FOCUS
+   ======================================== */
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--sage-dark);
+
+  background: #fffdf7;
+
+  box-shadow:
+    0 0 0 3px rgba(156, 175, 136, 0.18),
+    0 5px 15px rgba(54, 75, 58, 0.08);
+}
+
+
+/* ========================================
+   SELECT
+   ======================================== */
+
+select {
+  cursor: pointer;
+
+  appearance: auto;
+}
+
+
+/* ========================================
+   ERRORI
+   ======================================== */
+
+small {
+  display: block;
+
+  margin-top: 1px;
+
+  color: var(--error);
+
+  font-family:
+    'Trebuchet MS',
+    Arial,
+    sans-serif;
+
+  font-size: 0.7rem;
+
+  line-height: 1.4;
+}
+
+
+/* ========================================
+   CAMPO NON VALIDO
+   ======================================== */
+
+input.ng-touched.ng-invalid,
+select.ng-touched.ng-invalid,
+textarea.ng-touched.ng-invalid {
+  border-color:
+    rgba(166, 93, 82, 0.55);
+
+  background:
+    rgba(255, 245, 241, 0.85);
+}
+
+
+/* ========================================
+   AREA BOTTONI
+   ======================================== */
+
+form > div:last-child {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 12px;
+
+  margin-top: 8px;
+
+  padding-top: 20px;
+
+  border-top:
+    1px solid
+    rgba(112, 132, 99, 0.18);
+}
+
+
+/* ========================================
+   BOTTONI
+   ======================================== */
+
+button {
+  min-height: 46px;
+
+  padding: 11px 16px;
+
+  border-radius: 11px;
+
+  font-family:
+    'Trebuchet MS',
+    Arial,
+    sans-serif;
+
+  font-size: 0.76rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.04em;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+/* ========================================
+   AGGIUNGI
+   ======================================== */
+
+button[type='submit'] {
+  border:
+    1px solid
+    var(--sage-dark);
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--sage-dark),
+      var(--forest-light, #536b55)
+    );
+
+  color: #fffdf5;
+
+  box-shadow:
+    0 7px 18px rgba(69, 91, 67, 0.22);
+}
+
+
+button[type='submit']:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 23px rgba(69, 91, 67, 0.30);
+}
+
+
+button[type='submit']:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+
+/* ========================================
+   DISABILITATO
+   ======================================== */
+
+button[type='submit']:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.48;
+
+  box-shadow: none;
+}
+
+
+/* ========================================
+   ANNULLA
+   ======================================== */
+
+button[type='button'] {
+  border:
+    1px solid
+    rgba(139, 111, 168, 0.35);
+
+  background:
+    rgba(139, 111, 168, 0.08);
+
+  color:
+    #65536f;
+}
+
+
+button[type='button']:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(139, 111, 168, 0.55);
+
+  background:
+    rgba(139, 111, 168, 0.14);
+
+  box-shadow:
+    0 7px 18px rgba(83, 65, 95, 0.12);
+}
+
+
+/* ========================================
+   PICCOLO DETTAGLIO DECORATIVO
+   ======================================== */
+
+form > div:last-child::before {
+  content: '◇';
+
+  position: absolute;
+
+  bottom: 10px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  color:
+    rgba(214, 181, 109, 0.42);
+
+  font-size: 0.7rem;
+
+  pointer-events: none;
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 600px) {
+
+  form {
+    padding: 21px 17px;
+
+    gap: 18px;
+
+    border-radius: 15px;
+  }
+
+
+  input,
+  select {
+    min-height: 44px;
+  }
+
+
+  textarea {
+    min-height: 95px;
+  }
+
+
+  form > div:last-child {
+    grid-template-columns: 1fr;
+
+    gap: 9px;
+
+    margin-top: 4px;
+
+    padding-top: 17px;
+  }
+
+
+  button {
+    width: 100%;
+
+    min-height: 45px;
+  }
+
+}
+
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  input,
+  select,
+  textarea,
+  button {
+    transition: none;
+  }
+
+}

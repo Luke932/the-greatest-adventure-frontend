@@ -1,0 +1,445 @@
+<div class="guest-detail-page">
+
+  <!-- HEADER -->
+
+  <header class="dashboard-header">
+
+    <button
+      type="button"
+      class="back-button"
+      (click)="backToGuests()"
+    >
+      ←
+      <span>Invitati</span>
+    </button>
+
+
+    <div class="header-actions">
+
+      <button
+        type="button"
+        class="edit-button"
+        (click)="editGuest()"
+        [disabled]="!guest"
+      >
+        ✎
+        Modifica
+      </button>
+
+      <button
+        type="button"
+        class="delete-button"
+        (click)="deleteGuest()"
+        [disabled]="!guest"
+      >
+        Elimina
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- LOADING -->
+
+  @if (isLoading) {
+
+    <main class="guest-content loading-state">
+
+      <div class="loading-card">
+
+        <span class="loading-symbol">
+          💍
+        </span>
+
+        <p>
+          Caricamento dell'invitato...
+        </p>
+
+      </div>
+
+    </main>
+
+  }
+
+
+  <!-- ERRORE -->
+
+  @if (!isLoading && errorMessage) {
+
+    <main class="guest-content error-state">
+
+      <div class="error-card">
+
+        <span class="error-symbol">
+          ⚠️
+        </span>
+
+        <h2>
+          Qualcosa è andato storto
+        </h2>
+
+        <p>
+          {{ errorMessage }}
+        </p>
+
+        <button
+          type="button"
+          class="secondary-button"
+          (click)="backToGuests()"
+        >
+          Torna agli invitati
+        </button>
+
+      </div>
+
+    </main>
+
+  }
+
+
+  <!-- DETTAGLIO -->
+
+  @if (!isLoading && !errorMessage && guest) {
+
+    <main class="guest-content">
+
+      <!-- HERO -->
+
+      <section class="guest-hero">
+
+        <div class="guest-avatar">
+          {{ guest.name.charAt(0) }}{{ guest.surname.charAt(0) }}
+        </div>
+
+        <div class="guest-identity">
+
+          <span class="section-kicker">
+            INVITATO
+          </span>
+
+          <h1>
+            {{ guest.name }} {{ guest.surname }}
+          </h1>
+
+          <span
+            class="rsvp-badge"
+            [class.confirmed]="guest.rsvpStatus === 'CONFIRMED'"
+            [class.pending]="guest.rsvpStatus === 'PENDING'"
+            [class.declined]="guest.rsvpStatus === 'DECLINED'"
+          >
+
+            @if (guest.rsvpStatus === 'CONFIRMED') {
+              ✓ Confermato
+            }
+
+            @if (guest.rsvpStatus === 'PENDING') {
+              ⏳ In attesa
+            }
+
+            @if (guest.rsvpStatus === 'DECLINED') {
+              ✕ Non partecipa
+            }
+
+          </span>
+
+        </div>
+
+      </section>
+
+
+      <!-- DATI PERSONALI -->
+
+      <section class="detail-section">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span class="section-kicker">
+              DATI PERSONALI
+            </span>
+
+            <h2>
+              Informazioni dell'invitato
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="details-grid">
+
+          <article class="detail-card">
+
+            <span class="detail-label">
+              Nome
+            </span>
+
+            <strong>
+              {{ guest.name }}
+            </strong>
+
+          </article>
+
+
+          <article class="detail-card">
+
+            <span class="detail-label">
+              Cognome
+            </span>
+
+            <strong>
+              {{ guest.surname }}
+            </strong>
+
+          </article>
+
+
+          <article class="detail-card">
+
+            <span class="detail-label">
+              Email
+            </span>
+
+            <strong>
+              {{ guest.email || 'Non inserita' }}
+            </strong>
+
+          </article>
+
+
+          <article class="detail-card">
+
+            <span class="detail-label">
+              Telefono
+            </span>
+
+            <strong>
+              {{ guest.phone || 'Non inserito' }}
+            </strong>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- INFORMAZIONI MATRIMONIO -->
+
+      <section class="detail-section">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span class="section-kicker">
+              PARTECIPAZIONE
+            </span>
+
+            <h2>
+              Preferenze dell'invitato
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="details-grid">
+
+          <article class="detail-card">
+
+            <span class="detail-label">
+              Stato RSVP
+            </span>
+
+            <strong>
+
+              @if (guest.rsvpStatus === 'CONFIRMED') {
+                Confermato
+              }
+
+              @if (guest.rsvpStatus === 'PENDING') {
+                In attesa
+              }
+
+              @if (guest.rsvpStatus === 'DECLINED') {
+                Non partecipa
+              }
+
+            </strong>
+
+          </article>
+
+
+          <article class="detail-card">
+
+            <span class="detail-label">
+              Menu
+            </span>
+
+            <strong>
+              {{ guest.menuType }}
+            </strong>
+
+          </article>
+
+
+          <article class="detail-card">
+
+            <span class="detail-label">
+              Allergie / intolleranze
+            </span>
+
+            <strong>
+              {{ guest.allergies || 'Nessuna indicata' }}
+            </strong>
+
+          </article>
+
+
+          <article class="detail-card">
+
+            <span class="detail-label">
+              Note
+            </span>
+
+            <strong>
+              {{ guest.notes || 'Nessuna nota' }}
+            </strong>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- ACCOMPAGNATORI -->
+
+      <section class="detail-section">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span class="section-kicker">
+              COMPAGNIA
+            </span>
+
+            <h2>
+              Accompagnatori
+            </h2>
+
+          </div>
+
+          <span class="companions-count">
+            {{ guest.companions.length }}
+          </span>
+
+        </div>
+
+
+        @if (guest.companions.length === 0) {
+
+          <div class="empty-card">
+
+            <span>
+              🧭
+            </span>
+
+            <h3>
+              Nessun accompagnatore
+            </h3>
+
+            <p>
+              Questo invitato non ha ancora aggiunto accompagnatori.
+            </p>
+
+          </div>
+
+        }
+
+
+        @if (guest.companions.length > 0) {
+
+          <div class="companions-grid">
+
+            @for (
+              companion of guest.companions;
+              track companion.id
+            ) {
+
+              <article class="companion-card">
+
+                <div class="companion-avatar">
+                  {{ companion.name.charAt(0) }}{{ companion.surname.charAt(0) }}
+                </div>
+
+
+                <div class="companion-info">
+
+                  <h3>
+                    {{ companion.name }} {{ companion.surname }}
+                  </h3>
+
+                  <span>
+                    {{ companion.email || 'Email non inserita' }}
+                  </span>
+
+                  <span>
+                    {{ companion.phone || 'Telefono non inserito' }}
+                  </span>
+
+                </div>
+
+
+                <div class="companion-food">
+
+                  <span>
+                    🍽️ {{ companion.menuType }}
+                  </span>
+
+                  @if (companion.allergies) {
+
+                    <span>
+                      ⚠️ {{ companion.allergies }}
+                    </span>
+
+                  }
+
+                </div>
+
+              </article>
+
+            }
+
+          </div>
+
+        }
+
+      </section>
+
+
+      <!-- EASTER EGG -->
+
+      <section class="dashboard-quote">
+
+        <span>
+          🎲 QUEST STATUS
+        </span>
+
+        <p>
+          Un altro passo verso la più grande avventura.
+        </p>
+
+      </section>
+
+    </main>
+
+  }
+
+</div>

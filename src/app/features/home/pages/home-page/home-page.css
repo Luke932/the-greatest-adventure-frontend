@@ -22,9 +22,8 @@
 .home-page {
   min-height: 100vh;
 
-  background: var(--forest-deep);
-
-  color: var(--cream);
+  background: #518060;
+color: #f5f1ea;
 
   font-family:
     'Trebuchet MS',
@@ -59,12 +58,12 @@
   inset: 0;
 
   background:
-    linear-gradient(
-      180deg,
-      rgba(20, 36, 25, 0.38),
-      rgba(20, 36, 25, 0.52),
-      rgba(20, 36, 25, 0.82)
-    );
+  linear-gradient(
+    180deg,
+    rgba(20, 36, 25, 0.18),
+    rgba(20, 36, 25, 0.30),
+    rgba(20, 36, 25, 0.58)
+  );
 }
 
 
@@ -359,6 +358,189 @@
   .intro-section,
   .rsvp-section {
     padding: 80px 20px;
+  }
+
+}
+
+/* =========================================
+   FALLING PETALS
+   ========================================= */
+
+.petals {
+  position: fixed;
+  inset: 0;
+
+  z-index: 20;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+
+.petals span {
+  position: absolute;
+
+  top: -60px;
+
+  display: block;
+
+  color: rgba(228, 201, 142, 0.55);
+
+  font-family: Georgia, serif;
+
+  font-size: 22px;
+
+  opacity: 0;
+
+  animation:
+    petal-fall linear infinite,
+    petal-sway ease-in-out infinite;
+}
+
+
+/* Posizioni e tempi diversi */
+
+.petals span:nth-child(1) {
+  left: 5%;
+  animation-duration: 11s, 3s;
+  animation-delay: 0s, 0s;
+  font-size: 18px;
+}
+
+.petals span:nth-child(2) {
+  left: 14%;
+  animation-duration: 14s, 4s;
+  animation-delay: -4s, -1s;
+  font-size: 25px;
+}
+
+.petals span:nth-child(3) {
+  left: 24%;
+  animation-duration: 12s, 3.5s;
+  animation-delay: -8s, -2s;
+  font-size: 16px;
+}
+
+.petals span:nth-child(4) {
+  left: 35%;
+  animation-duration: 16s, 4.5s;
+  animation-delay: -2s, -3s;
+  font-size: 21px;
+}
+
+.petals span:nth-child(5) {
+  left: 45%;
+  animation-duration: 13s, 3s;
+  animation-delay: -7s, -1s;
+  font-size: 17px;
+}
+
+.petals span:nth-child(6) {
+  left: 56%;
+  animation-duration: 15s, 4s;
+  animation-delay: -11s, -2s;
+  font-size: 24px;
+}
+
+.petals span:nth-child(7) {
+  left: 66%;
+  animation-duration: 12s, 3.5s;
+  animation-delay: -5s, -1s;
+  font-size: 19px;
+}
+
+.petals span:nth-child(8) {
+  left: 75%;
+  animation-duration: 17s, 4.5s;
+  animation-delay: -9s, -3s;
+  font-size: 23px;
+}
+
+.petals span:nth-child(9) {
+  left: 84%;
+  animation-duration: 13s, 3s;
+  animation-delay: -3s, -2s;
+  font-size: 16px;
+}
+
+.petals span:nth-child(10) {
+  left: 92%;
+  animation-duration: 15s, 4s;
+  animation-delay: -12s, -1s;
+  font-size: 21px;
+}
+
+.petals span:nth-child(11) {
+  left: 31%;
+  animation-duration: 18s, 5s;
+  animation-delay: -14s, -4s;
+  font-size: 15px;
+}
+
+.petals span:nth-child(12) {
+  left: 70%;
+  animation-duration: 14s, 3.5s;
+  animation-delay: -6s, -2s;
+  font-size: 18px;
+}
+
+
+/* =========================================
+   FALL
+   ========================================= */
+
+@keyframes petal-fall {
+
+  0% {
+    top: -60px;
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+
+  8% {
+    opacity: 0.7;
+  }
+
+  85% {
+    opacity: 0.45;
+  }
+
+  100% {
+    top: 110vh;
+    opacity: 0;
+    transform: rotate(360deg);
+  }
+
+}
+
+
+/* =========================================
+   SWAY
+   ========================================= */
+
+@keyframes petal-sway {
+
+  0%,
+  100% {
+    margin-left: -15px;
+  }
+
+  50% {
+    margin-left: 15px;
+  }
+
+}
+
+
+/* =========================================
+   REDUCE MOTION
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .petals {
+    display: none;
   }
 
 }

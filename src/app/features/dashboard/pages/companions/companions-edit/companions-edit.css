@@ -5,14 +5,14 @@ box-sizing: border-box;
 padding: 2rem;
 
 background:
-radial-gradient(
-circle at 50% -15%,
-rgba(191, 161, 106, 0.10),
-transparent 45%
-),
-#0d0c0b;
+    linear-gradient(
+      135deg,
+      #1d2c22,
+      #263a2c 50%,
+      #1b2920
+    );
 
-color: #f1ede5;
+  color: var(--cream);
 }
 
 /* =========================================

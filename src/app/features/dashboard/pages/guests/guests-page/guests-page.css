@@ -11,19 +11,14 @@
   min-height: 100vh;
   padding: 32px;
   background:
-    radial-gradient(
-      circle at top left,
-      rgba(139, 92, 246, 0.08),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at bottom right,
-      rgba(245, 158, 11, 0.07),
-      transparent 35%
-    ),
-    #0f0d14;
+    linear-gradient(
+      135deg,
+      #1d2c22,
+      #263a2c 50%,
+      #1b2920
+    );
 
-  color: #f5f1ea;
+  color: var(--cream);
 }
 
 
@@ -104,7 +99,7 @@
   margin: 0;
 
   font-family: Georgia, 'Times New Roman', serif;
-
+  color:#fff;
   font-size: clamp(32px, 5vw, 46px);
   line-height: 1.05;
 
@@ -162,7 +157,7 @@
   margin: 10px 0 12px;
 
   font-family: Georgia, 'Times New Roman', serif;
-
+  color:#fff;
   font-size: clamp(28px, 4vw, 38px);
   font-weight: 500;
 }

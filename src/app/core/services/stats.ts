@@ -20,7 +20,17 @@ export interface StatsResponse {
 
   declinedPeople: number;
 
+  standardPeople: number;
+
+  celiacPeople: number;
+
+  vegetarianPeople: number;
+
+  veganPeople: number;
+
+  otherMenuPeople: number;
 }
+
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +41,13 @@ export class StatsService {
 
   private readonly apiUrl = 'http://localhost:8080/api';
 
+
   getStats(): Observable<StatsResponse> {
+
     return this.http.get<StatsResponse>(
       `${this.apiUrl}/stats`
     );
+
   }
+
 }

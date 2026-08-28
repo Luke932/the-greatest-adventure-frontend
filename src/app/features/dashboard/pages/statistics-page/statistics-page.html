@@ -1,0 +1,592 @@
+<div class="statistics-page">
+
+  <!-- HEADER -->
+
+  <header class="statistics-header">
+
+    <button
+      type="button"
+      class="back-button"
+      (click)="backToDashboard()"
+    >
+      ←
+      <span>
+        Dashboard
+      </span>
+    </button>
+
+    <div class="header-title">
+
+      <span class="section-kicker">
+        THE GREATEST ADVENTURE
+      </span>
+
+      <h1>
+        Statistiche
+      </h1>
+
+    </div>
+
+  </header>
+
+
+  <!-- CONTENUTO -->
+
+  <main class="statistics-content">
+
+    <!-- INTRO -->
+
+    <section class="intro-section">
+
+      <span class="section-kicker">
+        PANORAMICA
+      </span>
+
+      <h2>
+        Come procede l'avventura?
+      </h2>
+
+      <p>
+        Una panoramica delle conferme, delle persone previste
+        e delle necessità organizzative del grande giorno.
+      </p>
+
+    </section>
+
+
+    <!-- LOADING -->
+
+    @if (isLoading) {
+
+      <section class="loading-state">
+
+        <div class="loading-card">
+
+          <span class="loading-symbol">
+            📊
+          </span>
+
+          <p>
+            Caricamento delle statistiche...
+          </p>
+
+        </div>
+
+      </section>
+
+    }
+
+
+    <!-- ERRORE -->
+
+    @if (!isLoading && errorMessage) {
+
+      <section class="error-state">
+
+        <div class="error-card">
+
+          <span class="error-symbol">
+            ⚠️
+          </span>
+
+          <h2>
+            Qualcosa è andato storto
+          </h2>
+
+          <p>
+            {{ errorMessage }}
+          </p>
+
+          <button
+            type="button"
+            class="secondary-button"
+            (click)="backToDashboard()"
+          >
+            Torna alla dashboard
+          </button>
+
+        </div>
+
+      </section>
+
+    }
+
+
+    <!-- STATISTICHE -->
+
+    @if (!isLoading && !errorMessage && stats) {
+
+
+      <!-- ========================================
+           RSVP
+           ======================================== -->
+
+      <section class="statistics-section">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span class="section-kicker">
+              RSVP
+            </span>
+
+            <h2>
+              Risposte degli invitati
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+          <!-- INVITATI -->
+
+          <article class="stat-card">
+
+            <span class="stat-icon">
+              👥
+            </span>
+
+            <div>
+
+              <span class="stat-label">
+                INVITATI
+              </span>
+
+              <strong class="stat-value">
+                {{ stats.totalGuests }}
+              </strong>
+
+            </div>
+
+          </article>
+
+
+          <!-- CONFERMATI -->
+
+          <article class="stat-card confirmed">
+
+            <span class="stat-icon">
+              💚
+            </span>
+
+            <div>
+
+              <span class="stat-label">
+                CONFERMATI
+              </span>
+
+              <strong class="stat-value">
+                {{ stats.confirmedGuests }}
+              </strong>
+
+            </div>
+
+          </article>
+
+
+          <!-- IN ATTESA -->
+
+          <article class="stat-card pending">
+
+            <span class="stat-icon">
+              ⏳
+            </span>
+
+            <div>
+
+              <span class="stat-label">
+                IN ATTESA
+              </span>
+
+              <strong class="stat-value">
+                {{ stats.pendingGuests }}
+              </strong>
+
+            </div>
+
+          </article>
+
+
+          <!-- NON PARTECIPANO -->
+
+          <article class="stat-card declined">
+
+            <span class="stat-icon">
+              ✕
+            </span>
+
+            <div>
+
+              <span class="stat-label">
+                NON PARTECIPANO
+              </span>
+
+              <strong class="stat-value">
+                {{ stats.declinedGuests }}
+              </strong>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- ========================================
+           GRAFICI
+           ======================================== -->
+
+      <section class="statistics-section charts-section">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span class="section-kicker">
+              ANALISI
+            </span>
+
+            <h2>
+              La situazione a colpo d'occhio
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="charts-grid">
+
+
+          <!-- GRAFICO RSVP -->
+
+          <article class="chart-card">
+
+            <div class="chart-card-header">
+
+              <div>
+
+                <span class="chart-label">
+                  RSVP
+                </span>
+
+                <h3>
+                  Stato degli invitati
+                </h3>
+
+              </div>
+
+              <span class="chart-icon">
+                💌
+              </span>
+
+            </div>
+
+
+            <div class="chart-container">
+
+              <canvas
+                id="rsvpChart">
+              </canvas>
+
+            </div>
+
+          </article>
+
+
+          <!-- GRAFICO MENU -->
+
+          <article class="chart-card">
+
+            <div class="chart-card-header">
+
+              <div>
+
+                <span class="chart-label">
+                  RISTORAZIONE
+                </span>
+
+                <h3>
+                  Preferenze alimentari
+                </h3>
+
+              </div>
+
+              <span class="chart-icon">
+                🍽️
+              </span>
+
+            </div>
+
+
+            <div class="chart-container">
+
+              <canvas
+                id="menuChart">
+              </canvas>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- ========================================
+           PERSONE
+           ======================================== -->
+
+      <section class="statistics-section">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span class="section-kicker">
+              PRESENZE
+            </span>
+
+            <h2>
+              Persone previste
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="people-card">
+
+          <div class="people-main">
+
+            <span class="people-icon">
+              💍
+            </span>
+
+            <div>
+
+              <span class="stat-label">
+                PERSONE CONFERMATE
+              </span>
+
+              <strong>
+                {{ stats.confirmedPeople }}
+              </strong>
+
+              <p>
+                Invitati e accompagnatori che parteciperanno
+                al grande giorno.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="people-breakdown">
+
+            <div>
+
+              <span>
+                Invitati
+              </span>
+
+              <strong>
+                {{ stats.confirmedGuests }}
+              </strong>
+
+            </div>
+
+            <div>
+
+              <span>
+                Accompagnatori
+              </span>
+
+              <strong>
+                {{ stats.confirmedPeople - stats.confirmedGuests }}
+              </strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ========================================
+           MENU
+           ======================================== -->
+
+      <section class="statistics-section">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span class="section-kicker">
+              RISTORAZIONE
+            </span>
+
+            <h2>
+              Preferenze del menu
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="menu-grid">
+
+
+          <!-- STANDARD -->
+
+          <article class="menu-card">
+
+            <span class="menu-icon">
+              🍽️
+            </span>
+
+            <span class="menu-label">
+              STANDARD
+            </span>
+
+            <strong>
+              {{ stats.standardPeople }}
+            </strong>
+
+            <small>
+              persone
+            </small>
+
+          </article>
+
+
+          <!-- CELIACO -->
+
+          <article class="menu-card">
+
+            <span class="menu-icon">
+              🌾
+            </span>
+
+            <span class="menu-label">
+              CELIACO
+            </span>
+
+            <strong>
+              {{ stats.celiacPeople }}
+            </strong>
+
+            <small>
+              persone
+            </small>
+
+          </article>
+
+
+          <!-- VEGETARIANO -->
+
+          <article class="menu-card">
+
+            <span class="menu-icon">
+              🥗
+            </span>
+
+            <span class="menu-label">
+              VEGETARIANO
+            </span>
+
+            <strong>
+              {{ stats.vegetarianPeople }}
+            </strong>
+
+            <small>
+              persone
+            </small>
+
+          </article>
+
+
+          <!-- VEGANO -->
+
+          <article class="menu-card">
+
+            <span class="menu-icon">
+              🌱
+            </span>
+
+            <span class="menu-label">
+              VEGANO
+            </span>
+
+            <strong>
+              {{ stats.veganPeople }}
+            </strong>
+
+            <small>
+              persone
+            </small>
+
+          </article>
+
+
+          <!-- ALTRO -->
+
+          <article class="menu-card">
+
+            <span class="menu-icon">
+              ✨
+            </span>
+
+            <span class="menu-label">
+              ALTRO
+            </span>
+
+            <strong>
+              {{ stats.otherMenuPeople }}
+            </strong>
+
+            <small>
+              persone
+            </small>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- ========================================
+           QUEST STATUS
+           ======================================== -->
+
+      <section class="dashboard-quote">
+
+        <span>
+          🎲 QUEST STATUS
+        </span>
+
+        <p>
+          Ogni conferma è un altro passo verso il grande giorno.
+        </p>
+
+      </section>
+
+    }
+
+  </main>
+
+</div>

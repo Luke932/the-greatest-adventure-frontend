@@ -30,6 +30,15 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
 
+  {
+  path: 'dashboard/statistics',
+  loadComponent: () =>
+    import('./features/dashboard/pages/statistics-page/statistics-page')
+      .then(m => m.StatisticsPage),
+
+  canActivate: [authGuard]
+  },
+
   // GESTIONE INVITATI
   {
     path: 'dashboard/guests',

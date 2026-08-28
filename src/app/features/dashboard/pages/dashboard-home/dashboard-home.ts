@@ -86,6 +86,14 @@ export class DashboardHome implements OnInit {
   
   }
 
+  goToStatistics(): void {
+
+  this.router.navigate([
+    '/dashboard/statistics'
+  ]);
+
+}
+
   logout(): void {
 
     this.authService.logout();

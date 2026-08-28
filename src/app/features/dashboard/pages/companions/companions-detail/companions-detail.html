@@ -1,0 +1,417 @@
+<div class="companion-detail-page">
+
+  <!-- HEADER -->
+
+  <header class="detail-header">
+
+
+<button
+  type="button"
+  class="back-button"
+  (click)="backToCompanions()"
+>
+  ←
+  <span>Torna agli accompagnatori</span>
+</button>
+
+
+@if (companion) {
+
+  <div class="header-title">
+
+    <span class="section-kicker">
+      AREA PRIVATA
+    </span>
+
+    <h1>
+      {{ companion.name }}
+      {{ companion.surname }}
+    </h1>
+
+    <p>
+      Dettaglio accompagnatore
+    </p>
+
+  </div>
+
+}
+
+
+  </header>
+
+  <!-- LOADING -->
+
+@if (isLoading) {
+
+
+<main class="state-container">
+
+  <div class="loading-symbol">
+    💍
+  </div>
+
+  <p>
+    Caricamento dei dati dell'accompagnatore...
+  </p>
+
+</main>
+
+
+}
+
+  <!-- ERRORE -->
+
+@else if (errorMessage && !companion) {
+
+
+<main class="state-container error-state">
+
+  <div class="state-icon">
+    ⚠️
+  </div>
+
+  <h2>
+    Qualcosa è andato storto
+  </h2>
+
+  <p>
+    {{ errorMessage }}
+  </p>
+
+  <button
+    type="button"
+    class="secondary-button"
+    (click)="backToCompanions()"
+  >
+    Torna agli accompagnatori
+  </button>
+
+</main>
+
+
+}
+
+  <!-- DETTAGLIO -->
+
+@else if (companion) {
+
+
+<main class="detail-content">
+
+
+  <!-- DATI PERSONALI -->
+
+  <section class="detail-section">
+
+    <div class="section-heading">
+
+      <div>
+
+        <span class="section-kicker">
+          IDENTITÀ
+        </span>
+
+        <h2>
+          Dati personali
+        </h2>
+
+      </div>
+
+      <span class="section-icon">
+        🧙
+      </span>
+
+    </div>
+
+
+    <div class="info-grid">
+
+      <div class="info-card">
+
+        <span class="info-label">
+          NOME
+        </span>
+
+        <strong>
+          {{ companion.name }}
+        </strong>
+
+      </div>
+
+
+      <div class="info-card">
+
+        <span class="info-label">
+          COGNOME
+        </span>
+
+        <strong>
+          {{ companion.surname }}
+        </strong>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTATTI -->
+
+  <section class="detail-section">
+
+    <div class="section-heading">
+
+      <div>
+
+        <span class="section-kicker">
+          CONTATTI
+        </span>
+
+        <h2>
+          Recapiti
+        </h2>
+
+      </div>
+
+      <span class="section-icon">
+        📱
+      </span>
+
+    </div>
+
+
+    <div class="info-grid">
+
+      <div class="info-card">
+
+        <span class="info-label">
+          EMAIL
+        </span>
+
+        @if (companion.email) {
+
+          <strong>
+            {{ companion.email }}
+          </strong>
+
+        } @else {
+
+          <span class="empty-value">
+            Non specificata
+          </span>
+
+        }
+
+      </div>
+
+
+      <div class="info-card">
+
+        <span class="info-label">
+          TELEFONO
+        </span>
+
+        @if (companion.phone) {
+
+          <strong>
+            {{ companion.phone }}
+          </strong>
+
+        } @else {
+
+          <span class="empty-value">
+            Non specificato
+          </span>
+
+        }
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- RICEVIMENTO -->
+
+  <section class="detail-section">
+
+    <div class="section-heading">
+
+      <div>
+
+        <span class="section-kicker">
+          RICEVIMENTO
+        </span>
+
+        <h2>
+          Preferenze alimentari
+        </h2>
+
+      </div>
+
+      <span class="section-icon">
+        🍽️
+      </span>
+
+    </div>
+
+
+    <div class="info-grid">
+
+      <div class="info-card">
+
+        <span class="info-label">
+          MENU
+        </span>
+
+        <strong>
+
+          @switch (companion.menuType) {
+
+            @case ('STANDARD') {
+              Standard
+            }
+
+            @case ('CELIAC') {
+              Celiaco
+            }
+
+            @case ('VEGETARIAN') {
+              Vegetariano
+            }
+
+            @case ('VEGAN') {
+              Vegano
+            }
+
+            @case ('OTHER') {
+              Altro
+            }
+
+          }
+
+        </strong>
+
+      </div>
+
+
+      <div class="info-card">
+
+        <span class="info-label">
+          ALLERGIE / INTOLLERANZE
+        </span>
+
+        @if (companion.allergies) {
+
+          <strong>
+            {{ companion.allergies }}
+          </strong>
+
+        } @else {
+
+          <span class="empty-value">
+            Nessuna indicata
+          </span>
+
+        }
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- NOTE -->
+
+  @if (companion.notes) {
+
+    <section class="detail-section">
+
+      <div class="section-heading">
+
+        <div>
+
+          <span class="section-kicker">
+            NOTE
+          </span>
+
+          <h2>
+            Informazioni aggiuntive
+          </h2>
+
+        </div>
+
+        <span class="section-icon">
+          📝
+        </span>
+
+      </div>
+
+
+      <div class="notes-card">
+
+        {{ companion.notes }}
+
+      </div>
+
+    </section>
+
+  }
+
+
+  <!-- ERRORE OPERAZIONE -->
+
+  @if (errorMessage) {
+
+    <div class="form-message error-message">
+      ⚠️ {{ errorMessage }}
+    </div>
+
+  }
+
+
+  <!-- AZIONI -->
+
+  <section class="detail-actions">
+
+    <button
+      type="button"
+      class="secondary-button"
+      (click)="backToCompanions()"
+    >
+      ← Torna alla lista
+    </button>
+
+
+    <div class="action-group">
+
+      <button
+        type="button"
+        class="edit-button"
+        (click)="editCompanion()"
+      >
+        ✏️ Modifica
+      </button>
+
+
+      <button
+        type="button"
+        class="delete-button"
+        (click)="deleteCompanion()"
+      >
+        🗑️ Elimina
+      </button>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+}
+
+</div>

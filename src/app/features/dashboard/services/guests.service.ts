@@ -1,17 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { MenuType } from '../../../core/models/menu-type';
 
 export type RsvpStatus =
   | 'PENDING'
   | 'CONFIRMED'
   | 'DECLINED';
-
-export type MenuType =
-  | 'STANDARD'
-  | 'VEGETARIAN'
-  | 'VEGAN'
-  | 'GLUTEN_FREE';
 
 export interface Guest {
 

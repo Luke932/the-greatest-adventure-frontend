@@ -4,442 +4,765 @@
 
   <header class="dashboard-header">
 
-    <button
-      type="button"
-      class="back-button"
-      (click)="backToGuests()"
-    >
-      ←
-      <span>Invitati</span>
-    </button>
+
+<button
+  type="button"
+  class="back-button"
+  (click)="backToGuests()"
+>
+  ←
+  <span>Invitati</span>
+</button>
 
 
-    <div class="header-actions">
+<div class="header-actions">
 
-      <button
-        type="button"
-        class="edit-button"
-        (click)="editGuest()"
-        [disabled]="!guest"
-      >
-        ✎
-        Modifica
-      </button>
+  <button
+    type="button"
+    class="edit-button"
+    (click)="editGuest()"
+    [disabled]="!guest"
+  >
+    ✎
+    Modifica
+  </button>
 
-      <button
-        type="button"
-        class="delete-button"
-        (click)="deleteGuest()"
-        [disabled]="!guest"
-      >
-        Elimina
-      </button>
+  <button
+    type="button"
+    class="delete-button"
+    (click)="deleteGuest()"
+    [disabled]="!guest"
+  >
+    Elimina
+  </button>
 
-    </div>
+</div>
+
 
   </header>
 
-
   <!-- LOADING -->
 
-  @if (isLoading) {
+@if (isLoading) {
 
-    <main class="guest-content loading-state">
 
-      <div class="loading-card">
+<main class="guest-content loading-state">
 
-        <span class="loading-symbol">
-          💍
+  <div class="loading-card">
+
+    <span class="loading-symbol">
+      💍
+    </span>
+
+    <p>
+      Caricamento dell'invitato...
+    </p>
+
+  </div>
+
+</main>
+
+
+}
+
+  <!-- ERRORE -->
+
+@if (!isLoading && errorMessage) {
+
+
+<main class="guest-content error-state">
+
+  <div class="error-card">
+
+    <span class="error-symbol">
+      ⚠️
+    </span>
+
+    <h2>
+      Qualcosa è andato storto
+    </h2>
+
+    <p>
+      {{ errorMessage }}
+    </p>
+
+    <button
+      type="button"
+      class="secondary-button"
+      (click)="backToGuests()"
+    >
+      Torna agli invitati
+    </button>
+
+  </div>
+
+</main>
+
+
+}
+
+  <!-- DETTAGLIO -->
+
+@if (!isLoading && !errorMessage && guest) {
+
+
+<main class="guest-content">
+
+  <!-- HERO -->
+
+  <section class="guest-hero">
+
+    <div class="guest-avatar">
+      {{ guest.name.charAt(0) }}{{ guest.surname.charAt(0) }}
+    </div>
+
+    <div class="guest-identity">
+
+      <span class="section-kicker">
+        INVITATO
+      </span>
+
+      <h1>
+        {{ guest.name }} {{ guest.surname }}
+      </h1>
+
+      <span
+        class="rsvp-badge"
+        [class.confirmed]="guest.rsvpStatus === 'CONFIRMED'"
+        [class.pending]="guest.rsvpStatus === 'PENDING'"
+        [class.declined]="guest.rsvpStatus === 'DECLINED'"
+      >
+
+        @if (guest.rsvpStatus === 'CONFIRMED') {
+          ✓ Confermato
+        }
+
+        @if (guest.rsvpStatus === 'PENDING') {
+          ⏳ In attesa
+        }
+
+        @if (guest.rsvpStatus === 'DECLINED') {
+          ✕ Non partecipa
+        }
+
+      </span>
+
+    </div>
+
+  </section>
+
+
+  <!-- DATI PERSONALI -->
+
+  <section class="detail-section">
+
+    <div class="section-heading">
+
+      <div>
+
+        <span class="section-kicker">
+          DATI PERSONALI
         </span>
 
+        <h2>
+          Informazioni dell'invitato
+        </h2>
+
+      </div>
+
+    </div>
+
+
+    <div class="details-grid">
+
+      <article class="detail-card">
+
+        <span class="detail-label">
+          Nome
+        </span>
+
+        <strong>
+          {{ guest.name }}
+        </strong>
+
+      </article>
+
+
+      <article class="detail-card">
+
+        <span class="detail-label">
+          Cognome
+        </span>
+
+        <strong>
+          {{ guest.surname }}
+        </strong>
+
+      </article>
+
+
+      <article class="detail-card">
+
+        <span class="detail-label">
+          Email
+        </span>
+
+        <strong>
+          {{ guest.email || 'Non inserita' }}
+        </strong>
+
+      </article>
+
+
+      <article class="detail-card">
+
+        <span class="detail-label">
+          Telefono
+        </span>
+
+        <strong>
+          {{ guest.phone || 'Non inserito' }}
+        </strong>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- PREFERENZE -->
+
+  <section class="detail-section">
+
+    <div class="section-heading">
+
+      <div>
+
+        <span class="section-kicker">
+          PARTECIPAZIONE
+        </span>
+
+        <h2>
+          Preferenze dell'invitato
+        </h2>
+
+      </div>
+
+    </div>
+
+
+    <div class="details-grid">
+
+      <article class="detail-card">
+
+        <span class="detail-label">
+          Stato RSVP
+        </span>
+
+        <strong>
+
+          @if (guest.rsvpStatus === 'CONFIRMED') {
+            Confermato
+          }
+
+          @if (guest.rsvpStatus === 'PENDING') {
+            In attesa
+          }
+
+          @if (guest.rsvpStatus === 'DECLINED') {
+            Non partecipa
+          }
+
+        </strong>
+
+      </article>
+
+
+      <article class="detail-card">
+
+        <span class="detail-label">
+          Menu
+        </span>
+
+        <strong>
+          {{ guest.menuType }}
+        </strong>
+
+      </article>
+
+
+      <article class="detail-card">
+
+        <span class="detail-label">
+          Allergie / intolleranze
+        </span>
+
+        <strong>
+          {{ guest.allergies || 'Nessuna indicata' }}
+        </strong>
+
+      </article>
+
+
+      <article class="detail-card">
+
+        <span class="detail-label">
+          Note
+        </span>
+
+        <strong>
+          {{ guest.notes || 'Nessuna nota' }}
+        </strong>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- ACCOMPAGNATORI -->
+
+  <section class="detail-section companions-section">
+
+    <div class="section-heading">
+
+      <div>
+
+        <span class="section-kicker">
+          COMPAGNIA
+        </span>
+
+        <h2>
+          Accompagnatori
+        </h2>
+
         <p>
-          Caricamento dell'invitato...
+          Gestisci le persone associate a questo invitato.
         </p>
 
       </div>
 
-    </main>
 
-  }
+      <div class="companions-heading-actions">
 
-
-  <!-- ERRORE -->
-
-  @if (!isLoading && errorMessage) {
-
-    <main class="guest-content error-state">
-
-      <div class="error-card">
-
-        <span class="error-symbol">
-          ⚠️
+        <span class="companions-count">
+          {{ guest.companions.length }}
         </span>
 
-        <h2>
-          Qualcosa è andato storto
-        </h2>
+        <button
+          type="button"
+          class="primary-button"
+          (click)="toggleCompanionForm()"
+        >
+
+          @if (showCompanionForm) {
+            Annulla
+          } @else {
+            + Aggiungi
+          }
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- MESSAGGIO SUCCESSO -->
+
+    @if (companionSuccessMessage) {
+
+      <div class="form-message success-message">
+        ✨ {{ companionSuccessMessage }}
+      </div>
+
+    }
+
+
+    <!-- MESSAGGIO ERRORE -->
+
+    @if (companionErrorMessage) {
+
+      <div class="form-message error-message">
+        ⚠️ {{ companionErrorMessage }}
+      </div>
+
+    }
+
+
+    <!-- LISTA -->
+
+    @if (guest.companions.length === 0) {
+
+      <div class="empty-card">
+
+        <span>
+          👥
+        </span>
+
+        <h3>
+          Nessun accompagnatore
+        </h3>
 
         <p>
-          {{ errorMessage }}
+          Questo invitato non ha ancora accompagnatori associati.
         </p>
 
         <button
           type="button"
           class="secondary-button"
-          (click)="backToGuests()"
+          (click)="toggleCompanionForm()"
         >
-          Torna agli invitati
+          + Aggiungi il primo accompagnatore
         </button>
 
       </div>
 
-    </main>
-
-  }
+    }
 
 
-  <!-- DETTAGLIO -->
+    @if (guest.companions.length > 0) {
 
-  @if (!isLoading && !errorMessage && guest) {
+      <div class="companions-grid">
 
-    <main class="guest-content">
+        @for (
+          companion of guest.companions;
+          track companion.id
+        ) {
 
-      <!-- HERO -->
+          <article class="companion-card">
 
-      <section class="guest-hero">
+            <button
+              type="button"
+              class="companion-main"
+              (click)="openCompanion(companion)"
+            >
 
-        <div class="guest-avatar">
-          {{ guest.name.charAt(0) }}{{ guest.surname.charAt(0) }}
-        </div>
+              <div class="companion-avatar">
+                {{ companion.name.charAt(0) }}{{ companion.surname.charAt(0) }}
+              </div>
 
-        <div class="guest-identity">
+
+              <div class="companion-info">
+
+                <h3>
+                  {{ companion.name }}
+                  {{ companion.surname }}
+                </h3>
+
+                <span>
+                  {{ companion.email || 'Email non inserita' }}
+                </span>
+
+                <span>
+                  {{ companion.phone || 'Telefono non inserito' }}
+                </span>
+
+              </div>
+
+
+              <div class="companion-food">
+
+                <span>
+                  🍽️
+                  {{ companion.menuType }}
+                </span>
+
+                @if (companion.allergies) {
+
+                  <span>
+                    ⚠️ {{ companion.allergies }}
+                  </span>
+
+                }
+
+              </div>
+
+            </button>
+
+
+            <button
+              type="button"
+              class="companion-detail-button"
+              (click)="openCompanion(companion)"
+            >
+              Dettaglio →
+            </button>
+
+          </article>
+
+        }
+
+      </div>
+
+    }
+
+
+    <!-- FORM AGGIUNTA -->
+
+    @if (showCompanionForm) {
+
+      <div class="companion-form-container">
+
+        <div class="form-heading">
 
           <span class="section-kicker">
-            INVITATO
+            NUOVO ACCOMPAGNATORE
           </span>
 
-          <h1>
-            {{ guest.name }} {{ guest.surname }}
-          </h1>
-
-          <span
-            class="rsvp-badge"
-            [class.confirmed]="guest.rsvpStatus === 'CONFIRMED'"
-            [class.pending]="guest.rsvpStatus === 'PENDING'"
-            [class.declined]="guest.rsvpStatus === 'DECLINED'"
-          >
-
-            @if (guest.rsvpStatus === 'CONFIRMED') {
-              ✓ Confermato
-            }
-
-            @if (guest.rsvpStatus === 'PENDING') {
-              ⏳ In attesa
-            }
-
-            @if (guest.rsvpStatus === 'DECLINED') {
-              ✕ Non partecipa
-            }
-
-          </span>
+          <h3>
+            Aggiungi una persona
+          </h3>
 
         </div>
 
-      </section>
+
+        <form
+          [formGroup]="companionForm"
+          (ngSubmit)="addCompanion()"
+          novalidate
+        >
+
+          <div class="form-grid">
+
+            <!-- NOME -->
+
+            <div class="form-field">
+
+              <label for="companion-name">
+                Nome
+              </label>
+
+              <input
+                id="companion-name"
+                type="text"
+                formControlName="name"
+                autocomplete="given-name"
+                placeholder="Nome"
+              >
+
+              @if (
+                companionForm.controls.name.touched &&
+                companionForm.controls.name.invalid
+              ) {
+
+                <small class="field-error">
+                  Il nome è obbligatorio.
+                </small>
+
+              }
+
+            </div>
 
 
-      <!-- DATI PERSONALI -->
+            <!-- COGNOME -->
 
-      <section class="detail-section">
+            <div class="form-field">
 
-        <div class="section-heading">
+              <label for="companion-surname">
+                Cognome
+              </label>
 
-          <div>
+              <input
+                id="companion-surname"
+                type="text"
+                formControlName="surname"
+                autocomplete="family-name"
+                placeholder="Cognome"
+              >
 
-            <span class="section-kicker">
-              DATI PERSONALI
-            </span>
+              @if (
+                companionForm.controls.surname.touched &&
+                companionForm.controls.surname.invalid
+              ) {
 
-            <h2>
-              Informazioni dell'invitato
-            </h2>
+                <small class="field-error">
+                  Il cognome è obbligatorio.
+                </small>
+
+              }
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-field">
+
+              <label for="companion-email">
+                Email
+              </label>
+
+              <input
+                id="companion-email"
+                type="email"
+                formControlName="email"
+                autocomplete="email"
+                placeholder="nome@email.com"
+              >
+
+              @if (
+                companionForm.controls.email.touched &&
+                companionForm.controls.email.invalid
+              ) {
+
+                <small class="field-error">
+                  Inserisci un indirizzo email valido.
+                </small>
+
+              }
+
+            </div>
+
+
+            <!-- TELEFONO -->
+
+            <div class="form-field">
+
+              <label for="companion-phone">
+                Telefono
+              </label>
+
+              <input
+                id="companion-phone"
+                type="tel"
+                formControlName="phone"
+                autocomplete="tel"
+                placeholder="+39..."
+              >
+
+            </div>
+
+
+            <!-- MENU -->
+
+            <div class="form-field">
+
+              <label for="companion-menu">
+                Tipo di menu
+              </label>
+
+              <select
+                id="companion-menu"
+                formControlName="menuType"
+              >
+
+                @for (
+                  menu of menuTypes;
+                  track menu
+                ) {
+
+                  <option [ngValue]="menu">
+                    {{ menuLabels[menu] }}
+                  </option>
+
+                }
+
+              </select>
+
+            </div>
+
+
+            <!-- ALLERGIE -->
+
+            <div class="form-field">
+
+              <label for="companion-allergies">
+                Allergie / intolleranze
+              </label>
+
+              <input
+                id="companion-allergies"
+                type="text"
+                formControlName="allergies"
+                placeholder="Es. frutta secca, lattosio..."
+              >
+
+            </div>
 
           </div>
 
-        </div>
 
+          <!-- NOTE -->
 
-        <div class="details-grid">
+          <div class="form-field">
 
-          <article class="detail-card">
-
-            <span class="detail-label">
-              Nome
-            </span>
-
-            <strong>
-              {{ guest.name }}
-            </strong>
-
-          </article>
-
-
-          <article class="detail-card">
-
-            <span class="detail-label">
-              Cognome
-            </span>
-
-            <strong>
-              {{ guest.surname }}
-            </strong>
-
-          </article>
-
-
-          <article class="detail-card">
-
-            <span class="detail-label">
-              Email
-            </span>
-
-            <strong>
-              {{ guest.email || 'Non inserita' }}
-            </strong>
-
-          </article>
-
-
-          <article class="detail-card">
-
-            <span class="detail-label">
-              Telefono
-            </span>
-
-            <strong>
-              {{ guest.phone || 'Non inserito' }}
-            </strong>
-
-          </article>
-
-        </div>
-
-      </section>
-
-
-      <!-- INFORMAZIONI MATRIMONIO -->
-
-      <section class="detail-section">
-
-        <div class="section-heading">
-
-          <div>
-
-            <span class="section-kicker">
-              PARTECIPAZIONE
-            </span>
-
-            <h2>
-              Preferenze dell'invitato
-            </h2>
-
-          </div>
-
-        </div>
-
-
-        <div class="details-grid">
-
-          <article class="detail-card">
-
-            <span class="detail-label">
-              Stato RSVP
-            </span>
-
-            <strong>
-
-              @if (guest.rsvpStatus === 'CONFIRMED') {
-                Confermato
-              }
-
-              @if (guest.rsvpStatus === 'PENDING') {
-                In attesa
-              }
-
-              @if (guest.rsvpStatus === 'DECLINED') {
-                Non partecipa
-              }
-
-            </strong>
-
-          </article>
-
-
-          <article class="detail-card">
-
-            <span class="detail-label">
-              Menu
-            </span>
-
-            <strong>
-              {{ guest.menuType }}
-            </strong>
-
-          </article>
-
-
-          <article class="detail-card">
-
-            <span class="detail-label">
-              Allergie / intolleranze
-            </span>
-
-            <strong>
-              {{ guest.allergies || 'Nessuna indicata' }}
-            </strong>
-
-          </article>
-
-
-          <article class="detail-card">
-
-            <span class="detail-label">
+            <label for="companion-notes">
               Note
-            </span>
+            </label>
 
-            <strong>
-              {{ guest.notes || 'Nessuna nota' }}
-            </strong>
-
-          </article>
-
-        </div>
-
-      </section>
-
-
-      <!-- ACCOMPAGNATORI -->
-
-      <section class="detail-section">
-
-        <div class="section-heading">
-
-          <div>
-
-            <span class="section-kicker">
-              COMPAGNIA
-            </span>
-
-            <h2>
-              Accompagnatori
-            </h2>
+            <textarea
+              id="companion-notes"
+              formControlName="notes"
+              rows="4"
+              placeholder="Informazioni aggiuntive..."
+            ></textarea>
 
           </div>
 
-          <span class="companions-count">
-            {{ guest.companions.length }}
-          </span>
 
-        </div>
+          <!-- AZIONI -->
 
+          <div class="form-actions">
 
-        @if (guest.companions.length === 0) {
-
-          <div class="empty-card">
-
-            <span>
-              🧭
-            </span>
-
-            <h3>
-              Nessun accompagnatore
-            </h3>
-
-            <p>
-              Questo invitato non ha ancora aggiunto accompagnatori.
-            </p>
-
-          </div>
-
-        }
+            <button
+              type="button"
+              class="secondary-button"
+              (click)="toggleCompanionForm()"
+              [disabled]="isSavingCompanion"
+            >
+              Annulla
+            </button>
 
 
-        @if (guest.companions.length > 0) {
+            <button
+              type="submit"
+              class="primary-button"
+              [disabled]="isSavingCompanion"
+            >
 
-          <div class="companions-grid">
+              @if (isSavingCompanion) {
 
-            @for (
-              companion of guest.companions;
-              track companion.id
-            ) {
+                Salvataggio...
 
-              <article class="companion-card">
+              } @else {
 
-                <div class="companion-avatar">
-                  {{ companion.name.charAt(0) }}{{ companion.surname.charAt(0) }}
-                </div>
+                ✨ Aggiungi accompagnatore
 
+              }
 
-                <div class="companion-info">
-
-                  <h3>
-                    {{ companion.name }} {{ companion.surname }}
-                  </h3>
-
-                  <span>
-                    {{ companion.email || 'Email non inserita' }}
-                  </span>
-
-                  <span>
-                    {{ companion.phone || 'Telefono non inserito' }}
-                  </span>
-
-                </div>
-
-
-                <div class="companion-food">
-
-                  <span>
-                    🍽️ {{ companion.menuType }}
-                  </span>
-
-                  @if (companion.allergies) {
-
-                    <span>
-                      ⚠️ {{ companion.allergies }}
-                    </span>
-
-                  }
-
-                </div>
-
-              </article>
-
-            }
+            </button>
 
           </div>
 
-        }
+        </form>
 
-      </section>
+      </div>
+
+    }
+
+  </section>
 
 
-      <!-- EASTER EGG -->
+  <!-- EASTER EGG -->
 
-      <section class="dashboard-quote">
+  <section class="dashboard-quote">
 
-        <span>
-          🎲 QUEST STATUS
-        </span>
+    <span>
+      🎲 QUEST STATUS
+    </span>
 
-        <p>
-          Un altro passo verso la più grande avventura.
-        </p>
+    <p>
+      Un altro passo verso la più grande avventura.
+    </p>
 
-      </section>
+  </section>
 
-    </main>
+</main>
 
-  }
+
+}
 
 </div>

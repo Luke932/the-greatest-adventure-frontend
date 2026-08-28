@@ -449,6 +449,420 @@
 
 
 /* =========================================
+   COMPANIONS SECTION
+   ========================================= */
+
+.companions-section .section-heading {
+  align-items: flex-end;
+}
+
+.companions-section .section-heading p {
+  margin: 8px 0 0;
+
+  color: #8f867c;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.companions-heading-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+/* =========================================
+   PRIMARY BUTTON
+   ========================================= */
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 16px;
+
+  border: 1px solid rgba(216, 194, 168, 0.22);
+  border-radius: 10px;
+
+  background: rgba(216, 194, 168, 0.12);
+  color: #d8c2a8;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.primary-button:hover {
+  transform: translateY(-1px);
+
+  background: rgba(216, 194, 168, 0.18);
+
+  border-color: rgba(216, 194, 168, 0.32);
+}
+
+.primary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+
+  transform: none;
+}
+
+
+/* =========================================
+   COMPANION CARD ACTIONS
+   ========================================= */
+
+.companion-main {
+  grid-column: 1 / -1;
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  gap: 16px;
+
+  width: 100%;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+  color: inherit;
+
+  text-align: left;
+
+  font: inherit;
+
+  cursor: pointer;
+}
+
+.companion-main:focus-visible {
+  outline: 2px solid rgba(216, 194, 168, 0.45);
+  outline-offset: 5px;
+  border-radius: 10px;
+}
+
+.companion-detail-button {
+  grid-column: 1 / -1;
+
+  justify-self: flex-end;
+
+  padding: 7px 11px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.035);
+  color: #bba58c;
+
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.companion-detail-button:hover {
+  transform: translateX(2px);
+
+  background: rgba(216, 194, 168, 0.08);
+
+  border-color: rgba(216, 194, 168, 0.18);
+}
+
+
+/* =========================================
+   FORM CONTAINER
+   ========================================= */
+
+.companion-form-container {
+  margin-top: 22px;
+
+  padding: 26px;
+
+  border: 1px solid rgba(216, 194, 168, 0.12);
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.02)
+    );
+}
+
+
+/* =========================================
+   FORM HEADING
+   ========================================= */
+
+.form-heading {
+  margin-bottom: 24px;
+}
+
+.form-heading h3 {
+  margin: 6px 0 0;
+
+  font-family: Georgia, 'Times New Roman', serif;
+
+  color: #f0e9e0;
+
+  font-size: 22px;
+  font-weight: 500;
+}
+
+
+/* =========================================
+   FORM GRID
+   ========================================= */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+
+/* =========================================
+   FORM FIELD
+   ========================================= */
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  margin-bottom: 18px;
+}
+
+.form-grid .form-field {
+  margin-bottom: 0;
+}
+
+.form-field label {
+  margin-bottom: 8px;
+
+  color: #bba58c;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 12px 13px;
+
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.045);
+  color: #eee7de;
+
+  font: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #716b64;
+}
+
+.form-field input:hover,
+.form-field select:hover,
+.form-field textarea:hover {
+  background: rgba(255, 255, 255, 0.055);
+
+  border-color: rgba(255, 255, 255, 0.13);
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  background: rgba(255, 255, 255, 0.06);
+
+  border-color: rgba(216, 194, 168, 0.35);
+
+  box-shadow:
+    0 0 0 3px rgba(216, 194, 168, 0.07);
+}
+
+.form-field select {
+  appearance: auto;
+
+  cursor: pointer;
+}
+
+.form-field select option {
+  background: #1b1917;
+  color: #eee7de;
+}
+
+.form-field textarea {
+  min-height: 100px;
+
+  resize: vertical;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   FORM MESSAGES
+   ========================================= */
+
+.form-message {
+  margin-bottom: 18px;
+
+  padding: 12px 14px;
+
+  border-radius: 10px;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.success-message {
+  border: 1px solid rgba(100, 160, 120, 0.18);
+
+  background: rgba(70, 150, 100, 0.08);
+
+  color: #9ed7b0;
+}
+
+.error-message {
+  border: 1px solid rgba(170, 70, 70, 0.18);
+
+  background: rgba(170, 70, 70, 0.08);
+
+  color: #dfa2a2;
+}
+
+
+/* =========================================
+   FIELD ERROR
+   ========================================= */
+
+.field-error {
+  margin-top: 7px;
+
+  color: #dfa2a2;
+
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+
+/* =========================================
+   FORM ACTIONS
+   ========================================= */
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  margin-top: 8px;
+}
+
+.form-actions .secondary-button,
+.form-actions .primary-button {
+  margin-top: 0;
+}
+
+
+/* =========================================
+   RESPONSIVE - COMPANION FORM
+   ========================================= */
+
+@media (max-width: 800px) {
+
+  .companions-section .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .companions-heading-actions {
+    width: 100%;
+
+    justify-content: space-between;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 520px) {
+
+  .companion-form-container {
+    padding: 20px 17px;
+  }
+
+  .companions-heading-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .companions-heading-actions .primary-button {
+    width: 100%;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .form-actions .primary-button,
+  .form-actions .secondary-button {
+    width: 100%;
+  }
+
+  .companion-detail-button {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================================
    EMPTY STATE
    ========================================= */
 

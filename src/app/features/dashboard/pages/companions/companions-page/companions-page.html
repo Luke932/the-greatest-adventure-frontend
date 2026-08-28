@@ -1,0 +1,292 @@
+<div class="companions-page">
+
+  <!-- HEADER -->
+
+  <header class="companions-header">
+
+
+<div class="header-left">
+
+  <button
+    type="button"
+    class="back-button"
+    (click)="backToDashboard()"
+  >
+    ←
+    <span>Dashboard</span>
+  </button>
+
+</div>
+
+
+<div class="header-title">
+
+  <span class="section-kicker">
+    AREA PRIVATA
+  </span>
+
+  <h1>
+    Accompagnatori
+  </h1>
+
+  <p>
+    Gestisci gli accompagnatori degli invitati
+  </p>
+
+</div>
+```
+
+  </header>
+
+  <!-- LOADING -->
+
+@if (isLoading) {
+
+```
+<main class="state-container">
+
+  <div class="loading-symbol">
+    💍
+  </div>
+
+  <p>
+    Caricamento degli accompagnatori...
+  </p>
+
+</main>
+```
+
+}
+
+  <!-- ERRORE -->
+
+@else if (errorMessage) {
+
+```
+<main class="state-container error-state">
+
+  <div class="state-icon">
+    ⚠️
+  </div>
+
+  <h2>
+    Qualcosa è andato storto
+  </h2>
+
+  <p>
+    {{ errorMessage }}
+  </p>
+
+  <button
+    type="button"
+    class="secondary-button"
+    (click)="backToDashboard()"
+  >
+    Torna alla dashboard
+  </button>
+
+</main>
+```
+
+}
+
+  <!-- CONTENUTO -->
+
+@else {
+
+```
+<main class="companions-content">
+
+  <!-- TOOLBAR -->
+
+  <section class="toolbar">
+
+    <div class="toolbar-info">
+
+      <span class="toolbar-icon">
+        🧙
+      </span>
+
+      <div>
+
+        <strong>
+          Accompagnatori
+        </strong>
+
+        <small>
+          Tutti gli accompagnatori registrati
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <div class="toolbar-count">
+
+      <span>
+        TOTALE
+      </span>
+
+      <strong>
+        {{ companions.length }}
+      </strong>
+
+    </div>
+
+  </section>
+
+
+  <!-- LISTA -->
+
+  @if (companions.length > 0) {
+
+    <section class="companions-list">
+
+      @for (companion of companions; track companion.id) {
+
+        <article class="companion-card">
+
+          <div class="companion-avatar">
+            🧙
+          </div>
+
+
+          <div class="companion-main">
+
+            <div class="companion-name">
+
+              <h2>
+                {{ companion.name }}
+                {{ companion.surname }}
+              </h2>
+
+            </div>
+
+
+            <div class="companion-details">
+
+              @if (companion.email) {
+
+                <span>
+                  ✉️
+                  {{ companion.email }}
+                </span>
+
+              }
+
+              @if (companion.phone) {
+
+                <span>
+                  📱
+                  {{ companion.phone }}
+                </span>
+
+              }
+
+            </div>
+
+
+            <div class="companion-preferences">
+
+              <span class="preference-badge">
+
+                🍽️
+
+                @switch (companion.menuType) {
+
+                  @case ('STANDARD') {
+                    Menu standard
+                  }
+
+                  @case ('VEGETARIAN') {
+                    Vegetariano
+                  }
+
+                  @case ('VEGAN') {
+                    Vegano
+                  }
+
+                  @case ('CELIAC') {
+                    Senza glutine
+                  }
+
+                }
+
+              </span>
+
+
+              @if (companion.allergies) {
+
+                <span class="preference-badge">
+
+                  ⚠️
+                  {{ companion.allergies }}
+
+                </span>
+
+              }
+
+            </div>
+
+
+            @if (companion.notes) {
+
+              <p class="companion-notes">
+                {{ companion.notes }}
+              </p>
+
+            }
+
+          </div>
+
+
+          <button
+            type="button"
+            class="companion-action"
+            (click)="openCompanion(companion.id)"
+          >
+            →
+          </button>
+
+        </article>
+
+      }
+
+    </section>
+
+  }
+
+
+  <!-- NESSUN ACCOMPAGNATORE -->
+
+  @else {
+
+    <section class="empty-state">
+
+      <div class="empty-icon">
+        🗺️
+      </div>
+
+      <span class="section-kicker">
+        QUEST IN ATTESA
+      </span>
+
+      <h2>
+        Nessun accompagnatore
+      </h2>
+
+      <p>
+        Al momento non ci sono accompagnatori registrati.
+      </p>
+
+    </section>
+
+  }
+
+</main>
+
+
+}
+
+</div>

@@ -21,8 +21,9 @@ import {
   GuestDetails,
   GuestRequest,
   RsvpStatus,
-  MenuType
 } from '../../services/guests.service';
+
+import { MenuType } from '../../../../core/models/menu-type';
 
 
 @Component({
@@ -61,11 +62,13 @@ export class GuestsEdit implements OnInit {
 
 
   readonly menuTypes: MenuType[] = [
-    'STANDARD',
-    'VEGETARIAN',
-    'VEGAN',
-    'GLUTEN_FREE'
+    MenuType.STANDARD,
+    MenuType.CELIAC,
+    MenuType.VEGETARIAN,
+    MenuType.VEGAN,
+    MenuType.OTHER
   ];
+
 
 
   readonly rsvpLabels: Record<RsvpStatus, string> = {
@@ -79,7 +82,8 @@ export class GuestsEdit implements OnInit {
     STANDARD: 'Menu standard',
     VEGETARIAN: 'Menu vegetariano',
     VEGAN: 'Menu vegano',
-    GLUTEN_FREE: 'Menu senza glutine'
+    CELIAC: 'Menu senza glutine',
+    OTHER: 'Altro tio di menu'
   };
 
 

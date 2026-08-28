@@ -57,6 +57,35 @@ export const routes: Routes = [
 
     canActivate: [authGuard]
   },
+
+  {
+    path: 'dashboard/companions',
+    loadComponent: () =>
+      import('./features/dashboard/pages/companions/companions-page/companions-page')
+        .then(m => m.CompanionsPage),
+
+    canActivate: [authGuard]
+  },
+
+  {
+    path: 'dashboard/companions/:id',
+    loadComponent: () =>
+      import('./features/dashboard/pages/companions/companions-detail/companions-detail')
+        .then(m => m.CompanionDetail),
+
+    canActivate: [authGuard]
+  },
+
+
+  {
+    path: 'dashboard/companions/:id/modifica',
+    loadComponent: () =>
+    import('./features/dashboard/pages/companions/companions-edit/companions-edit')
+    .then(m => m.CompanionsEdit),
+
+    canActivate: [authGuard]
+  },
+
   // INVITO PUBBLICO
   {
     path: 'invito/:token',

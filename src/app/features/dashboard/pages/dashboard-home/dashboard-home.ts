@@ -79,6 +79,13 @@ export class DashboardHome implements OnInit {
 
   }
 
+  goToCompanions(): void { 
+    this.router.navigate([
+      '/dashboard/companions'
+    ]); 
+  
+  }
+
   logout(): void {
 
     this.authService.logout();

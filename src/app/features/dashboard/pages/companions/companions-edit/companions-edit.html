@@ -1,0 +1,449 @@
+<div class="companions-edit-page">
+
+  <!-- HEADER -->
+
+  <header class="edit-header">
+
+
+<button
+  type="button"
+  class="back-button"
+  (click)="cancel()"
+>
+  ←
+  <span>Torna al dettaglio</span>
+</button>
+
+
+<div class="header-title">
+
+  <span class="section-kicker">
+    AREA PRIVATA
+  </span>
+
+  <h1>
+    Modifica accompagnatore
+  </h1>
+
+  @if (companion) {
+
+    <p>
+      {{ companion.name }}
+      {{ companion.surname }}
+    </p>
+
+  }
+
+</div>
+
+
+  </header>
+
+  <!-- LOADING -->
+
+@if (isLoading) {
+
+
+<main class="state-container">
+
+  <div class="loading-symbol">
+    💍
+  </div>
+
+  <p>
+    Caricamento dei dati dell'accompagnatore...
+  </p>
+
+</main>
+
+
+}
+
+  <!-- ERRORE -->
+
+@else if (errorMessage && !companion) {
+
+
+<main class="state-container error-state">
+
+  <div class="state-icon">
+    ⚠️
+  </div>
+
+  <h2>
+    Qualcosa è andato storto
+  </h2>
+
+  <p>
+    {{ errorMessage }}
+  </p>
+
+  <button
+    type="button"
+    class="secondary-button"
+    (click)="cancel()"
+  >
+    Torna agli accompagnatori
+  </button>
+
+</main>
+
+
+}
+
+  <!-- FORM -->
+
+@else if (companion) {
+
+
+<main class="edit-content">
+
+  <form
+    [formGroup]="companionForm"
+    (ngSubmit)="submit()"
+    novalidate
+  >
+
+
+    <!-- DATI PERSONALI -->
+
+    <section class="form-section">
+
+      <div class="section-heading">
+
+        <div>
+
+          <span class="section-kicker">
+            IDENTITÀ
+          </span>
+
+          <h2>
+            Dati personali
+          </h2>
+
+        </div>
+
+        <span class="section-icon">
+          🧙
+        </span>
+
+      </div>
+
+
+      <div class="form-grid">
+
+        <div class="form-field">
+
+          <label for="name">
+            Nome
+          </label>
+
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            autocomplete="given-name"
+            placeholder="Nome"
+          >
+
+          @if (
+            companionForm.controls.name.touched &&
+            companionForm.controls.name.invalid
+          ) {
+
+            <small class="field-error">
+              Il nome è obbligatorio.
+            </small>
+
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="surname">
+            Cognome
+          </label>
+
+          <input
+            id="surname"
+            type="text"
+            formControlName="surname"
+            autocomplete="family-name"
+            placeholder="Cognome"
+          >
+
+          @if (
+            companionForm.controls.surname.touched &&
+            companionForm.controls.surname.invalid
+          ) {
+
+            <small class="field-error">
+              Il cognome è obbligatorio.
+            </small>
+
+          }
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTATTI -->
+
+    <section class="form-section">
+
+      <div class="section-heading">
+
+        <div>
+
+          <span class="section-kicker">
+            CONTATTI
+          </span>
+
+          <h2>
+            Come contattarlo
+          </h2>
+
+        </div>
+
+        <span class="section-icon">
+          📱
+        </span>
+
+      </div>
+
+
+      <div class="form-grid">
+
+        <div class="form-field">
+
+          <label for="email">
+            Email
+          </label>
+
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            autocomplete="email"
+            placeholder="nome@email.com"
+          >
+
+          @if (
+            companionForm.controls.email.touched &&
+            companionForm.controls.email.invalid
+          ) {
+
+            <small class="field-error">
+              Inserisci un indirizzo email valido.
+            </small>
+
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="phone">
+            Telefono
+          </label>
+
+          <input
+            id="phone"
+            type="tel"
+            formControlName="phone"
+            autocomplete="tel"
+            placeholder="+39..."
+          >
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MENU -->
+
+    <section class="form-section">
+
+      <div class="section-heading">
+
+        <div>
+
+          <span class="section-kicker">
+            RICEVIMENTO
+          </span>
+
+          <h2>
+            Preferenze alimentari
+          </h2>
+
+        </div>
+
+        <span class="section-icon">
+          🍽️
+        </span>
+
+      </div>
+
+
+      <div class="form-grid">
+
+        <div class="form-field">
+
+          <label for="menuType">
+            Tipo di menu
+          </label>
+
+          <select
+            id="menuType"
+            formControlName="menuType"
+          >
+
+            @for (
+              menu of menuTypes;
+              track menu
+            ) {
+
+              <option [ngValue]="menu">
+                {{ menuLabels[menu] }}
+              </option>
+
+            }
+
+          </select>
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label for="allergies">
+            Allergie / intolleranze
+          </label>
+
+          <input
+            id="allergies"
+            type="text"
+            formControlName="allergies"
+            placeholder="Es. frutta secca, lattosio..."
+          >
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- NOTE -->
+
+    <section class="form-section">
+
+      <div class="section-heading">
+
+        <div>
+
+          <span class="section-kicker">
+            NOTE
+          </span>
+
+          <h2>
+            Informazioni aggiuntive
+          </h2>
+
+        </div>
+
+        <span class="section-icon">
+          📝
+        </span>
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="notes">
+          Note
+        </label>
+
+        <textarea
+          id="notes"
+          formControlName="notes"
+          rows="5"
+          placeholder="Aggiungi eventuali informazioni utili..."
+        ></textarea>
+
+      </div>
+
+    </section>
+
+
+    <!-- MESSAGGI -->
+
+    @if (errorMessage) {
+
+      <div class="form-message error-message">
+        ⚠️ {{ errorMessage }}
+      </div>
+
+    }
+
+
+    @if (successMessage) {
+
+      <div class="form-message success-message">
+        ✨ {{ successMessage }}
+      </div>
+
+    }
+
+
+    <!-- AZIONI -->
+
+    <div class="form-actions">
+
+      <button
+        type="button"
+        class="secondary-button"
+        (click)="cancel()"
+        [disabled]="isSaving"
+      >
+        Annulla
+      </button>
+
+
+      <button
+        type="submit"
+        class="primary-button"
+        [disabled]="isSaving"
+      >
+
+        @if (isSaving) {
+
+          Salvataggio...
+
+        } @else {
+
+          ✨ Salva modifiche
+
+        }
+
+      </button>
+
+    </div>
+
+  </form>
+
+</main>
+
+
+}
+
+</div>

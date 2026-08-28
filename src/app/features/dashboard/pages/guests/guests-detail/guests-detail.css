@@ -377,6 +377,61 @@
     border-color 0.2s ease;
 }
 
+
+.companion-card-actions {
+  grid-column: 1 / -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+
+  margin-top: 4px;
+}
+
+.companion-delete-button,
+.companion-detail-button {
+  padding: 8px 12px;
+
+  border-radius: 9px;
+
+  font: inherit;
+  font-size: 12px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.companion-delete-button {
+  border: 1px solid rgba(150, 50, 50, 0.2);
+
+  background: rgba(150, 50, 50, 0.16);
+  color: #e7a8a8;
+}
+
+.companion-delete-button:hover {
+  transform: translateY(-1px);
+
+  background: rgba(150, 50, 50, 0.28);
+}
+
+.companion-detail-button {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background: rgba(255, 255, 255, 0.05);
+  color: #eee7de;
+}
+
+.companion-detail-button:hover {
+  transform: translateY(-1px);
+
+  background: rgba(255, 255, 255, 0.09);
+}
+
 .companion-card:hover {
   transform: translateY(-2px);
 

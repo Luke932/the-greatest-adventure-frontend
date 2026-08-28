@@ -291,6 +291,64 @@ export class GuestDetail implements OnInit {
 
   }
 
+  deleteCompanion(companion: Companion): void {
+
+    const confirmed = window.confirm(
+      `Vuoi eliminare ${companion.name} ${companion.surname}?`
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    this.companionErrorMessage = '';
+    this.companionSuccessMessage = '';
+
+    this.companionsService
+      .deleteCompanion(companion.id)
+      .subscribe({
+
+        next: () => {
+
+          console.log(
+            'ACCOMPAGNATORE ELIMINATO:',
+            companion
+          );
+
+          if (this.guest) {
+
+            this.guest.companions =
+              this.guest.companions.filter(
+                item => item.id !== companion.id
+              );
+
+          }
+
+          this.companionSuccessMessage =
+            'Accompagnatore eliminato correttamente.';
+
+          this.cdr.detectChanges();
+
+        },
+
+        error: (error) => {
+
+          console.error(
+            'ERRORE ELIMINAZIONE ACCOMPAGNATORE:',
+            error
+          );
+
+          this.companionErrorMessage =
+            'Non è stato possibile eliminare l\'accompagnatore.';
+
+          this.cdr.detectChanges();
+
+        }
+
+      });
+
+  }
+
   addCompanion(): void {
 
   if (!this.guest) {

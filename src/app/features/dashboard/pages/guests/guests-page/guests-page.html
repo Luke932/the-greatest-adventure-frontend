@@ -29,6 +29,17 @@
 
     </div>
 
+    <div class="header-actions">
+
+    <button
+      type="button"
+      class="add-guest-button"
+      (click)="openCreateForm()"
+    >
+      <span>＋</span>
+      <span>Nuovo invitato</span>
+    </button>
+
     <div class="guest-count">
       <strong>
         {{ filteredGuests.length }}
@@ -38,6 +49,8 @@
         invitati
       </span>
     </div>
+
+</div>
 
   </header>
 
@@ -62,6 +75,218 @@
       </p>
 
     </section>
+
+    @if (showCreateForm) {
+
+  <section class="create-guest-section">
+
+    <div class="create-guest-header">
+
+      <div>
+
+        <span class="section-kicker">
+          NUOVO INVITATO
+        </span>
+
+        <h2>
+          Aggiungi un nuovo invitato
+        </h2>
+
+        <p>
+          Inserisci i dati dell'invitato.
+          Al salvataggio riceverà automaticamente il suo invito via email.
+        </p>
+
+      </div>
+
+      <button
+        type="button"
+        class="close-form-button"
+        (click)="closeCreateForm()"
+        [disabled]="isCreating"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    @if (createErrorMessage) {
+
+      <div class="form-message error">
+        {{ createErrorMessage }}
+      </div>
+
+    }
+
+
+    <div class="guest-form">
+
+      <div class="form-field">
+
+        <label for="name">
+          Nome *
+        </label>
+
+        <input
+          id="name"
+          type="text"
+          [(ngModel)]="newGuest.name"
+          placeholder="Mario"
+        />
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="surname">
+          Cognome *
+        </label>
+
+        <input
+          id="surname"
+          type="text"
+          [(ngModel)]="newGuest.surname"
+          placeholder="Rossi"
+        />
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="email">
+          Email *
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          [(ngModel)]="newGuest.email"
+          placeholder="mario@email.com"
+        />
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="phone">
+          Telefono
+        </label>
+
+        <input
+          id="phone"
+          type="tel"
+          [(ngModel)]="newGuest.phone"
+          placeholder="+39 ..."
+        />
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="menuType">
+          Menu
+        </label>
+
+        <select
+          id="menuType"
+          [(ngModel)]="newGuest.menuType"
+        >
+
+          <option value="STANDARD">
+            Standard
+          </option>
+
+          <option value="CELIAC">
+            Celiaco
+          </option>
+
+          <option value="VEGETARIAN">
+            Vegetariano
+          </option>
+
+          <option value="VEGAN">
+            Vegano
+          </option>
+
+          <option value="OTHER">
+            Altro
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="allergies">
+          Allergie
+        </label>
+
+        <input
+          id="allergies"
+          type="text"
+          [(ngModel)]="newGuest.allergies"
+          placeholder="Eventuali allergie"
+        />
+
+      </div>
+
+
+      <div class="form-field full-width">
+
+        <label for="notes">
+          Note
+        </label>
+
+        <textarea
+          id="notes"
+          [(ngModel)]="newGuest.notes"
+          placeholder="Note aggiuntive..."
+          rows="3"
+        ></textarea>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <button
+        type="button"
+        class="cancel-button"
+        (click)="closeCreateForm()"
+        [disabled]="isCreating"
+      >
+        Annulla
+      </button>
+
+      <button
+        type="button"
+        class="save-guest-button"
+        (click)="createGuest()"
+        [disabled]="isCreating"
+      >
+
+        @if (isCreating) {
+          Invio in corso...
+        } @else {
+          Aggiungi e invia invito
+        }
+
+      </button>
+
+    </div>
+
+  </section>
+
+}
 
 
     <!-- FILTRI -->

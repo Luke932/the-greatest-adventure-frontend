@@ -707,6 +707,647 @@
   color: rgba(245, 241, 234, 0.6);
 }
 
+/* =========================================
+   HEADER ACTIONS
+   ========================================= */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+/* =========================================
+   ADD GUEST BUTTON
+   ========================================= */
+
+.add-guest-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 12px 17px;
+
+  border: 1px solid rgba(201, 169, 110, 0.35);
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(201, 169, 110, 0.18),
+      rgba(201, 169, 110, 0.08)
+    );
+
+  color: #e4c98e;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+
+.add-guest-button span:first-child {
+  font-size: 20px;
+  line-height: 1;
+}
+
+
+.add-guest-button:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(201, 169, 110, 0.6);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(201, 169, 110, 0.26),
+      rgba(201, 169, 110, 0.12)
+    );
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.16);
+}
+
+
+.add-guest-button:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================
+   CREATE GUEST SECTION
+   ========================================= */
+
+.create-guest-section {
+  margin-bottom: 30px;
+
+  padding: 28px;
+
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(201, 169, 110, 0.075),
+      rgba(255, 255, 255, 0.035)
+    );
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.14);
+
+  backdrop-filter: blur(14px);
+
+  animation: create-form-in 220ms ease-out;
+}
+
+
+@keyframes create-form-in {
+
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+/* =========================================
+   CREATE FORM HEADER
+   ========================================= */
+
+.create-guest-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  padding-bottom: 24px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+
+.create-guest-header h2 {
+  margin: 9px 0 10px;
+
+  font-family: Georgia, 'Times New Roman', serif;
+
+  font-size: clamp(25px, 4vw, 32px);
+  line-height: 1.15;
+
+  font-weight: 500;
+
+  color: #fff;
+}
+
+
+.create-guest-header p {
+  margin: 0;
+
+  max-width: 650px;
+
+  color: rgba(245, 241, 234, 0.58);
+
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+
+/* =========================================
+   CLOSE BUTTON
+   ========================================= */
+
+.close-form-button {
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  color: rgba(245, 241, 234, 0.65);
+
+  font-size: 25px;
+  font-weight: 300;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+
+.close-form-button:hover:not(:disabled) {
+  transform: rotate(3deg);
+
+  border-color: rgba(248, 113, 113, 0.3);
+
+  background: rgba(248, 113, 113, 0.08);
+
+  color: #fca5a5;
+}
+
+
+.close-form-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+
+/* =========================================
+   FORM MESSAGE
+   ========================================= */
+
+.form-message {
+  margin-top: 20px;
+
+  padding: 13px 15px;
+
+  border-radius: 12px;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+.form-message.error {
+  border: 1px solid rgba(248, 113, 113, 0.2);
+
+  background: rgba(248, 113, 113, 0.07);
+
+  color: #fca5a5;
+}
+
+
+/* =========================================
+   GUEST FORM
+   ========================================= */
+
+.guest-form {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+
+  padding: 26px 0;
+}
+
+
+.form-field {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+
+.form-field.full-width {
+  grid-column: 1 / -1;
+}
+
+
+/* =========================================
+   FORM LABELS
+   ========================================= */
+
+.form-field label {
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  color: rgba(245, 241, 234, 0.55);
+}
+
+
+/* =========================================
+   FORM INPUTS
+   ========================================= */
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+
+  outline: none;
+
+  background: rgba(0, 0, 0, 0.18);
+
+  color: #f5f1ea;
+
+  font: inherit;
+  font-size: 14px;
+
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+
+.form-field input,
+.form-field select {
+  min-height: 46px;
+
+  padding: 12px 14px;
+}
+
+
+.form-field textarea {
+  min-height: 95px;
+
+  padding: 13px 14px;
+
+  resize: vertical;
+}
+
+
+/* =========================================
+   PLACEHOLDER
+   ========================================= */
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: rgba(245, 241, 234, 0.3);
+}
+
+
+/* =========================================
+   FOCUS
+   ========================================= */
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: rgba(201, 169, 110, 0.55);
+
+  background: rgba(0, 0, 0, 0.25);
+
+  box-shadow:
+    0 0 0 3px rgba(201, 169, 110, 0.08);
+}
+
+
+/* =========================================
+   SELECT
+   ========================================= */
+
+.form-field select {
+  appearance: none;
+
+  padding-right: 40px;
+
+  cursor: pointer;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, #c9a96e 50%),
+    linear-gradient(135deg, #c9a96e 50%, transparent 50%);
+
+  background-position:
+    calc(100% - 17px) 20px,
+    calc(100% - 12px) 20px;
+
+  background-size:
+    5px 5px,
+    5px 5px;
+
+  background-repeat: no-repeat;
+}
+
+
+.form-field select option {
+  background: #263a2c;
+
+  color: #f5f1ea;
+}
+
+
+/* =========================================
+   FORM ACTIONS
+   ========================================= */
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  padding-top: 22px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+
+/* =========================================
+   CANCEL BUTTON
+   ========================================= */
+
+.cancel-button {
+  padding: 12px 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  color: rgba(245, 241, 234, 0.7);
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+
+.cancel-button:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.18);
+
+  background: rgba(255, 255, 255, 0.07);
+
+  color: #fff;
+}
+
+
+.cancel-button:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================
+   SAVE BUTTON
+   ========================================= */
+
+.save-guest-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 205px;
+
+  padding: 12px 20px;
+
+  border: 1px solid rgba(201, 169, 110, 0.5);
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #c9a96e,
+      #b89352
+    );
+
+  color: #1d2c22;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.15);
+
+  transition:
+    transform 180ms ease,
+    filter 180ms ease,
+    box-shadow 180ms ease;
+}
+
+
+.save-guest-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  filter: brightness(1.08);
+
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+
+.save-guest-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+
+.save-guest-button:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* =========================================
+   RESPONSIVE — CREATE FORM
+   ========================================= */
+
+@media (max-width: 850px) {
+
+  .header-actions {
+    gap: 8px;
+  }
+
+
+  .add-guest-button {
+    padding: 10px 13px;
+  }
+
+
+  .add-guest-button span:last-child {
+    display: none;
+  }
+
+
+  .guest-form {
+    grid-template-columns: 1fr;
+  }
+
+
+  .form-field.full-width {
+    grid-column: auto;
+  }
+
+
+  .create-guest-section {
+    padding: 22px;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .guests-header {
+    gap: 12px;
+  }
+
+
+  .header-actions {
+    flex-shrink: 0;
+  }
+
+
+  .add-guest-button {
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+
+    border-radius: 12px;
+  }
+
+
+  .add-guest-button span:first-child {
+    font-size: 22px;
+  }
+
+
+  .create-guest-section {
+    padding: 18px;
+
+    border-radius: 18px;
+  }
+
+
+  .create-guest-header {
+    gap: 12px;
+
+    padding-bottom: 20px;
+  }
+
+
+  .create-guest-header h2 {
+    font-size: 24px;
+  }
+
+
+  .create-guest-header p {
+    font-size: 12px;
+  }
+
+
+  .close-form-button {
+    width: 36px;
+    height: 36px;
+
+    font-size: 22px;
+  }
+
+
+  .guest-form {
+    gap: 16px;
+
+    padding: 22px 0;
+  }
+
+
+  .form-actions {
+    flex-direction: column-reverse;
+
+    align-items: stretch;
+  }
+
+
+  .cancel-button,
+  .save-guest-button {
+    width: 100%;
+  }
+
+
+  .save-guest-button {
+    min-width: 0;
+  }
+
+}
+
 
 /* =========================================
    RESPONSIVE

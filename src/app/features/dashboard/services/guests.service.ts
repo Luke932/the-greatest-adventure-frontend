@@ -184,4 +184,15 @@ export class GuestsService {
 
   }
 
+  createGuest(
+    guest: GuestRequest
+  ): Observable<Guest> {
+
+    return this.http.post<Guest>(
+      this.apiUrl,
+      guest
+    );
+
+  }
+
 }

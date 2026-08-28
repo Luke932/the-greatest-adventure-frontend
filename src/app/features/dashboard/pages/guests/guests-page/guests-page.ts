@@ -1,15 +1,20 @@
 import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { GuestRequest } from '../../../services/guests.service';
+import { FormsModule } from '@angular/forms';
 
 import {
   GuestsService,
   Guest,
   RsvpStatus
 } from '../../../services/guests.service';
+import { MenuType } from '../../../../../core/models/menu-type';
 
 @Component({
   selector: 'app-guests-page',
-  imports: [],
+  imports: [
+    FormsModule
+  ],
   templateUrl: './guests-page.html',
   styleUrl: './guests-page.css'
 })
@@ -31,6 +36,25 @@ export class GuestsPage implements OnInit {
 
   errorMessage = '';
 
+
+  showCreateForm = false;
+
+  isCreating = false;
+
+  createErrorMessage = '';
+
+  createSuccessMessage = '';
+
+  newGuest: GuestRequest = {
+    name: '',
+    surname: '',
+    email: null,
+    phone: null,
+    allergies: null,
+    menuType: MenuType.STANDARD,
+    rsvpStatus: 'PENDING',
+    notes: null
+  };
 
   ngOnInit(): void {
 
@@ -156,6 +180,90 @@ export class GuestsPage implements OnInit {
       '/dashboard'
     ]);
 
+  }
+
+  openCreateForm(): void {
+
+    this.createErrorMessage = '';
+    this.createSuccessMessage = '';
+
+    this.newGuest = {
+      name: '',
+      surname: '',
+      email: null,
+      phone: null,
+      allergies: null,
+      menuType: MenuType.STANDARD,
+      rsvpStatus: 'PENDING',
+      notes: null
+    };
+
+    this.showCreateForm = true;
+  }
+
+  closeCreateForm(): void {
+
+    if (this.isCreating) {
+      return;
+    }
+
+    this.showCreateForm = false;
+    this.createErrorMessage = '';
+  }
+
+  createGuest(): void {
+
+    this.createErrorMessage = '';
+    this.createSuccessMessage = '';
+
+    if (
+      !this.newGuest.name.trim() ||
+      !this.newGuest.surname.trim() ||
+      !this.newGuest.email?.trim()
+    ) {
+
+      this.createErrorMessage =
+        'Nome, cognome ed email sono obbligatori.';
+
+      return;
+    }
+
+    this.isCreating = true;
+
+    this.guestsService
+      .createGuest(this.newGuest)
+      .subscribe({
+
+        next: () => {
+
+          this.isCreating = false;
+
+          this.showCreateForm = false;
+
+          this.createSuccessMessage =
+            'Invitato aggiunto. L’invito è stato inviato via email.';
+
+          this.loadGuests();
+
+        },
+
+        error: (error) => {
+
+          console.error(
+            'ERRORE CREAZIONE INVITATO:',
+            error
+          );
+
+          this.isCreating = false;
+
+          this.createErrorMessage =
+            'Non è stato possibile aggiungere l’invitato.';
+          
+          this.cdr.detectChanges();
+
+        }
+
+      });
   }
 
 }

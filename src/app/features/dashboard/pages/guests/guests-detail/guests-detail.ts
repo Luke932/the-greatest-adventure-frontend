@@ -52,6 +52,12 @@ export class GuestDetail implements OnInit {
 
   companionSuccessMessage = '';
 
+  isSendingInvitation = false;
+
+  invitationSuccessMessage = '';
+
+  invitationErrorMessage = '';
+
   readonly menuTypes: MenuType[] = [
 
   MenuType.STANDARD,
@@ -465,5 +471,69 @@ export class GuestDetail implements OnInit {
 
   }
 
+  sendInvitation(): void {
+
+    if (!this.guest) {
+      return;
+    }
+
+    if (!this.guest.email) {
+
+      this.invitationErrorMessage =
+        'Questo invitato non ha un indirizzo email.';
+
+      this.invitationSuccessMessage = '';
+
+      return;
+    }
+
+    if (this.isSendingInvitation) {
+      return;
+    }
+
+    this.isSendingInvitation = true;
+
+    this.invitationSuccessMessage = '';
+    this.invitationErrorMessage = '';
+
+    this.guestsService
+      .sendInvitation(this.guest.id)
+      .subscribe({
+
+        next: () => {
+
+          console.log(
+            'INVITO REINVIATO:',
+            this.guest
+          );
+
+          this.isSendingInvitation = false;
+
+          this.invitationSuccessMessage =
+            `L'invito è stato inviato nuovamente a ${this.guest?.email}.`;
+
+          this.cdr.detectChanges();
+
+        },
+
+        error: (error) => {
+
+          console.error(
+            'ERRORE REINVIO INVITO:',
+            error
+          );
+
+          this.isSendingInvitation = false;
+
+          this.invitationErrorMessage =
+            'Non è stato possibile reinviare l\'invito.';
+
+          this.cdr.detectChanges();
+
+        }
+
+      });
+
+  }
 
 }

@@ -19,6 +19,26 @@
 
   <button
     type="button"
+    class="invite-button"
+    (click)="sendInvitation()"
+    [disabled]="!guest || !guest.email || isSendingInvitation"
+  >
+
+    @if (isSendingInvitation) {
+
+      ⏳ Invio...
+
+    } @else {
+
+      ✉️ Reinvia invito
+
+    }
+
+  </button>
+
+
+  <button
+    type="button"
     class="edit-button"
     (click)="editGuest()"
     [disabled]="!guest"
@@ -26,6 +46,7 @@
     ✎
     Modifica
   </button>
+
 
   <button
     type="button"
@@ -40,6 +61,22 @@
 
 
   </header>
+
+@if (invitationSuccessMessage) {
+
+  <div class="invitation-message invitation-success">
+    ✓ {{ invitationSuccessMessage }}
+  </div>
+
+}
+
+@if (invitationErrorMessage) {
+
+  <div class="invitation-message invitation-error">
+    ⚠️ {{ invitationErrorMessage }}
+  </div>
+
+}
 
   <!-- LOADING -->
 

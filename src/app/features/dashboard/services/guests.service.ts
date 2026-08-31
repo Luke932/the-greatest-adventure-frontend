@@ -195,4 +195,18 @@ export class GuestsService {
 
   }
 
+  /**
+   * Reinvia l'email di invito all'invitato.
+   */
+  sendInvitation(
+    id: number
+  ): Observable<void> {
+
+    return this.http.post<void>(
+      `${this.apiUrl}/${id}/send-invitation`,
+      {}
+    );
+
+  }
+
 }

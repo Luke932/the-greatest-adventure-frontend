@@ -28,6 +28,8 @@ export interface Guest {
 
   notes: string | null;
 
+  inviteUrl: string | null;
+
 }
 
 export interface GuestDetails extends Guest {

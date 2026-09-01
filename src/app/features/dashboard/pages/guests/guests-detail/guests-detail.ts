@@ -58,6 +58,12 @@ export class GuestDetail implements OnInit {
 
   invitationErrorMessage = '';
 
+  isCopyingInviteLink = false;
+
+  inviteLinkSuccessMessage = '';
+
+  inviteLinkErrorMessage = '';
+
   readonly menuTypes: MenuType[] = [
 
   MenuType.STANDARD,
@@ -531,6 +537,63 @@ export class GuestDetail implements OnInit {
           this.cdr.detectChanges();
 
         }
+
+      });
+
+  }
+
+  copyInvitationLink(): void {
+
+    if (!this.guest?.inviteUrl) {
+      this.inviteLinkErrorMessage =
+        'Il link di invito non è disponibile.';
+
+      this.inviteLinkSuccessMessage = '';
+
+      return;
+    }
+
+    if (this.isCopyingInviteLink) {
+      return;
+    }
+
+    this.isCopyingInviteLink = true;
+
+    this.inviteLinkSuccessMessage = '';
+    this.inviteLinkErrorMessage = '';
+
+    navigator.clipboard.writeText(this.guest.inviteUrl)
+      .then(() => {
+
+        this.inviteLinkSuccessMessage =
+          'Link copiato negli appunti.';
+
+        this.isCopyingInviteLink = false;
+
+        this.cdr.detectChanges();
+
+        setTimeout(() => {
+
+          this.inviteLinkSuccessMessage = '';
+
+          this.cdr.detectChanges();
+
+        }, 2500);
+
+      })
+      .catch((error) => {
+
+        console.error(
+          'ERRORE COPIA LINK INVITO:',
+          error
+        );
+
+        this.isCopyingInviteLink = false;
+
+        this.inviteLinkErrorMessage =
+          'Non è stato possibile copiare il link.';
+
+        this.cdr.detectChanges();
 
       });
 

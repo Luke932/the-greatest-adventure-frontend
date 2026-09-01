@@ -270,6 +270,105 @@
 
   <!-- PREFERENZE -->
 
+  <!-- INVITO -->
+
+  <section class="detail-section invitation-section">
+
+    <div class="section-heading">
+
+      <div>
+
+        <span class="section-kicker">
+          INVITO
+        </span>
+
+        <h2>
+          Link personale
+        </h2>
+
+        <p>
+          Condividi questo link con l'invitato per permettergli di gestire la propria partecipazione.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    @if (guest.inviteUrl) {
+
+      <div class="invitation-card">
+
+        <div class="invitation-link-wrapper">
+
+          <span class="detail-label">
+            LINK INVITO
+          </span>
+
+          <div class="invitation-link">
+            {{ guest.inviteUrl }}
+          </div>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="copy-invite-button"
+          (click)="copyInvitationLink()"
+          [disabled]="isCopyingInviteLink"
+        >
+
+          @if (isCopyingInviteLink) {
+
+            ⏳ Copia...
+
+          } @else {
+
+            🔗 Copia link
+
+          }
+
+        </button>
+
+      </div>
+
+
+      @if (inviteLinkSuccessMessage) {
+
+        <div class="invitation-message invitation-success">
+          ✓ {{ inviteLinkSuccessMessage }}
+        </div>
+
+      }
+
+
+      @if (inviteLinkErrorMessage) {
+
+        <div class="invitation-message invitation-error">
+          ⚠️ {{ inviteLinkErrorMessage }}
+        </div>
+
+      }
+
+    } @else {
+
+      <div class="invitation-card invitation-unavailable">
+
+        <span>
+          ⚠️
+        </span>
+
+        <p>
+          Il link di invito non è disponibile.
+        </p>
+
+      </div>
+
+    }
+
+  </section>
+
   <section class="detail-section">
 
     <div class="section-heading">

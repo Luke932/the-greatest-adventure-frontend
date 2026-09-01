@@ -1415,3 +1415,162 @@
   }
 
 }
+
+/* =========================================
+   INVITATION SECTION
+   ========================================= */
+
+.invitation-section .section-heading p {
+  margin: 8px 0 0;
+
+  color: #8f867c;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+
+.invitation-card {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 20px;
+
+  border: 1px solid rgba(216, 194, 168, 0.12);
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(216, 194, 168, 0.06),
+      rgba(255, 255, 255, 0.025)
+    );
+}
+
+
+.invitation-link-wrapper {
+  min-width: 0;
+
+  flex: 1;
+}
+
+
+.invitation-link {
+  overflow-wrap: anywhere;
+
+  color: #e3ceb4;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+}
+
+
+.copy-invite-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  flex-shrink: 0;
+
+  min-height: 42px;
+
+  padding: 10px 16px;
+
+  border: 1px solid rgba(216, 194, 168, 0.28);
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(216, 194, 168, 0.16),
+      rgba(216, 194, 168, 0.08)
+    );
+
+  color: #e3ceb4;
+
+  font: inherit;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+
+.copy-invite-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(216, 194, 168, 0.23),
+      rgba(216, 194, 168, 0.12)
+    );
+
+  border-color: rgba(216, 194, 168, 0.4);
+}
+
+
+.copy-invite-button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.45;
+}
+
+
+.invitation-unavailable {
+  justify-content: flex-start;
+
+  color: #dfa2a2;
+}
+
+
+.invitation-unavailable span {
+  font-size: 20px;
+}
+
+
+.invitation-unavailable p {
+  margin: 0;
+
+  color: #a69d93;
+
+  font-size: 13px;
+}
+
+
+/* =========================================
+   INVITATION RESPONSIVE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+  .invitation-card {
+    align-items: stretch;
+
+    flex-direction: column;
+  }
+
+  .copy-invite-button {
+    width: 100%;
+  }
+
+}

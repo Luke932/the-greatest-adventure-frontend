@@ -190,6 +190,114 @@
           (rsvpUpdated)="onRsvpUpdated($event)"
         />
 
+        @if (hasAccepted) {
+
+          @if (!showGuestPreferencesForm) {
+
+            <div class="guest-preferences-summary">
+
+              <div class="form-header">
+                <span>
+                  ✦ YOUR WEDDING PREFERENCES ✦
+                </span>
+
+                <p>
+                  Le tue preferenze sono state salvate.
+                </p>
+              </div>
+
+              <div class="preferences-summary-content">
+
+                <div>
+                  <span>📱 TELEFONO</span>
+                  <strong>
+                    {{ invite.phone || 'Non specificato' }}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>🍽 MENU</span>
+                  <strong>
+                    {{ invite.menuType }}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>⚠ ALLERGIE / INTOLLERANZE</span>
+                  <strong>
+                    {{ invite.allergies || 'Nessuna' }}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>📝 NOTE</span>
+                  <strong>
+                    {{ invite.notes || 'Nessuna' }}
+                  </strong>
+                </div>
+
+              </div>
+
+              <button
+                type="button"
+                class="edit-preferences-button"
+                (click)="openGuestPreferencesForm()"
+              >
+                ✦ Modifica le mie preferenze
+              </button>
+
+            </div>
+
+          } @else {
+
+            <div class="guest-preferences-wrapper">
+
+              <div class="form-header">
+
+                <span>
+                  ✦ YOUR WEDDING PREFERENCES ✦
+                </span>
+
+                <p>
+                  Indicaci le tue preferenze per il grande giorno.
+                </p>
+
+              </div>
+
+              <app-guest-preferences-form
+                [phone]="invite.phone"
+                [allergies]="invite.allergies"
+                [menuType]="invite.menuType"
+                [rsvpStatus]="invite.rsvpStatus"
+                [notes]="invite.notes"
+                [menuTypes]="menuTypes"
+                [saving]="updatingGuest"
+                (submitted)="updateGuest($event)"
+              />
+
+              @if (guestUpdateError) {
+
+                <p class="error-message">
+                  ⚠ Non è stato possibile salvare le tue preferenze.
+                  Riprova tra poco.
+                </p>
+
+              }
+
+              <button
+                type="button"
+                class="cancel-preferences-button"
+                (click)="closeGuestPreferencesForm()"
+              >
+                Annulla
+              </button>
+
+            </div>
+
+          }
+
+}
+
       </section>
 
 

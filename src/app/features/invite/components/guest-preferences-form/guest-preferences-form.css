@@ -1,0 +1,231 @@
+:host {
+  display: block;
+}
+
+.preferences-form {
+  display: grid;
+
+  gap: 22px;
+}
+
+
+/* ========================================
+   CAMPI
+   ======================================== */
+
+.form-field {
+  display: grid;
+
+  gap: 8px;
+}
+
+.form-field label {
+  color: #304936;
+
+  font-family:
+    'Trebuchet MS',
+    Arial,
+    sans-serif;
+
+  font-size: 0.78rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.04em;
+}
+
+.form-field small {
+  color: #687668;
+
+  font-family:
+    'Courier New',
+    monospace;
+
+  font-size: 0.62rem;
+
+  line-height: 1.5;
+}
+
+
+/* ========================================
+   INPUT
+   ======================================== */
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+
+  width: 100%;
+
+  padding: 13px 14px;
+
+  border:
+    1px solid
+    rgba(113, 137, 103, 0.30);
+
+  border-radius: 12px;
+
+  background:
+    rgba(255, 250, 240, 0.78);
+
+  color: #304936;
+
+  font-family:
+    'Trebuchet MS',
+    Arial,
+    sans-serif;
+
+  font-size: 0.85rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+
+/* ========================================
+   TEXTAREA
+   ======================================== */
+
+.form-field textarea {
+
+  min-height: 90px;
+
+  resize: vertical;
+}
+
+
+/* ========================================
+   PLACEHOLDER
+   ======================================== */
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+
+  color:
+    rgba(104, 118, 104, 0.65);
+}
+
+
+/* ========================================
+   FOCUS
+   ======================================== */
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+
+  border-color:
+    rgba(113, 137, 103, 0.70);
+
+  background:
+    rgba(255, 252, 244, 0.95);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(156, 175, 136, 0.14);
+}
+
+
+/* ========================================
+   ERRORE CAMPO
+   ======================================== */
+
+.field-error {
+
+  color: #9a5750 !important;
+}
+
+
+/* ========================================
+   PULSANTE
+   ======================================== */
+
+.save-button {
+
+  width: 100%;
+
+  margin-top: 5px;
+
+  padding: 15px 20px;
+
+  border:
+    1px solid
+    rgba(113, 137, 103, 0.45);
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #718967,
+      #49634d
+    );
+
+  color: #fffaf0;
+
+  font-family:
+    'Trebuchet MS',
+    Arial,
+    sans-serif;
+
+  font-size: 0.78rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.05em;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 20px
+    rgba(48, 73, 54, 0.16);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.save-button:hover:not(:disabled) {
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 12px 26px
+    rgba(48, 73, 54, 0.22);
+}
+
+.save-button:disabled {
+
+  opacity: 0.55;
+
+  cursor: not-allowed;
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 600px) {
+
+  .preferences-form {
+    gap: 18px;
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    font-size: 0.82rem;
+  }
+
+  .save-button {
+    padding: 14px 16px;
+  }
+
+}

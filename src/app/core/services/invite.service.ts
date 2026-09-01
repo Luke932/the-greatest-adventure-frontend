@@ -6,6 +6,7 @@ import { PublicInviteResponse } from '../../features/invite/models/public-invite
 import { CompanionRequest } from '../../features/invite/models/companion-request';
 import { CompanionResponse } from '../../features/invite/models/companion-response';
 import { RsvpStatus } from '../models/rsvp-status';
+import { PublicInviteUpdateRequest } from '../../features/invite/models/public-invite-update-request';
 
 @Injectable({
   providedIn: 'root'
@@ -43,4 +44,15 @@ updateRsvp(
       request
     );
   }
+
+  updateGuest(
+    token: string,
+    request: PublicInviteUpdateRequest
+  ): Observable<PublicInviteResponse> {
+    return this.http.patch<PublicInviteResponse>(
+      `${this.apiUrl}/${token}`,
+      request
+    );
+  }
+  
 }

@@ -1,0 +1,147 @@
+<form
+  class="preferences-form"
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+>
+
+  <!-- ================================= -->
+  <!-- TELEFONO -->
+  <!-- ================================= -->
+
+  <div class="form-field">
+
+    <label for="phone">
+      Numero di telefono
+    </label>
+
+    <input
+      id="phone"
+      type="tel"
+      formControlName="phone"
+      placeholder="Il tuo numero di telefono"
+      autocomplete="tel"
+    />
+
+    <small>
+      Puoi aggiornarlo se il tuo numero è cambiato.
+    </small>
+
+  </div>
+
+
+  <!-- ================================= -->
+  <!-- MENU -->
+  <!-- ================================= -->
+
+  <div class="form-field">
+
+    <label for="menuType">
+      Menu
+    </label>
+
+    <select
+      id="menuType"
+      formControlName="menuType"
+    >
+
+      <option
+        [ngValue]="null"
+        disabled
+      >
+        Seleziona il tuo menu
+      </option>
+
+      @for (
+        menu of menuTypes;
+        track menu
+      ) {
+
+        <option [ngValue]="menu">
+          {{ menu }}
+        </option>
+
+      }
+
+    </select>
+
+    @if (
+      form.controls.menuType.invalid &&
+      form.controls.menuType.touched
+    ) {
+
+      <small class="field-error">
+        Seleziona un menu.
+      </small>
+
+    }
+
+  </div>
+
+
+  <!-- ================================= -->
+  <!-- ALLERGIE -->
+  <!-- ================================= -->
+
+  <div class="form-field">
+
+    <label for="allergies">
+      Allergie o intolleranze
+    </label>
+
+    <textarea
+      id="allergies"
+      rows="3"
+      formControlName="allergies"
+      placeholder="Es. frutta secca, lattosio..."
+    ></textarea>
+
+    <small>
+      Indica eventuali allergie o intolleranze alimentari.
+    </small>
+
+  </div>
+
+
+  <!-- ================================= -->
+  <!-- NOTE -->
+  <!-- ================================= -->
+
+  <div class="form-field">
+
+    <label for="notes">
+      Note
+    </label>
+
+    <textarea
+      id="notes"
+      rows="4"
+      formControlName="notes"
+      placeholder="C'è qualcosa che vuoi farci sapere?"
+    ></textarea>
+
+  </div>
+
+
+  <!-- ================================= -->
+  <!-- SALVA -->
+  <!-- ================================= -->
+
+  <button
+    type="submit"
+    class="save-button"
+    [disabled]="saving"
+  >
+
+    @if (saving) {
+
+      ✦ Salvataggio in corso...
+
+    } @else {
+
+      ✦ Salva le mie preferenze
+
+    }
+
+  </button>
+
+</form>

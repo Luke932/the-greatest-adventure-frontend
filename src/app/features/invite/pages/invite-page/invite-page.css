@@ -1641,3 +1641,208 @@
 
 
 }
+
+/* ========================================
+   MODIFICA PREFERENZE
+   ======================================== */
+
+.edit-preferences-button {
+  width: 100%;
+
+  margin-top: 20px;
+
+  padding: 15px 20px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  border:
+    1px solid
+    rgba(139, 111, 168, 0.38);
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139, 111, 168, 0.08),
+      rgba(156, 175, 136, 0.12)
+    );
+
+  color: #6f5b7e;
+
+  font-family:
+    'Trebuchet MS',
+    Arial,
+    sans-serif;
+
+  font-size: 0.78rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.04em;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.edit-preferences-button:hover {
+  transform: translateY(-2px);
+
+  border-color: var(--magic-purple);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139, 111, 168, 0.15),
+      rgba(156, 175, 136, 0.18)
+    );
+
+  box-shadow:
+    0 10px 25px rgba(80, 67, 91, 0.12);
+}
+
+.edit-preferences-button:active {
+  transform: translateY(0);
+}
+
+.edit-preferences-button:focus-visible {
+  outline: 2px solid var(--magic-purple);
+
+  outline-offset: 3px;
+}
+
+/* ========================================
+   PREFERENCES SUMMARY
+   ======================================== */
+
+.preferences-summary-content {
+  display: grid;
+
+  gap: 14px;
+
+  margin-top: 22px;
+}
+
+.preferences-summary-content > div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  padding: 14px 16px;
+
+  border:
+    1px solid
+    rgba(113, 137, 103, 0.22);
+
+  border-radius: 14px;
+
+  background:
+    rgba(255, 255, 255, 0.32);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.preferences-summary-content > div:hover {
+  transform: translateY(-1px);
+
+  border-color:
+    rgba(214, 181, 109, 0.40);
+
+  background:
+    rgba(255, 255, 255, 0.45);
+}
+
+
+/* ETICHETTE */
+
+.preferences-summary-content span {
+  display: block;
+
+  color: #8b6f38;
+
+  font-family:
+    'Courier New',
+    monospace;
+
+  font-size: 0.58rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+
+  line-height: 1.4;
+
+  text-transform: uppercase;
+}
+
+
+/* VALORI */
+
+.preferences-summary-content strong {
+  display: block;
+
+  color: #304936;
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size: 0.98rem;
+
+  font-weight: 400;
+
+  line-height: 1.6;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* VALORI NON SPECIFICATI */
+
+.preferences-summary-content strong:empty {
+  display: none;
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 600px) {
+
+  .preferences-summary-content {
+    gap: 11px;
+  }
+
+  .preferences-summary-content > div {
+    padding: 13px 14px;
+  }
+
+  .preferences-summary-content span {
+    font-size: 0.54rem;
+
+    letter-spacing: 0.11em;
+  }
+
+  .preferences-summary-content strong {
+    font-size: 0.92rem;
+
+    line-height: 1.55;
+  }
+}

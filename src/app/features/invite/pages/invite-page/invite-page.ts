@@ -12,15 +12,18 @@ import { PublicInviteResponse } from '../../models/public-invite-response';
 import { CompanionRequest } from '../../models/companion-request';
 import { CompanionForm } from '../../components/companion-form/companion-form';
 import { RsvpForm } from '../../components/rsvp-form/rsvp-form';
-
+import { GuestPreferencesForm } from '../../components/guest-preferences-form/guest-preferences-form';
+import { PublicInviteUpdateRequest } from '../../models/public-invite-update-request';
 import { MenuType } from '../../../../core/models/menu-type';
+import { RsvpStatus } from '../../../../core/models/rsvp-status';
 
 @Component({
   selector: 'app-invite-page',
   standalone: true,
   imports: [
     RsvpForm,
-    CompanionForm
+    CompanionForm,
+    GuestPreferencesForm
   ],
   templateUrl: './invite-page.html',
   styleUrl: './invite-page.css'
@@ -40,6 +43,10 @@ export class InvitePage implements OnInit {
   addingCompanion = false;
   companionError = false;
 
+  updatingGuest = false;
+  guestUpdateError = false;
+
+  showGuestPreferencesForm = false;
   readonly menuTypes = Object.values(MenuType);
 
   ngOnInit(): void {
@@ -79,6 +86,10 @@ export class InvitePage implements OnInit {
         this.changeDetectorRef.detectChanges();
       }
     });
+  }
+
+  get hasAccepted(): boolean {
+    return this.invite?.rsvpStatus === RsvpStatus.CONFIRMED;
   }
 
   getToken(): string {
@@ -143,5 +154,55 @@ export class InvitePage implements OnInit {
         this.changeDetectorRef.detectChanges();
       }
     });
+  }
+
+  updateGuest(request: PublicInviteUpdateRequest): void {
+
+    const token = this.getToken();
+
+    if (!token) {
+      this.guestUpdateError = true;
+      return;
+    }
+
+    this.updatingGuest = true;
+    this.guestUpdateError = false;
+
+    this.inviteService.updateGuest(token, request).subscribe({
+
+      next: (response) => {
+
+        this.invite = response;
+        this.updatingGuest = false;
+
+        // Chiude il form dopo il salvataggio
+        this.showGuestPreferencesForm = false;
+
+        this.changeDetectorRef.detectChanges();
+      },
+
+      error: (err) => {
+
+        console.error(
+          'Errore aggiornamento preferenze invitato:',
+          err
+        );
+
+        this.updatingGuest = false;
+        this.guestUpdateError = true;
+
+        this.changeDetectorRef.detectChanges();
+      }
+    });
+  }
+
+  openGuestPreferencesForm(): void {
+    this.guestUpdateError = false;
+    this.showGuestPreferencesForm = true;
+  }
+
+  closeGuestPreferencesForm(): void {
+    this.showGuestPreferencesForm = false;
+    this.guestUpdateError = false;
   }
 }

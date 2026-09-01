@@ -1721,6 +1721,51 @@
   outline-offset: 3px;
 }
 
+.cancel-preferences-button {
+    width: 100%;
+
+  margin-top: 5px;
+
+  padding: 15px 20px;
+
+  border:
+    1px solid
+    rgba(113, 137, 103, 0.45);
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #718967,
+      #49634d
+    );
+
+  color: #fffaf0;
+
+  font-family:
+    'Trebuchet MS',
+    Arial,
+    sans-serif;
+
+  font-size: 0.78rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.05em;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 20px
+    rgba(48, 73, 54, 0.16);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
 /* ========================================
    PREFERENCES SUMMARY
    ======================================== */

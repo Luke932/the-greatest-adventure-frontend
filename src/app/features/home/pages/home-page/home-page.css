@@ -42,6 +42,8 @@
 
   position: relative;
 
+  z-index: 1;
+
   display: grid;
 
   place-items: center;
@@ -54,6 +56,36 @@
   background-size: cover;
 
   background-position: center;
+}
+
+
+/* =========================================
+   TRANSIZIONE HERO → CONTENUTO
+   ========================================= */
+
+.hero::after {
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom: -1px;
+
+  height: 240px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(81, 128, 96, 0),
+      rgba(81, 128, 96, 0.45) 45%,
+      #518060 100%
+    );
+
+  pointer-events: none;
+
+  z-index: 3;
 }
 
 
@@ -502,128 +534,50 @@
 .pet-sticker {
   position: absolute;
 
-  z-index: 4;
+  z-index: 3;
+
+  width: 150px;
+  height: 150px;
 
   pointer-events: none;
+}
 
-  animation:
-    sticker-float
-    4.5s
-    ease-in-out
-    infinite;
+
+.pet-dog {
+  left: calc(50% - 330px);
+
+  bottom: 55%;
+}
+
+
+.pet-cat {
+  right: calc(50% - 330px);
+
+  bottom: 55%;
 }
 
 
 .sticker-placeholder {
-  width: 145px;
-
-  min-height: 145px;
+  width: 100%;
+  height: 100%;
 
   display: flex;
-
-  flex-direction: column;
 
   align-items: center;
 
   justify-content: center;
 
-  gap: 8px;
-
-  padding: 15px;
-
-  border:
-    2px dashed
-    rgba(
-      240,
-      213,
-      140,
-      0.7
-    );
-
-  border-radius:
-    35% 65% 55% 45% /
-    55% 45% 65% 35%;
-
-  background:
-    rgba(
-      255,
-      250,
-      240,
-      0.08
-    );
-
-  box-shadow:
-    0 10px 30px
-    rgba(0, 0, 0, 0.15);
-
-  transform:
-    rotate(-7deg);
+  background: transparent;
 }
 
 
-.sticker-placeholder span {
-  font-size: 3rem;
+.sticker-placeholder img {
+  display: block;
 
-  filter:
-    drop-shadow(
-      0 5px 8px
-      rgba(0, 0, 0, 0.2)
-    );
-}
+  width: 120px;
+  height: 120px;
 
-
-.sticker-placeholder small {
-  color:
-    rgba(
-      255,
-      250,
-      240,
-      0.75
-    );
-
-  font-family:
-    'Courier New',
-    monospace;
-
-  font-size: 0.48rem;
-
-  font-weight: 700;
-
-  line-height: 1.4;
-
-  letter-spacing: 0.1em;
-
-  text-align: center;
-}
-
-
-.pet-dog {
-  left: 5%;
-
-  bottom: 13%;
-
-  animation-delay: -1.2s;
-}
-
-
-.pet-dog .sticker-placeholder {
-  transform:
-    rotate(-8deg);
-}
-
-
-.pet-cat {
-  right: 5%;
-
-  top: 18%;
-
-  animation-delay: -2.8s;
-}
-
-
-.pet-cat .sticker-placeholder {
-  transform:
-    rotate(8deg);
+  object-fit: contain;
 }
 
 
@@ -632,6 +586,10 @@
    ========================================= */
 
 .intro-section {
+  position: relative;
+
+  z-index: 1;
+
   max-width: 850px;
 
   margin: 0 auto;
@@ -639,6 +597,13 @@
   padding: 110px 25px;
 
   text-align: center;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #518060 0%,
+      #518060 100%
+    );
 
   animation:
     section-in
@@ -1343,6 +1308,11 @@
 
 @media (max-width: 700px) {
 
+  .hero::after {
+    height: 180px;
+  }
+
+
   .home-preview-section {
     min-height: auto;
 
@@ -1517,4 +1487,139 @@
     animation: none;
   }
 
+}
+
+
+/* =========================================
+   CORNICE DORATA
+   ========================================= */
+
+.text-frame {
+  position: relative;
+
+  padding: 48px 55px;
+
+  border: 5px solid var(--gold);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 250, 240, 0.08),
+      rgba(23, 37, 27, 0.22)
+    );
+
+  box-shadow:
+    inset 0 0 0 2px
+      rgba(255, 244, 194, 0.45),
+
+    inset 0 0 0 7px
+      rgba(137, 100, 34, 0.45),
+
+    0 8px 0
+      rgba(137, 100, 34, 0.5),
+
+    0 18px 40px
+      rgba(0, 0, 0, 0.22);
+
+  backdrop-filter: blur(5px);
+}
+
+
+.text-frame::before,
+.text-frame::after {
+  content: '✦';
+
+  position: absolute;
+
+  color: var(--gold-light);
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 1.25rem;
+
+  line-height: 1;
+
+  text-shadow:
+    0 1px 3px
+    rgba(0, 0, 0, 0.35);
+
+  z-index: 2;
+}
+
+
+.text-frame::before {
+  top: 12px;
+
+  left: 14px;
+}
+
+
+.text-frame::after {
+  right: 14px;
+
+  bottom: 12px;
+}
+
+
+/* =========================================
+   FRAME ORNAMENTS
+   ========================================= */
+
+.frame-ornament {
+  position: absolute;
+
+  color: var(--gold-light);
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 1.5rem;
+
+  line-height: 1;
+
+  text-shadow:
+    0 2px 4px
+    rgba(0, 0, 0, 0.3);
+
+  z-index: 2;
+}
+
+
+.frame-ornament-tl {
+  top: 8px;
+
+  left: 10px;
+}
+
+
+.frame-ornament-tr {
+  top: 8px;
+
+  right: 10px;
+
+  transform:
+    scaleX(-1);
+}
+
+
+.frame-ornament-bl {
+  bottom: 8px;
+
+  left: 10px;
+
+  transform:
+    scaleY(-1);
+}
+
+
+.frame-ornament-br {
+  right: 10px;
+
+  bottom: 10px;
+
+  transform:
+    scale(-1);
 }

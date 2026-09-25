@@ -735,7 +735,7 @@
 
 
 .illustration-placeholder {
-  width: min(340px, 80%);
+  width: min(430px, 90%);
 
   aspect-ratio: 1 / 1;
 
@@ -827,6 +827,19 @@
   line-height: 1.5;
 
   text-align: center;
+}
+
+.illustration-placeholder img {
+  display: block;
+
+  width: 88%;
+  height: 88%;
+
+  object-fit: contain;
+
+  border-radius:
+    48% 52% 45% 55% /
+    55% 45% 55% 45%;
 }
 
 

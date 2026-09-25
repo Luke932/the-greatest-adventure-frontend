@@ -1623,3 +1623,19 @@
   transform:
     scale(-1);
 }
+
+/* =========================================
+   CORNICE TESTIMONI E SAVE THE DATE
+   ========================================= */
+
+.witnesses-preview .text-frame,
+.date-section .text-frame {
+  width: min(850px, 100%);
+  margin: 0 auto;
+}
+
+.witnesses-preview .text-frame p,
+.date-section .text-frame p {
+  margin-left: auto;
+  margin-right: auto;
+}

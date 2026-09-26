@@ -12,6 +12,42 @@ export const routes: Routes = [
         .then(m => m.HomePage)
   },
 
+  // PAGINE PUBBLICHE DEL MATRIMONIO
+  {
+    path: 'giornata',
+    loadComponent: () =>
+      import('./features/giornata/pages/giornata-page/giornata-page')
+        .then(m => m.GiornataPage)
+  },
+
+  {
+    path: 'location',
+    loadComponent: () =>
+      import('./features/location/pages/location-page/location-page')
+        .then(m => m.LocationPage)
+  },
+
+  {
+    path: 'come-arrivare',
+    loadComponent: () =>
+      import('./features/come-arrivare/pages/come-arrivare-page/come-arrivare-page')
+        .then(m => m.ComeArrivarePage)
+  },
+
+  {
+    path: 'dove-dormire',
+    loadComponent: () =>
+      import('./features/dove-dormire/pages/dove-dormire-page/dove-dormire-page')
+        .then(m => m.DoveDormirePage)
+  },
+
+  {
+    path: 'testimoni',
+    loadComponent: () =>
+      import('./features/testimoni/pages/testimoni-page/testimoni-page')
+        .then(m => m.TestimoniPage)
+  },
+
   // LOGIN AREA PRIVATA
   {
     path: 'login',

@@ -90,15 +90,46 @@
     );
 }
 
+/* .home-page > * {
+  position: relative;
+  z-index: 1;
+} */
+
+/* The navbar must always sit above decorative layers. */
+/* .home-page app-navbar {
+  position: relative;
+  z-index: 100;
+} */
+
 .home-page > * {
   position: relative;
   z-index: 1;
 }
 
-/* The navbar must always sit above decorative layers. */
+/* =========================================
+   LAYERS
+   ========================================= */
+
 .home-page app-navbar {
   position: relative;
   z-index: 100;
+}
+
+/* I petali devono stare sopra tutto il contenuto,
+   ma sotto la navbar */
+.home-page .petals {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Gli altri elementi della pagina restano sotto */
+.home-page > .petals {
+  position: fixed;
+  z-index: 90;
 }
 
 
@@ -611,7 +642,7 @@
 
 
 .pet-cat {
-  right: calc(50% - 330px);
+  right: calc(52% - 330px);
 
   bottom: 55%;
 }
@@ -631,13 +662,53 @@
 }
 
 
-.sticker-placeholder img {
+.dog img {
   display: block;
 
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
 
   object-fit: contain;
+}
+
+.cat img {
+  display: block;
+
+  width: 120px;
+  height: 120px;
+
+  object-fit: contain;
+}
+
+@media (max-width: 600px) {
+
+  .pet-sticker {
+    width: 75px;
+    height: 75px;
+  }
+
+  .pet-dog {
+    left: 5px;
+    top: 43%;
+    bottom: auto;
+  }
+
+  .pet-cat {
+    right: 5px;
+    top: 43%;
+    bottom: auto;
+  }
+
+  .dog img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .cat img {
+    width: 65px;
+    height: 65px;
+  }
+
 }
 
 
@@ -884,7 +955,7 @@
   text-align: center;
 }
 
-.illustration-placeholder img {
+/* .illustration-placeholder img {
   display: block;
 
   width: 90%;
@@ -895,8 +966,176 @@
   border-radius:
     48% 52% 45% 55% /
     55% 45% 55% 45%;
+} */
+
+.illustration-placeholder a,img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 48% 52% 45% 55% / 55% 45% 55% 45%;
 }
 
+/* =========================================
+   GIORNATA, LOCATION
+   ========================================= */
+
+.giornata-preview {
+  position: relative;
+}
+
+.giornata-decoration {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 190px;
+  height: 360px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.75;
+}
+
+@media (max-width: 768px) {
+  .giornata-decoration {
+    display: none;
+  }
+}
+
+
+.arrival-preview {
+  position: relative;
+}
+
+.arrival-decoration {
+  position: absolute;
+  top: 50%;
+  left: 46%;
+  width: 190px;
+  height: 360px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.75;
+}
+
+@media (max-width: 768px) {
+  .arrival-decoration {
+    display: none;
+  }
+}
+
+/* ramo principale */
+
+.decoration-line {
+  position: absolute;
+  left: 50%;
+  top: 8%;
+  width: 2px;
+  height: 84%;
+  transform: translateX(-50%) rotate(8deg);
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(217, 173, 79, 0.75) 15%,
+      rgba(240, 213, 140, 0.9) 50%,
+      rgba(217, 173, 79, 0.75) 85%,
+      transparent
+    );
+
+  box-shadow:
+    0 0 8px rgba(240, 213, 140, 0.18);
+}
+
+/* foglie */
+
+.giornata-decoration .leaf {
+  position: absolute;
+
+  color: var(--gold-light);
+
+  font-family: Georgia, serif;
+  font-size: 2rem;
+
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.35),
+    0 0 12px rgba(240, 213, 140, 0.18);
+
+  opacity: 0.8;
+}
+
+.arrival-decoration .leaf {
+  position: absolute;
+
+  color: var(--gold-light);
+
+  font-family: Georgia, serif;
+  font-size: 2rem;
+
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.35),
+    0 0 12px rgba(240, 213, 140, 0.18);
+
+  opacity: 0.8;
+}
+
+.leaf-1 {
+  top: 18%;
+  left: 28%;
+  transform: rotate(-25deg);
+}
+
+.leaf-2 {
+  top: 35%;
+  right: 24%;
+  transform: rotate(155deg);
+}
+
+.leaf-3 {
+  top: 55%;
+  left: 20%;
+  transform: rotate(-65deg);
+}
+
+.leaf-4 {
+  top: 72%;
+  right: 27%;
+  transform: rotate(135deg);
+}
+
+/* piccoli punti luce */
+
+.decoration-star {
+  position: absolute;
+
+  color: var(--gold-light);
+
+  font-family: Georgia, serif;
+
+  text-shadow:
+    0 0 8px rgba(240, 213, 140, 0.55);
+}
+
+.star-1 {
+  top: 26%;
+  right: 5%;
+  font-size: 0.9rem;
+}
+
+.star-2 {
+  top: 62%;
+  left: 5%;
+  font-size: 0.7rem;
+}
+
+.star-3 {
+  bottom: 12%;
+  right: 12%;
+  font-size: 1.5rem;
+}
 
 /* =========================================
    TESTIMONI
@@ -1526,7 +1765,7 @@
   .pet-cat {
     right: 2%;
 
-    top: 12%;
+    top: 10%;
   }
 
 

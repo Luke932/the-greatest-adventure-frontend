@@ -1,138 +1,3 @@
-:host {
-  display: block;
-
-  --sage: #a9bd96;
-  --sage-light: #d3dfc5;
-
-  --forest: #24372a;
-  --forest-deep: #17251b;
-
-  --cream: #fffaf0;
-
-  --gold: #d9ad4f;
-  --gold-light: #f0d58c;
-}
-
-
-* {
-  box-sizing: border-box;
-}
-
-
-.home-page {
-  min-height: 100vh;
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(16, 32, 22, 0.18) 0%,
-      rgba(38, 67, 47, 0.62) 28%,
-      rgba(25, 48, 33, 0.70) 62%,
-      rgba(22, 43, 29, 0.76) 100%
-    ),
-    url('/images/wedding-background.jpg') center / cover fixed;
-
-  color: #f5f1ea;
-
-  font-family:
-    'Trebuchet MS',
-    Arial,
-    sans-serif;
-}
-
-.home-page::before {
-  content: '';
-  position: fixed;
-  inset: -25%;
-  pointer-events: none;
-  z-index: -1;
-
-  background:
-    radial-gradient(
-      ellipse at 18% 18%,
-      rgba(240, 213, 140, 0.24) 0%,
-      rgba(240, 213, 140, 0.08) 16%,
-      transparent 34%
-    ),
-    radial-gradient(
-      ellipse at 82% 28%,
-      rgba(211, 223, 197, 0.16) 0%,
-      rgba(169, 189, 150, 0.06) 20%,
-      transparent 38%
-    ),
-    radial-gradient(
-      ellipse at 50% 78%,
-      rgba(217, 173, 79, 0.11) 0%,
-      transparent 34%
-    );
-
-  filter: blur(18px);
-  transform: translate3d(0, 0, 0) scale(1.08);
-  animation: ambient-light 22s ease-in-out infinite alternate;
-}
-
-.home-page::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      transparent 38%,
-      rgba(7, 18, 11, 0.14) 68%,
-      rgba(5, 13, 8, 0.28) 100%
-    );
-}
-
-/* .home-page > * {
-  position: relative;
-  z-index: 1;
-} */
-
-/* The navbar must always sit above decorative layers. */
-/* .home-page app-navbar {
-  position: relative;
-  z-index: 100;
-} */
-
-.home-page > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* =========================================
-   LAYERS
-   ========================================= */
-
-.home-page app-navbar {
-  position: relative;
-  z-index: 100;
-}
-
-/* I petali devono stare sopra tutto il contenuto,
-   ma sotto la navbar */
-.home-page .petals {
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-
-  overflow: hidden;
-  pointer-events: none;
-}
-
-/* Gli altri elementi della pagina restano sotto */
-.home-page > .petals {
-  position: fixed;
-  z-index: 90;
-}
-
-
 /* =========================================
    HERO
    ========================================= */
@@ -162,18 +27,14 @@
   background-size: cover;
 
   background-position: center;
+
   background-attachment: fixed;
 }
 
 
 /* =========================================
-   TRANSIZIONE HERO → CONTENUTO
+   HERO OVERLAY
    ========================================= */
-
-.hero::after {
-  content: none;
-}
-
 
 .hero-overlay {
   position: absolute;
@@ -218,8 +79,7 @@
 }
 
 
-.hero-kicker,
-.section-kicker {
+.hero-kicker {
   display: block;
 
   color: var(--gold-light);
@@ -346,74 +206,6 @@
 
 
 /* =========================================
-   BUTTONS
-   ========================================= */
-
-.hero-button,
-.preview-button {
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 10px;
-
-  margin-top: 30px;
-
-  padding: 14px 22px;
-
-  border:
-    1px solid
-    rgba(
-      240,
-      213,
-      140,
-      0.6
-    );
-
-  border-radius: 999px;
-
-  background:
-    rgba(
-      214,
-      181,
-      109,
-      0.12
-    );
-
-  color: var(--gold-light);
-
-  text-decoration: none;
-
-  font-size: 0.74rem;
-
-  font-weight: 700;
-
-  letter-spacing: 0.05em;
-
-  backdrop-filter: blur(6px);
-
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease;
-}
-
-
-.hero-button:hover,
-.preview-button:hover {
-  transform:
-    translateY(-3px);
-
-  background:
-    rgba(
-      214,
-      181,
-      109,
-      0.22
-    );
-}
-
-
-/* =========================================
    COUNTDOWN
    ========================================= */
 
@@ -510,8 +302,7 @@
 
   line-height: 1;
 
-  font-variant-numeric:
-    tabular-nums;
+  font-variant-numeric: tabular-nums;
 
   text-shadow:
     0 4px 15px
@@ -671,6 +462,7 @@
   object-fit: contain;
 }
 
+
 .cat img {
   display: block;
 
@@ -678,37 +470,6 @@
   height: 120px;
 
   object-fit: contain;
-}
-
-@media (max-width: 600px) {
-
-  .pet-sticker {
-    width: 75px;
-    height: 75px;
-  }
-
-  .pet-dog {
-    left: 5px;
-    top: 43%;
-    bottom: auto;
-  }
-
-  .pet-cat {
-    right: 5px;
-    top: 43%;
-    bottom: auto;
-  }
-
-  .dog img {
-    width: 90px;
-    height: 90px;
-  }
-
-  .cat img {
-    width: 65px;
-    height: 65px;
-  }
-
 }
 
 
@@ -861,7 +622,7 @@
 
 
 .illustration-placeholder {
-  width: min(5000px, 90%);
+  width: min(500px, 90%);
 
   aspect-ratio: 1 / 1;
 
@@ -902,6 +663,8 @@
   transition:
     transform 0.4s ease,
     background 0.4s ease;
+
+  overflow: hidden;
 }
 
 
@@ -920,98 +683,71 @@
 }
 
 
-.illustration-placeholder span {
-  color: var(--gold-light);
-
-  font-family:
-    Georgia,
-    serif;
-
-  font-size: 3rem;
-}
-
-
-.illustration-placeholder small {
-  color:
-    rgba(
-      255,
-      250,
-      240,
-      0.45
-    );
-
-  font-family:
-    'Courier New',
-    monospace;
-
-  font-size: 0.48rem;
-
-  font-weight: 700;
-
-  letter-spacing: 0.12em;
-
-  line-height: 1.5;
-
-  text-align: center;
-}
-
-/* .illustration-placeholder img {
+.illustration-placeholder img {
   display: block;
 
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
 
-  object-fit: contain;
+  object-fit: cover;
+
+  object-position: center;
 
   border-radius:
     48% 52% 45% 55% /
     55% 45% 55% 45%;
-} */
-
-.illustration-placeholder a,img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 48% 52% 45% 55% / 55% 45% 55% 45%;
 }
 
+
+.illustration-placeholder a {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+}
+
+
 /* =========================================
-   GIORNATA, LOCATION
+   GIORNATA DECORATION
    ========================================= */
 
 .giornata-preview {
   position: relative;
 }
 
+
 .giornata-decoration {
   position: absolute;
+
   top: 50%;
   left: 50%;
+
   width: 190px;
   height: 360px;
-  transform: translate(-50%, -50%);
+
+  transform:
+    translate(-50%, -50%);
+
   pointer-events: none;
+
   z-index: 2;
+
   opacity: 0.75;
 }
 
-@media (max-width: 1490px) {
-  .giornata-decoration {
-    display: none;
-  }
-}
-
-/* ramo principale */
 
 .decoration-line {
   position: absolute;
+
   left: 50%;
   top: 8%;
+
   width: 2px;
   height: 84%;
-  transform: translateX(-50%) rotate(8deg);
+
+  transform:
+    translateX(-50%)
+    rotate(8deg);
 
   background:
     linear-gradient(
@@ -1024,80 +760,115 @@
     );
 
   box-shadow:
-    0 0 8px rgba(240, 213, 140, 0.18);
+    0 0 8px
+    rgba(240, 213, 140, 0.18);
 }
 
-/* foglie */
 
 .giornata-decoration .leaf {
   position: absolute;
 
   color: var(--gold-light);
 
-  font-family: Georgia, serif;
+  font-family:
+    Georgia,
+    serif;
+
   font-size: 2rem;
 
   text-shadow:
-    0 1px 4px rgba(0, 0, 0, 0.35),
-    0 0 12px rgba(240, 213, 140, 0.18);
+    0 1px 4px
+    rgba(0, 0, 0, 0.35),
+    0 0 12px
+    rgba(240, 213, 140, 0.18);
 
   opacity: 0.8;
 }
 
+
 .leaf-1 {
   top: 18%;
   left: 28%;
-  transform: rotate(-25deg);
+
+  transform:
+    rotate(-25deg);
 }
+
 
 .leaf-2 {
   top: 35%;
   right: 24%;
-  transform: rotate(155deg);
+
+  transform:
+    rotate(155deg);
 }
+
 
 .leaf-3 {
   top: 55%;
   left: 20%;
-  transform: rotate(-65deg);
+
+  transform:
+    rotate(-65deg);
 }
+
 
 .leaf-4 {
   top: 72%;
   right: 27%;
-  transform: rotate(135deg);
+
+  transform:
+    rotate(135deg);
 }
 
-/* piccoli punti luce */
 
 .decoration-star {
   position: absolute;
 
   color: var(--gold-light);
 
-  font-family: Georgia, serif;
+  font-family:
+    Georgia,
+    serif;
 
   text-shadow:
-    0 0 8px rgba(240, 213, 140, 0.55);
+    0 0 8px
+    rgba(240, 213, 140, 0.55);
 }
+
 
 .star-1 {
   top: 26%;
   right: 5%;
+
   font-size: 0.9rem;
 }
+
 
 .star-2 {
   top: 62%;
   left: 5%;
+
   font-size: 0.7rem;
 }
+
 
 .star-3 {
   bottom: 12%;
   right: 12%;
+
   font-size: 1.5rem;
 }
+
+
+@media (max-width: 1490px) {
+
+  .giornata-decoration {
+    display: none;
+  }
+
+}
+
 
 /* =========================================
    TESTIMONI
@@ -1134,8 +905,23 @@
 }
 
 
+.witnesses-preview .text-frame,
+.date-section .text-frame {
+  width: min(850px, 100%);
+
+  margin: 0 auto;
+}
+
+
+.witnesses-preview .text-frame p,
+.date-section .text-frame p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 /* =========================================
-   DATE
+   SAVE THE DATE
    ========================================= */
 
 .date-section {
@@ -1211,22 +997,8 @@
 
 
 /* =========================================
-   ANIMATIONS
+   HOMEPAGE ANIMATIONS
    ========================================= */
-
-@keyframes ambient-light {
-  0% {
-    transform: translate3d(-3%, -2%, 0) scale(1.05);
-  }
-
-  50% {
-    transform: translate3d(2%, 1%, 0) scale(1.10);
-  }
-
-  100% {
-    transform: translate3d(-1%, 4%, 0) scale(1.07);
-  }
-}
 
 @keyframes hero-content-in {
 
@@ -1266,20 +1038,6 @@
 }
 
 
-@keyframes sticker-float {
-
-  0%,
-  100% {
-    margin-top: 0;
-  }
-
-  50% {
-    margin-top: -12px;
-  }
-
-}
-
-
 @keyframes scroll-pulse {
 
   0%,
@@ -1303,294 +1061,10 @@
 
 
 /* =========================================
-   FALLING PETALS
-   ========================================= */
-
-.petals {
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 20;
-
-  overflow: hidden;
-
-  pointer-events: none;
-}
-
-
-.petals span {
-  position: absolute;
-
-  top: -60px;
-
-  display: block;
-
-  color:
-    rgba(
-      228,
-      201,
-      142,
-      0.55
-    );
-
-  font-family:
-    Georgia,
-    serif;
-
-  font-size: 22px;
-
-  opacity: 0;
-
-  animation:
-    petal-fall
-    linear
-    infinite,
-    petal-sway
-    ease-in-out
-    infinite;
-}
-
-
-.petals span:nth-child(1) {
-  left: 5%;
-
-  animation-duration:
-    11s,
-    3s;
-
-  animation-delay:
-    0s,
-    0s;
-
-  font-size: 18px;
-}
-
-
-.petals span:nth-child(2) {
-  left: 14%;
-
-  animation-duration:
-    14s,
-    4s;
-
-  animation-delay:
-    -4s,
-    -1s;
-
-  font-size: 25px;
-}
-
-
-.petals span:nth-child(3) {
-  left: 24%;
-
-  animation-duration:
-    12s,
-    3.5s;
-
-  animation-delay:
-    -8s,
-    -2s;
-
-  font-size: 16px;
-}
-
-
-.petals span:nth-child(4) {
-  left: 35%;
-
-  animation-duration:
-    16s,
-    4.5s;
-
-  animation-delay:
-    -2s,
-    -3s;
-
-  font-size: 21px;
-}
-
-
-.petals span:nth-child(5) {
-  left: 45%;
-
-  animation-duration:
-    13s,
-    3s;
-
-  animation-delay:
-    -7s,
-    -1s;
-
-  font-size: 17px;
-}
-
-
-.petals span:nth-child(6) {
-  left: 56%;
-
-  animation-duration:
-    15s,
-    4s;
-
-  animation-delay:
-    -11s,
-    -2s;
-
-  font-size: 24px;
-}
-
-
-.petals span:nth-child(7) {
-  left: 66%;
-
-  animation-duration:
-    12s,
-    3.5s;
-
-  animation-delay:
-    -5s,
-    -1s;
-
-  font-size: 19px;
-}
-
-
-.petals span:nth-child(8) {
-  left: 75%;
-
-  animation-duration:
-    17s,
-    4.5s;
-
-  animation-delay:
-    -9s,
-    -3s;
-
-  font-size: 23px;
-}
-
-
-.petals span:nth-child(9) {
-  left: 84%;
-
-  animation-duration:
-    13s,
-    3s;
-
-  animation-delay:
-    -3s,
-    -2s;
-
-  font-size: 16px;
-}
-
-
-.petals span:nth-child(10) {
-  left: 92%;
-
-  animation-duration:
-    15s,
-    4s;
-
-  animation-delay:
-    -12s,
-    -1s;
-
-  font-size: 21px;
-}
-
-
-.petals span:nth-child(11) {
-  left: 31%;
-
-  animation-duration:
-    18s,
-    5s;
-
-  animation-delay:
-    -14s,
-    -4s;
-
-  font-size: 15px;
-}
-
-
-.petals span:nth-child(12) {
-  left: 70%;
-
-  animation-duration:
-    14s,
-    3.5s;
-
-  animation-delay:
-    -6s,
-    -2s;
-
-  font-size: 18px;
-}
-
-
-/* =========================================
-   PETAL FALL
-   ========================================= */
-
-@keyframes petal-fall {
-
-  0% {
-    top: -60px;
-
-    opacity: 0;
-
-    transform:
-      rotate(0deg);
-  }
-
-  8% {
-    opacity: 0.7;
-  }
-
-  85% {
-    opacity: 0.45;
-  }
-
-  100% {
-    top: 110vh;
-
-    opacity: 0;
-
-    transform:
-      rotate(360deg);
-  }
-
-}
-
-
-/* =========================================
-   PETAL SWAY
-   ========================================= */
-
-@keyframes petal-sway {
-
-  0%,
-  100% {
-    margin-left: -15px;
-  }
-
-  50% {
-    margin-left: 15px;
-  }
-
-}
-
-
-/* =========================================
    MOBILE
    ========================================= */
 
 @media (max-width: 700px) {
-
 
   .home-preview-section {
     min-height: auto;
@@ -1604,11 +1078,13 @@
   }
 
 
-  .location-preview
-  .giornata-preview
-  .preview-illustration,
-  .sleeping-preview
-  .preview-illustration {
+  /*
+   * Su mobile le immagini vengono
+   * prima del testo nelle sezioni
+   * in cui sono presenti a sinistra.
+   */
+  .location-preview .preview-illustration,
+  .sleeping-preview .preview-illustration {
     order: -1;
   }
 
@@ -1647,6 +1123,11 @@
 
 
 @media (max-width: 600px) {
+
+  .hero {
+    background-attachment: scroll;
+  }
+
 
   .hero-content {
     padding-top: 100px;
@@ -1698,36 +1179,39 @@
   }
 
 
-  .sticker-placeholder {
-    width: 88px;
-
-    min-height: 88px;
-
-    padding: 8px;
-  }
-
-
-  .sticker-placeholder span {
-    font-size: 2rem;
-  }
-
-
-  .sticker-placeholder small {
-    font-size: 0.34rem;
+  .pet-sticker {
+    width: 75px;
+    height: 75px;
   }
 
 
   .pet-dog {
-    left: 2%;
+    left: 5px;
 
-    bottom: 10%;
+    top: 43%;
+
+    bottom: auto;
   }
 
 
   .pet-cat {
-    right: 2%;
+    right: 5px;
 
-    top: 10%;
+    top: 43%;
+
+    bottom: auto;
+  }
+
+
+  .dog img {
+    width: 90px;
+    height: 90px;
+  }
+
+
+  .cat img {
+    width: 65px;
+    height: 65px;
   }
 
 
@@ -1751,171 +1235,10 @@
 
 @media (prefers-reduced-motion: reduce) {
 
-  .petals {
-    display: none;
-  }
-
-
   .hero-content,
-  .intro-section {
-    animation: none;
-  }
-
-
-  .pet-sticker,
+  .intro-section,
   .hero-scroll {
     animation: none;
   }
 
-}
-
-
-/* =========================================
-   CORNICE DORATA
-   ========================================= */
-
-.text-frame {
-  position: relative;
-
-  padding: 48px 55px;
-
-  border: 5px solid var(--gold);
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 250, 240, 0.08),
-      rgba(23, 37, 27, 0.22)
-    );
-
-  box-shadow:
-    inset 0 0 0 2px
-      rgba(255, 244, 194, 0.45),
-
-    inset 0 0 0 7px
-      rgba(137, 100, 34, 0.45),
-
-    0 8px 0
-      rgba(137, 100, 34, 0.5),
-
-    0 18px 40px
-      rgba(0, 0, 0, 0.22);
-
-  backdrop-filter: blur(5px);
-}
-
-
-.text-frame::before,
-.text-frame::after {
-  content: '✦';
-
-  position: absolute;
-
-  color: var(--gold-light);
-
-  font-family:
-    Georgia,
-    serif;
-
-  font-size: 1.25rem;
-
-  line-height: 1;
-
-  text-shadow:
-    0 1px 3px
-    rgba(0, 0, 0, 0.35);
-
-  z-index: 2;
-}
-
-
-.text-frame::before {
-  top: 12px;
-
-  left: 14px;
-}
-
-
-.text-frame::after {
-  right: 14px;
-
-  bottom: 12px;
-}
-
-
-/* =========================================
-   FRAME ORNAMENTS
-   ========================================= */
-
-.frame-ornament {
-  position: absolute;
-
-  color: var(--gold-light);
-
-  font-family:
-    Georgia,
-    serif;
-
-  font-size: 1.5rem;
-
-  line-height: 1;
-
-  text-shadow:
-    0 2px 4px
-    rgba(0, 0, 0, 0.3);
-
-  z-index: 2;
-}
-
-
-.frame-ornament-tl {
-  top: 8px;
-
-  left: 10px;
-}
-
-
-.frame-ornament-tr {
-  top: 8px;
-
-  right: 10px;
-
-  transform:
-    scaleX(-1);
-}
-
-
-.frame-ornament-bl {
-  bottom: 8px;
-
-  left: 10px;
-
-  transform:
-    scaleY(-1);
-}
-
-
-.frame-ornament-br {
-  right: 10px;
-
-  bottom: 10px;
-
-  transform:
-    scale(-1);
-}
-
-/* =========================================
-   CORNICE TESTIMONI E SAVE THE DATE
-   ========================================= */
-
-.witnesses-preview .text-frame,
-.date-section .text-frame {
-  width: min(850px, 100%);
-  margin: 0 auto;
-}
-
-.witnesses-preview .text-frame p,
-.date-section .text-frame p {
-  margin-left: auto;
-  margin-right: auto;
 }

@@ -1,4 +1,4 @@
-<div class="home-page">
+<div class="wedding-page home-page">
 
   <app-navbar />
 
@@ -20,6 +20,7 @@
     <span>❧</span>
   </div>
 
+
   <main>
 
     <!-- =========================================
@@ -30,9 +31,7 @@
       <div class="hero-overlay"></div>
 
 
-      <!-- =====================================
-          STICKER BASSOTTO
-          ===================================== -->
+      <!-- STICKER BASSOTTO -->
       <div
         class="pet-sticker pet-dog"
         aria-hidden="true"
@@ -46,9 +45,7 @@
       </div>
 
 
-      <!-- =====================================
-          STICKER GATTO
-          ===================================== -->
+      <!-- STICKER GATTO -->
       <div
         class="pet-sticker pet-cat"
         aria-hidden="true"
@@ -76,11 +73,7 @@
 
         <h1>
           Erika
-
-          <span>
-            &
-          </span>
-
+          <span>&amp;</span>
           Luca
         </h1>
 
@@ -90,7 +83,7 @@
         </p>
 
 
-        <div class="hero-divider">
+        <div class="hero-divider" aria-hidden="true">
           <span>✦</span>
         </div>
 
@@ -102,69 +95,68 @@
         </p>
 
 
-        <!-- =====================================
-             COUNTDOWN
-             ===================================== -->
-        <div class="countdown">
+        <!-- COUNTDOWN -->
+        <div
+          class="countdown"
+          aria-label="Conto alla rovescia per il matrimonio"
+        >
+
           <span class="countdown-label">
             MANCANO ANCORA
           </span>
 
+
           <div class="countdown-items">
 
             <div class="countdown-item">
-              <strong>
-                {{ days() }}
-              </strong>
-
-              <span>
-                GIORNI
-              </span>
+              <strong>{{ days() }}</strong>
+              <span>GIORNI</span>
             </div>
 
-            <div class="countdown-separator">
+
+            <div
+              class="countdown-separator"
+              aria-hidden="true"
+            >
               :
             </div>
 
-            <div class="countdown-item">
-              <strong>
-                {{ formatNumber(hours()) }}
-              </strong>
 
-              <span>
-                ORE
-              </span>
+            <div class="countdown-item">
+              <strong>{{ formatNumber(hours()) }}</strong>
+              <span>ORE</span>
             </div>
 
-            <div class="countdown-separator">
+
+            <div
+              class="countdown-separator"
+              aria-hidden="true"
+            >
               :
             </div>
 
-            <div class="countdown-item">
-              <strong>
-                {{ formatNumber(minutes()) }}
-              </strong>
 
-              <span>
-                MIN
-              </span>
+            <div class="countdown-item">
+              <strong>{{ formatNumber(minutes()) }}</strong>
+              <span>MIN</span>
             </div>
 
-            <div class="countdown-separator">
+
+            <div
+              class="countdown-separator"
+              aria-hidden="true"
+            >
               :
             </div>
 
-            <div class="countdown-item">
-              <strong>
-                {{ formatNumber(seconds()) }}
-              </strong>
 
-              <span>
-                SEC
-              </span>
+            <div class="countdown-item">
+              <strong>{{ formatNumber(seconds()) }}</strong>
+              <span>SEC</span>
             </div>
 
           </div>
+
         </div>
 
       </div>
@@ -176,7 +168,10 @@
           SCORRI PER INIZIARE
         </span>
 
-        <span class="scroll-arrow">
+        <span
+          class="scroll-arrow"
+          aria-hidden="true"
+        >
           ↓
         </span>
 
@@ -192,10 +187,10 @@
 
       <div class="text-frame">
 
-          <span class="frame-ornament frame-ornament-tl">❦</span>
-          <span class="frame-ornament frame-ornament-tr">❦</span>
-          <span class="frame-ornament frame-ornament-bl">❦</span>
-          <span class="frame-ornament frame-ornament-br">❦</span>
+        <span class="frame-ornament frame-ornament-tl">❦</span>
+        <span class="frame-ornament frame-ornament-tr">❦</span>
+        <span class="frame-ornament frame-ornament-bl">❦</span>
+        <span class="frame-ornament frame-ornament-br">❦</span>
 
         <span class="section-kicker">
           CAPITOLO I
@@ -222,9 +217,7 @@
     <!-- =========================================
          LA GIORNATA
          ========================================= -->
-    <section
-      class="home-preview-section giornata-preview"
-    >
+    <section class="home-preview-section giornata-preview">
 
       <div class="preview-content text-frame">
 
@@ -253,21 +246,20 @@
 
 
         <a
-          class="preview-button"
+          class="wedding-button preview-button"
           routerLink="/giornata"
         >
-
           Scopri la giornata
-
-          <span>
-            →
-          </span>
-
+          <span aria-hidden="true">→</span>
         </a>
 
       </div>
 
-      <div class="giornata-decoration" aria-hidden="true">
+
+      <div
+        class="giornata-decoration"
+        aria-hidden="true"
+      >
         <span class="decoration-line"></span>
 
         <span class="leaf leaf-1">❧</span>
@@ -281,20 +273,14 @@
       </div>
 
 
-      <!-- FUTURA ILLUSTRAZIONE -->
-
       <div class="preview-illustration">
 
-        <div class="preview-illustration">
+        <div class="illustration-placeholder">
 
-          <div class="illustration-placeholder">
-
-            <img
-              src="/images/day.jpg"
-              alt="Illustrazione della giornata del matrimonio"
-            />
-
-          </div>
+          <img
+            src="/images/day.jpg"
+            alt="Illustrazione della giornata del matrimonio"
+          />
 
         </div>
 
@@ -306,9 +292,7 @@
     <!-- =========================================
          LOCATION
          ========================================= -->
-    <section
-      class="home-preview-section location-preview"
-    >
+    <section class="home-preview-section location-preview">
 
       <div class="preview-illustration">
 
@@ -321,7 +305,7 @@
           >
             <img
               src="/images/02.jpg"
-              alt="Illustrazione della giornata del matrimonio"
+              alt="Parco Chiaramontano"
             />
           </a>
 
@@ -356,16 +340,11 @@
 
 
         <a
-          class="preview-button"
+          class="wedding-button preview-button"
           routerLink="/location"
         >
-
           Scopri la location
-
-          <span>
-            →
-          </span>
-
+          <span aria-hidden="true">→</span>
         </a>
 
       </div>
@@ -376,9 +355,7 @@
     <!-- =========================================
          COME ARRIVARE
          ========================================= -->
-    <section
-      class="home-preview-section arrival-preview"
-    >
+    <section class="home-preview-section arrival-preview">
 
       <div class="preview-content text-frame">
 
@@ -407,19 +384,15 @@
 
 
         <a
-          class="preview-button"
+          class="wedding-button preview-button"
           routerLink="/come-arrivare"
         >
-
           Scopri come arrivare
-
-          <span>
-            →
-          </span>
-
+          <span aria-hidden="true">→</span>
         </a>
 
       </div>
+
 
       <div class="preview-illustration">
 
@@ -432,7 +405,7 @@
           >
             <img
               src="/images/mappa.jpg"
-              alt="Illustrazione della giornata del matrimonio"
+              alt="Mappa per raggiungere il Parco Chiaramontano"
             />
           </a>
 
@@ -446,9 +419,7 @@
     <!-- =========================================
          DOVE DORMIRE
          ========================================= -->
-    <section
-      class="home-preview-section sleeping-preview"
-    >
+    <section class="home-preview-section sleeping-preview">
 
       <div class="preview-illustration">
 
@@ -461,7 +432,7 @@
           >
             <img
               src="/images/alloggio.jpg"
-              alt="Illustrazione della giornata del matrimonio"
+              alt="Possibilità di alloggio nei dintorni"
             />
           </a>
 
@@ -497,16 +468,11 @@
 
 
         <a
-          class="preview-button"
+          class="wedding-button preview-button"
           routerLink="/dove-dormire"
         >
-
           Scopri dove dormire
-
-          <span>
-            →
-          </span>
-
+          <span aria-hidden="true">→</span>
         </a>
 
       </div>
@@ -540,19 +506,14 @@
 
 
         <a
-          class="preview-button"
+          class="wedding-button preview-button"
           routerLink="/testimoni"
         >
-
           Conosci i nostri testimoni
-
-          <span>
-            →
-          </span>
-
+          <span aria-hidden="true">→</span>
         </a>
 
-        </div>
+      </div>
 
     </section>
 
@@ -584,7 +545,10 @@
         </div>
 
 
-        <div class="date-divider">
+        <div
+          class="date-divider"
+          aria-hidden="true"
+        >
           ✦
         </div>
 
@@ -595,7 +559,7 @@
           Vi aspettiamo per festeggiare insieme.
         </p>
 
-        </div>
+      </div>
 
     </section>
 

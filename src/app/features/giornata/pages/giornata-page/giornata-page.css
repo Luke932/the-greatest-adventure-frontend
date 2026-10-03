@@ -1,0 +1,921 @@
+/* =========================================
+   GIORNATA
+   ========================================= */
+
+.giornata-page main {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =========================================
+   HERO ILLUSTRATO
+   ========================================= */
+
+.day-hero {
+  position: relative;
+  width: min(1100px, calc(100% - 40px));
+  min-height: 520px;
+  margin: 0 auto;
+  padding: 90px 0 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.day-hero-content {
+  position: relative;
+  z-index: 3;
+
+  width: min(650px, 100%);
+  text-align: center;
+
+  animation: introReveal 1s ease both;
+}
+
+.day-intro-text {
+  max-width: 680px;
+  margin: 30px auto 0;
+
+  color: var(--text);
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+/* =========================================
+   CANE E GATTO
+   ========================================= */
+
+.day-pet {
+  position: absolute;
+  z-index: 2;
+
+  width: 175px;
+  height: auto;
+
+  object-fit: contain;
+
+  pointer-events: none;
+
+  filter:
+    drop-shadow(0 12px 12px rgba(36, 55, 42, 0.10));
+
+  animation:
+    petFloat 5s ease-in-out infinite;
+}
+
+.day-dog {
+  left: 10px;
+  top: 75px;
+
+  width: 175px;
+
+  transform: rotate(-7deg);
+}
+
+.day-cat {
+  right: 10px;
+  top: 75px;
+
+  width: 130px;
+
+  transform: rotate(7deg);
+
+  animation-delay: -2.2s;
+}
+
+/* =========================================
+   SPAZIETTO SPOSI
+   ========================================= */
+
+.couple-illustration {
+  width: min(360px, 75%);
+  height: 190px;
+
+  margin: 35px auto 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.couple-illustration img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(0 12px 12px rgba(36, 55, 42, 0.10));
+
+  transition:
+    transform 0.4s ease,
+    filter 0.4s ease;
+}
+
+.couple-illustration img:hover {
+  transform: translateY(-5px);
+
+  filter:
+    drop-shadow(0 16px 18px rgba(36, 55, 42, 0.14));
+}
+
+.couple-illustration-placeholder {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px dashed rgba(217, 173, 79, 0.45);
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(211, 223, 197, 0.22),
+      transparent 70%
+    );
+
+  opacity: 0.8;
+}
+
+.couple-illustration-placeholder::before,
+.couple-illustration-placeholder::after {
+  content: "";
+
+  position: absolute;
+
+  width: 45px;
+  height: 45px;
+
+  border-color: rgba(217, 173, 79, 0.45);
+}
+
+.couple-illustration-placeholder::before {
+  top: -1px;
+  left: -1px;
+
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+
+.couple-illustration-placeholder::after {
+  right: -1px;
+  bottom: -1px;
+
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
+
+.couple-illustration-placeholder span {
+  color: var(--gold);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2rem;
+  opacity: 0.75;
+}
+
+@media (max-width: 800px) {
+
+  .day-pet {
+    width: 120px;
+  }
+
+  .day-dog {
+    left: -10px;
+    top: 75px;
+    width: 120px;
+  }
+
+  .day-cat {
+    right: -10px;
+    top: 70px;
+    width: 95px;
+  }
+
+}
+
+@media (max-width: 520px) {
+
+  .day-hero {
+    width: calc(100% - 30px);
+    padding: 50px 0 40px;
+  }
+
+  .day-hero {
+    top: 25px;
+  }
+
+  .day-pet {
+    width: 85px;
+  }
+
+  .day-dog {
+    left: -5px;
+    top: 75px;
+    width: 85px;
+  }
+
+  .day-cat {
+    right: -5px;
+    top: 70px;
+    width: 68px;
+  }
+
+  .couple-illustration {
+    width: 72%;
+    height: 145px;
+    margin-top: 25px;
+  }
+
+  .couple-illustration-placeholder span {
+    font-size: 1.5rem;
+  }
+}
+
+
+/* =========================================
+   TIMELINE
+   ========================================= */
+
+.day-timeline {
+  position: relative;
+
+  width: min(1100px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 40px 0 100px;
+}
+
+
+/* =========================================
+   LINEA CENTRALE
+   ========================================= */
+
+.timeline-line {
+  position: absolute;
+
+  top: 40px;
+  bottom: 80px;
+  left: 50%;
+
+  width: 1px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(217, 173, 79, 0.8) 10%,
+      rgba(217, 173, 79, 0.8) 90%,
+      transparent
+    );
+
+  transform: translateX(-50%);
+  transform-origin: top;
+
+  animation: timelineLineReveal 1.8s ease-out both;
+}
+
+
+/* =========================================
+   TIMELINE ITEM
+   ========================================= */
+
+.timeline-item {
+  position: relative;
+
+  display: flex;
+  width: 100%;
+
+  margin-bottom: 80px;
+}
+
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+
+.timeline-left {
+  justify-content: flex-start;
+  padding-right: calc(50% + 55px);
+}
+
+
+.timeline-right {
+  justify-content: flex-end;
+  padding-left: calc(50% + 55px);
+}
+
+
+/* =========================================
+   DECORAZIONE LATERALE
+   ========================================= */
+
+.timeline-item::after {
+  content: "❦";
+
+  position: absolute;
+  top: 48px;
+
+  color: rgba(217, 173, 79, 0.28);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.4rem;
+
+  opacity: 0;
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+
+.timeline-left::after {
+  right: calc(50% + 18px);
+
+  transform: translateX(15px);
+}
+
+
+.timeline-right::after {
+  left: calc(50% + 18px);
+
+  transform: translateX(-15px);
+}
+
+
+.timeline-item:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* =========================================
+   MARKER
+   ========================================= */
+
+.timeline-marker {
+  position: absolute;
+
+  top: 30px;
+  left: 50%;
+
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+
+  background: var(--cream);
+
+  color: var(--gold);
+
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  transform: translateX(-50%);
+
+  box-shadow:
+    0 0 0 8px rgba(255, 250, 240, 0.75);
+
+  animation: markerReveal 0.7s ease both;
+}
+
+
+/* =========================================
+   CARD
+   ========================================= */
+
+.timeline-card {
+  position: relative;
+
+  width: 100%;
+
+  padding: 42px 40px;
+
+  text-align: left;
+
+  animation: timelineReveal 0.8s ease both;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+
+.timeline-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 18px 45px rgba(36, 55, 42, 0.12),
+    0 0 0 1px rgba(217, 173, 79, 0.18);
+}
+
+
+/* =========================================
+   TESTI CARD
+   ========================================= */
+
+.timeline-time {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: var(--gold);
+
+  font-family: "Courier New", monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+
+.timeline-kicker {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: var(--forest);
+
+  font-family: "Courier New", monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+
+.timeline-card h2 {
+  margin: 0 0 18px;
+
+  color: var(--forest);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.7rem, 3vw, 2.25rem);
+  font-weight: 400;
+}
+
+
+.timeline-card p {
+  margin: 0;
+
+  color: var(--text);
+
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.8;
+}
+
+
+/* =========================================
+   ORNAMENTI CARD
+   ========================================= */
+
+.timeline-card .frame-ornament {
+  transition:
+    transform 0.5s ease,
+    color 0.5s ease;
+}
+
+
+.timeline-card:hover .frame-ornament.top-left {
+  transform: translate(-2px, -2px) rotate(-8deg);
+}
+
+
+.timeline-card:hover .frame-ornament.bottom-right {
+  transform: translate(2px, 2px) rotate(8deg);
+}
+
+
+/* =========================================
+   NAVETTA
+   ========================================= */
+
+.travel-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  margin-top: 25px;
+  padding: 18px 20px;
+
+  border-top: 1px solid rgba(217, 173, 79, 0.45);
+  border-bottom: 1px solid rgba(217, 173, 79, 0.45);
+
+  background: rgba(211, 223, 197, 0.22);
+}
+
+
+.travel-icon {
+  flex-shrink: 0;
+
+  color: var(--gold);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2rem;
+
+  transition:
+    transform 0.4s ease;
+}
+
+
+.timeline-card:hover .travel-icon {
+  transform: translateX(5px);
+}
+
+
+.travel-box strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--forest);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+
+.travel-box span {
+  color: var(--muted);
+
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+}
+
+
+.timeline-note {
+  margin-top: 18px !important;
+
+  color: var(--muted) !important;
+
+  font-size: 0.82rem !important;
+  font-style: italic;
+}
+
+
+/* =========================================
+   FINALE
+   ========================================= */
+
+.day-ending {
+  width: min(760px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 0 0 110px;
+
+  text-align: center;
+
+  animation: introReveal 1s ease 0.4s both;
+}
+
+
+.day-ending-frame {
+  position: relative;
+
+  padding: 55px 45px;
+}
+
+
+.day-ending h2 {
+  margin: 12px 0 20px;
+
+  color: var(--forest);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+}
+
+
+.day-ending p {
+  max-width: 560px;
+  margin: 0 auto;
+
+  color: var(--text);
+
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  line-height: 1.8;
+}
+
+
+.day-ending .wedding-divider {
+  margin: 30px auto;
+}
+
+
+.day-signature {
+  color: var(--gold) !important;
+
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 1.8rem;
+  font-style: italic;
+}
+
+
+/* =========================================
+   ANIMAZIONI
+   ========================================= */
+
+@keyframes introReveal {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes timelineLineReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scaleY(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scaleY(1);
+  }
+}
+
+
+@keyframes markerReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.5);
+  }
+
+  70% {
+    transform: translateX(-50%) scale(1.08);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+
+@keyframes timelineReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================
+   ANIMAZIONE PROGRESSIVA
+   ========================================= */
+
+.timeline-item:nth-child(1) .timeline-card,
+.timeline-item:nth-child(1) .timeline-marker {
+  animation-delay: 0.15s;
+}
+
+
+.timeline-item:nth-child(2) .timeline-card,
+.timeline-item:nth-child(2) .timeline-marker {
+  animation-delay: 0.30s;
+}
+
+
+.timeline-item:nth-child(3) .timeline-card,
+.timeline-item:nth-child(3) .timeline-marker {
+  animation-delay: 0.45s;
+}
+
+
+.timeline-item:nth-child(4) .timeline-card,
+.timeline-item:nth-child(4) .timeline-marker {
+  animation-delay: 0.60s;
+}
+
+
+.timeline-item:nth-child(5) .timeline-card,
+.timeline-item:nth-child(5) .timeline-marker {
+  animation-delay: 0.75s;
+}
+
+
+.timeline-item:nth-child(6) .timeline-card,
+.timeline-item:nth-child(6) .timeline-marker {
+  animation-delay: 0.90s;
+}
+
+
+.timeline-item:nth-child(7) .timeline-card,
+.timeline-item:nth-child(7) .timeline-marker {
+  animation-delay: 1.05s;
+}
+
+
+.timeline-item:nth-child(8) .timeline-card,
+.timeline-item:nth-child(8) .timeline-marker {
+  animation-delay: 1.20s;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 800px) {
+
+  .day-intro {
+    padding-top: 65px;
+  }
+
+
+  .day-timeline {
+    width: min(680px, calc(100% - 30px));
+    padding-top: 20px;
+  }
+
+
+  .timeline-line {
+    left: 27px;
+
+    top: 20px;
+    bottom: 60px;
+
+    transform: none;
+  }
+
+
+  .timeline-item,
+  .timeline-left,
+  .timeline-right {
+    justify-content: flex-start;
+
+    padding-left: 72px;
+    padding-right: 0;
+  }
+
+
+  .timeline-marker {
+    left: 27px;
+    top: 25px;
+
+    width: 52px;
+    height: 52px;
+
+    transform: translateX(-50%);
+  }
+
+
+  .timeline-card {
+    padding: 32px 28px;
+  }
+
+
+  .timeline-item::after {
+    display: none;
+  }
+
+
+  .day-ending-frame {
+    padding: 42px 28px;
+  }
+
+}
+
+
+@media (max-width: 520px) {
+
+  .day-intro {
+    width: calc(100% - 30px);
+    padding: 50px 0 45px;
+  }
+
+
+  .day-intro-text {
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+
+
+  .day-timeline {
+    width: calc(100% - 20px);
+  }
+
+
+  .timeline-line {
+    left: 20px;
+  }
+
+
+  .timeline-item,
+  .timeline-left,
+  .timeline-right {
+    padding-left: 52px;
+  }
+
+
+  .timeline-marker {
+    left: 20px;
+
+    width: 42px;
+    height: 42px;
+
+    font-size: 0.65rem;
+  }
+
+
+  .timeline-card {
+    padding: 28px 22px;
+  }
+
+
+  .timeline-card h2 {
+    font-size: 1.55rem;
+  }
+
+
+  .timeline-card p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+
+  .timeline-time {
+    font-size: 0.68rem;
+  }
+
+
+  .timeline-kicker {
+    font-size: 0.65rem;
+  }
+
+
+  .travel-box {
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+
+  .travel-box strong {
+    font-size: 0.9rem;
+  }
+
+
+  .travel-box span {
+    font-size: 0.68rem;
+  }
+
+
+  .day-ending {
+    width: calc(100% - 20px);
+    padding-bottom: 70px;
+  }
+
+}
+
+
+/* =========================================
+   ACCESSIBILITÀ
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .day-intro,
+  .timeline-line,
+  .timeline-marker,
+  .timeline-card,
+  .day-ending {
+    animation: none;
+  }
+
+
+  .timeline-card,
+  .timeline-card:hover {
+    transform: none;
+  }
+
+
+  .timeline-item::after {
+    transition: none;
+  }
+
+}

@@ -1,0 +1,1016 @@
+/* =========================================================
+   WEDDING THEME
+   Stili condivisi da tutte le pagine del matrimonio
+   ========================================================= */
+
+
+/* =========================================================
+   1. DESIGN TOKENS
+   ========================================================= */
+
+:root {
+
+  /* -----------------------------------------
+     COLORI PRINCIPALI
+     ----------------------------------------- */
+
+  --sage: #a9bd96;
+  --sage-light: #d3dfc5;
+
+  --forest: #24372a;
+  --forest-deep: #17251b;
+
+  --cream: #fffaf0;
+
+  --gold: #d9ad4f;
+  --gold-light: #f0d58c;
+
+
+  /* -----------------------------------------
+     TESTI
+     ----------------------------------------- */
+
+  --text-primary: #f5f1ea;
+
+  --text-secondary:
+    rgba(
+      255,
+      250,
+      240,
+      0.72
+    );
+
+  --text-muted:
+    rgba(
+      255,
+      250,
+      240,
+      0.55
+    );
+
+
+  /* -----------------------------------------
+     BORDI
+     ----------------------------------------- */
+
+  --border-gold:
+    rgba(
+      240,
+      213,
+      140,
+      0.35
+    );
+
+  --border-subtle:
+    rgba(
+      214,
+      181,
+      109,
+      0.10
+    );
+
+
+  /* -----------------------------------------
+     OMBRE
+     ----------------------------------------- */
+
+  --shadow-soft:
+    0 18px 40px
+    rgba(0, 0, 0, 0.22);
+
+  --shadow-deep:
+    0 12px 40px
+    rgba(0, 0, 0, 0.30);
+
+
+  /* -----------------------------------------
+     TIPOGRAFIA
+     ----------------------------------------- */
+
+  --font-serif:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  --font-sans:
+    'Trebuchet MS',
+    Arial,
+    sans-serif;
+
+  --font-mono:
+    'Courier New',
+    monospace;
+}
+
+
+/* =========================================================
+   2. RESET BASE
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  margin: 0;
+
+  background:
+    var(--forest-deep);
+
+  color:
+    var(--text-primary);
+
+  font-family:
+    var(--font-sans);
+}
+
+
+img {
+  max-width: 100%;
+}
+
+
+/* =========================================================
+   3. CONTENITORE PRINCIPALE
+   ========================================================= */
+
+.wedding-page {
+
+  min-height: 100vh;
+
+  position: relative;
+
+  isolation: isolate;
+
+  overflow: hidden;
+
+  color:
+    var(--text-primary);
+
+  font-family:
+    var(--font-sans);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(16, 32, 22, 0.18) 0%,
+      rgba(38, 67, 47, 0.62) 28%,
+      rgba(25, 48, 33, 0.70) 62%,
+      rgba(22, 43, 29, 0.76) 100%
+    ),
+    url('/images/wedding-background.jpg')
+    center / cover fixed;
+}
+
+
+/* =========================================================
+   4. LUCE AMBIENTALE
+   ========================================================= */
+
+.wedding-page::before {
+
+  content: '';
+
+  position: fixed;
+
+  inset: -25%;
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  background:
+
+    radial-gradient(
+      ellipse at 18% 18%,
+      rgba(240, 213, 140, 0.24) 0%,
+      rgba(240, 213, 140, 0.08) 16%,
+      transparent 34%
+    ),
+
+    radial-gradient(
+      ellipse at 82% 28%,
+      rgba(211, 223, 197, 0.16) 0%,
+      rgba(169, 189, 150, 0.06) 20%,
+      transparent 38%
+    ),
+
+    radial-gradient(
+      ellipse at 50% 78%,
+      rgba(217, 173, 79, 0.11) 0%,
+      transparent 34%
+    );
+
+  filter:
+    blur(18px);
+
+  transform:
+    translate3d(0, 0, 0)
+    scale(1.08);
+
+  animation:
+    wedding-ambient-light
+    22s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+
+/* =========================================================
+   5. VIGNETTATURA
+   ========================================================= */
+
+.wedding-page::after {
+
+  content: '';
+
+  position: fixed;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 0;
+
+  background:
+
+    radial-gradient(
+      ellipse at center,
+      transparent 38%,
+      rgba(7, 18, 11, 0.14) 68%,
+      rgba(5, 13, 8, 0.28) 100%
+    );
+}
+
+
+/*
+ * Tutto il contenuto reale deve stare sopra
+ * gli effetti ambientali.
+ */
+
+.wedding-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Navbar sempre sopra tutto */
+
+.wedding-page app-navbar {
+  position: relative;
+  z-index: 100;
+}
+
+
+/* =========================================================
+   6. PETALI
+   ========================================================= */
+
+.wedding-page .petals {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 90;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+
+.wedding-page .petals span {
+
+  position: absolute;
+
+  top: -60px;
+
+  display: block;
+
+  color:
+    rgba(
+      228,
+      201,
+      142,
+      0.55
+    );
+
+  font-family:
+    var(--font-serif);
+
+  font-size: 22px;
+
+  opacity: 0;
+
+  animation:
+    wedding-petal-fall
+    linear
+    infinite,
+
+    wedding-petal-sway
+    ease-in-out
+    infinite;
+}
+
+
+/* -----------------------------------------
+   POSIZIONAMENTO PETALI
+   ----------------------------------------- */
+
+.wedding-page .petals span:nth-child(1) {
+  left: 5%;
+  animation-duration: 11s, 3s;
+  animation-delay: 0s, 0s;
+  font-size: 18px;
+}
+
+
+.wedding-page .petals span:nth-child(2) {
+  left: 14%;
+  animation-duration: 14s, 4s;
+  animation-delay: -4s, -1s;
+  font-size: 25px;
+}
+
+
+.wedding-page .petals span:nth-child(3) {
+  left: 24%;
+  animation-duration: 12s, 3.5s;
+  animation-delay: -8s, -2s;
+  font-size: 16px;
+}
+
+
+.wedding-page .petals span:nth-child(4) {
+  left: 35%;
+  animation-duration: 16s, 4.5s;
+  animation-delay: -2s, -3s;
+  font-size: 21px;
+}
+
+
+.wedding-page .petals span:nth-child(5) {
+  left: 45%;
+  animation-duration: 13s, 3s;
+  animation-delay: -7s, -1s;
+  font-size: 17px;
+}
+
+
+.wedding-page .petals span:nth-child(6) {
+  left: 56%;
+  animation-duration: 15s, 4s;
+  animation-delay: -11s, -2s;
+  font-size: 24px;
+}
+
+
+.wedding-page .petals span:nth-child(7) {
+  left: 66%;
+  animation-duration: 12s, 3.5s;
+  animation-delay: -5s, -1s;
+  font-size: 19px;
+}
+
+
+.wedding-page .petals span:nth-child(8) {
+  left: 75%;
+  animation-duration: 17s, 4.5s;
+  animation-delay: -9s, -3s;
+  font-size: 23px;
+}
+
+
+.wedding-page .petals span:nth-child(9) {
+  left: 84%;
+  animation-duration: 13s, 3s;
+  animation-delay: -3s, -2s;
+  font-size: 16px;
+}
+
+
+.wedding-page .petals span:nth-child(10) {
+  left: 92%;
+  animation-duration: 15s, 4s;
+  animation-delay: -12s, -1s;
+  font-size: 21px;
+}
+
+
+.wedding-page .petals span:nth-child(11) {
+  left: 31%;
+  animation-duration: 18s, 5s;
+  animation-delay: -14s, -4s;
+  font-size: 15px;
+}
+
+
+.wedding-page .petals span:nth-child(12) {
+  left: 70%;
+  animation-duration: 14s, 3.5s;
+  animation-delay: -6s, -2s;
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   7. PAGE HEADER
+   ========================================================= */
+
+.page-header {
+
+  position: relative;
+
+  padding:
+    150px
+    max(25px, 7vw)
+    80px;
+
+  text-align: center;
+}
+
+
+.page-header .text-frame {
+
+  width:
+    min(850px, 100%);
+
+  margin:
+    0 auto;
+}
+
+
+.page-header h1 {
+
+  margin:
+    18px 0;
+
+  color:
+    var(--cream);
+
+  font-family:
+    var(--font-serif);
+
+  font-size:
+    clamp(
+      2.5rem,
+      7vw,
+      5rem
+    );
+
+  font-weight: 400;
+
+  line-height: 1.05;
+}
+
+
+.page-header p {
+
+  max-width:
+    570px;
+
+  margin:
+    0 auto;
+
+  color:
+    var(--text-secondary);
+
+  line-height:
+    1.8;
+}
+
+
+/* =========================================================
+   8. SECTION KICKER
+   ========================================================= */
+
+.section-kicker {
+
+  display: block;
+
+  color:
+    var(--gold-light);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    0.68rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.24em;
+}
+
+
+/* =========================================================
+   9. CORNICE DORATA
+   ========================================================= */
+
+.text-frame {
+
+  position: relative;
+
+  padding:
+    48px 55px;
+
+  border:
+    5px solid
+    var(--gold);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 250, 240, 0.08),
+      rgba(23, 37, 27, 0.22)
+    );
+
+  box-shadow:
+
+    inset 0 0 0 2px
+      rgba(255, 244, 194, 0.45),
+
+    inset 0 0 0 7px
+      rgba(137, 100, 34, 0.45),
+
+    0 8px 0
+      rgba(137, 100, 34, 0.5),
+
+    0 18px 40px
+      rgba(0, 0, 0, 0.22);
+
+  backdrop-filter:
+    blur(5px);
+}
+
+
+/* =========================================================
+   10. DECORAZIONI DELLA CORNICE
+   ========================================================= */
+
+.text-frame::before,
+.text-frame::after {
+
+  content: '✦';
+
+  position: absolute;
+
+  color:
+    var(--gold-light);
+
+  font-family:
+    var(--font-serif);
+
+  font-size:
+    1.25rem;
+
+  line-height: 1;
+
+  text-shadow:
+    0 1px 3px
+    rgba(0, 0, 0, 0.35);
+
+  z-index: 2;
+}
+
+
+.text-frame::before {
+
+  top: 12px;
+
+  left: 14px;
+}
+
+
+.text-frame::after {
+
+  right: 14px;
+
+  bottom: 12px;
+}
+
+
+/* =========================================================
+   11. ORNAMENTI AGLI ANGOLI
+   ========================================================= */
+
+.frame-ornament {
+
+  position: absolute;
+
+  color:
+    var(--gold-light);
+
+  font-family:
+    var(--font-serif);
+
+  font-size:
+    1.5rem;
+
+  line-height: 1;
+
+  text-shadow:
+    0 2px 4px
+    rgba(0, 0, 0, 0.3);
+
+  z-index: 2;
+}
+
+
+.frame-ornament-tl {
+  top: 8px;
+  left: 10px;
+}
+
+
+.frame-ornament-tr {
+  top: 8px;
+  right: 10px;
+  transform: scaleX(-1);
+}
+
+
+.frame-ornament-bl {
+  bottom: 8px;
+  left: 10px;
+  transform: scaleY(-1);
+}
+
+
+.frame-ornament-br {
+  right: 10px;
+  bottom: 10px;
+  transform: scale(-1);
+}
+
+
+/* =========================================================
+   12. TITOLI SEZIONE
+   ========================================================= */
+
+.wedding-title {
+
+  margin:
+    18px 0;
+
+  color:
+    var(--cream);
+
+  font-family:
+    var(--font-serif);
+
+  font-size:
+    clamp(
+      2rem,
+      5vw,
+      3.4rem
+    );
+
+  font-weight:
+    400;
+
+  line-height:
+    1.1;
+}
+
+
+/* =========================================================
+   13. TESTO
+   ========================================================= */
+
+.wedding-description {
+
+  max-width:
+    570px;
+
+  margin:
+    0 auto;
+
+  color:
+    var(--text-secondary);
+
+  line-height:
+    1.8;
+}
+
+
+/* =========================================================
+   14. BOTTONI / LINK
+   ========================================================= */
+
+.wedding-button {
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    10px;
+
+  margin-top:
+    30px;
+
+  padding:
+    14px 22px;
+
+  border:
+    1px solid
+    rgba(
+      240,
+      213,
+      140,
+      0.6
+    );
+
+  border-radius:
+    999px;
+
+  background:
+    rgba(
+      214,
+      181,
+      109,
+      0.12
+    );
+
+  color:
+    var(--gold-light);
+
+  text-decoration:
+    none;
+
+  font-size:
+    0.74rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.05em;
+
+  backdrop-filter:
+    blur(6px);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+
+.wedding-button:hover {
+
+  transform:
+    translateY(-3px);
+
+  background:
+    rgba(
+      214,
+      181,
+      109,
+      0.22
+    );
+}
+
+
+/* =========================================================
+   15. DIVISORE DECORATIVO
+   ========================================================= */
+
+.wedding-divider {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    15px;
+
+  margin:
+    30px 0;
+
+  color:
+    var(--gold);
+}
+
+
+.wedding-divider::before,
+.wedding-divider::after {
+
+  content: '';
+
+  width:
+    70px;
+
+  height:
+    1px;
+
+  background:
+    linear-gradient(
+      to right,
+      transparent,
+      rgba(217, 173, 79, 0.65)
+    );
+}
+
+
+.wedding-divider::after {
+
+  transform:
+    scaleX(-1);
+}
+
+
+/* =========================================================
+   16. ANIMAZIONI
+   ========================================================= */
+
+@keyframes wedding-ambient-light {
+
+  0% {
+    transform:
+      translate3d(-3%, -2%, 0)
+      scale(1.05);
+  }
+
+  50% {
+    transform:
+      translate3d(2%, 1%, 0)
+      scale(1.10);
+  }
+
+  100% {
+    transform:
+      translate3d(-1%, 4%, 0)
+      scale(1.07);
+  }
+}
+
+
+@keyframes wedding-petal-fall {
+
+  0% {
+
+    top: -60px;
+
+    opacity: 0;
+
+    transform:
+      rotate(0deg);
+  }
+
+  8% {
+    opacity: 0.7;
+  }
+
+  85% {
+    opacity: 0.45;
+  }
+
+  100% {
+
+    top: 110vh;
+
+    opacity: 0;
+
+    transform:
+      rotate(360deg);
+  }
+}
+
+
+@keyframes wedding-petal-sway {
+
+  0%,
+  100% {
+    margin-left: -15px;
+  }
+
+  50% {
+    margin-left: 15px;
+  }
+}
+
+
+/* =========================================================
+   17. ACCESSIBILITÀ
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .wedding-page .petals {
+    display: none;
+  }
+
+  .wedding-page::before {
+    animation: none;
+  }
+
+  .wedding-button {
+    transition: none;
+  }
+}
+
+
+/* =========================================================
+   18. MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .page-header {
+
+    padding:
+      120px
+      20px
+      60px;
+  }
+
+
+  .page-header h1 {
+
+    font-size:
+      clamp(
+        2.2rem,
+        10vw,
+        3.2rem
+      );
+  }
+
+
+  .text-frame {
+
+    padding:
+      40px 25px;
+
+    border-width:
+      4px;
+  }
+
+
+  .frame-ornament {
+
+    font-size:
+      1.25rem;
+  }
+
+
+  .wedding-button {
+
+    padding:
+      12px 18px;
+  }
+}
+
+
+/* =========================================================
+   19. MOBILE PICCOLO
+   ========================================================= */
+
+@media (max-width: 450px) {
+
+  .page-header {
+
+    padding-top:
+      105px;
+  }
+
+
+  .text-frame {
+
+    padding:
+      35px 20px;
+  }
+
+
+  .section-kicker {
+
+    font-size:
+      0.58rem;
+
+    letter-spacing:
+      0.18em;
+  }
+}

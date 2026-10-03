@@ -1,0 +1,1193 @@
+/* =========================================
+   INTRO
+   ========================================= */
+
+.travel-intro {
+  position: relative;
+  min-height: 610px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 150px 25px 90px;
+
+  text-align: center;
+
+  overflow: hidden;
+}
+
+.travel-intro-content {
+  position: relative;
+  z-index: 2;
+
+  width: min(760px, 90%);
+
+  margin: 0 auto;
+}
+
+.travel-intro-text {
+  max-width: 590px;
+
+  margin: 30px auto 0;
+
+  color: rgba(255, 250, 240, 0.68);
+
+  line-height: 1.9;
+
+  font-size: 1rem;
+}
+
+
+/* =========================================
+   PICCOLA ILLUSTRAZIONE
+   ========================================= */
+
+.travel-couple-illustration {
+  width: min(280px, 65%);
+
+  height: 145px;
+
+  margin: 25px auto 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.travel-couple-illustration img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(
+      0 12px 12px
+      rgba(36, 55, 42, 0.10)
+    );
+
+  transition:
+    transform 0.4s ease,
+    filter 0.4s ease;
+}
+
+.travel-couple-illustration:hover img {
+  transform: translateY(-5px) rotate(-1deg);
+
+  filter:
+    drop-shadow(
+      0 16px 16px
+      rgba(36, 55, 42, 0.14)
+    );
+}
+
+
+/* =========================================
+   DECORAZIONE INTRO
+   ========================================= */
+
+.travel-road-decoration {
+  position: absolute;
+
+  left: 50%;
+  bottom: -80px;
+
+  width: 260px;
+  height: 260px;
+
+  border:
+    1px solid
+    rgba(217, 173, 79, 0.16);
+
+  border-radius: 50%;
+
+  transform: translateX(-50%);
+
+  opacity: 0.6;
+}
+
+.travel-road-decoration::before {
+  content: '';
+
+  position: absolute;
+
+  inset: 25px;
+
+  border:
+    1px dashed
+    rgba(240, 213, 140, 0.18);
+
+  border-radius: 50%;
+}
+
+.road-dot {
+  position: absolute;
+
+  color: var(--gold-light);
+
+  font-size: 0.7rem;
+}
+
+.road-dot-1 {
+  top: 35px;
+  left: 45px;
+}
+
+.road-dot-2 {
+  top: 105px;
+  right: 35px;
+}
+
+.road-dot-3 {
+  bottom: 55px;
+  left: 75px;
+}
+
+
+/* =========================================
+   PERCORSO
+   ========================================= */
+
+.travel-route {
+  width: min(1100px, 90%);
+
+  margin: 0 auto;
+
+  padding: 80px 0 130px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    90px
+    minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 35px;
+}
+
+.route-point {
+  position: relative;
+
+  padding: 45px 40px;
+
+  border:
+    1px solid
+    rgba(240, 213, 140, 0.24);
+
+  background:
+    rgba(255, 250, 240, 0.025);
+
+  box-shadow:
+    0 20px 50px
+    rgba(0, 0, 0, 0.08);
+}
+
+.route-point::before {
+  content: '';
+
+  position: absolute;
+
+  inset: 8px;
+
+  border:
+    1px solid
+    rgba(240, 213, 140, 0.08);
+
+  pointer-events: none;
+}
+
+.route-number {
+  display: block;
+
+  margin-bottom: 22px;
+
+  color:
+    rgba(240, 213, 140, 0.42);
+
+  font-family:
+    'Courier New',
+    monospace;
+
+  font-size: 0.72rem;
+
+  letter-spacing: 0.15em;
+}
+
+.route-point h2 {
+  margin: 12px 0 18px;
+
+  color: var(--cream);
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size:
+    clamp(2rem, 4vw, 3rem);
+
+  font-weight: 400;
+}
+
+.route-point p {
+  margin: 0 0 30px;
+
+  color:
+    rgba(255, 250, 240, 0.62);
+
+  line-height: 1.8;
+}
+
+
+/* =========================================
+   DETTAGLI PERCORSO
+   ========================================= */
+
+.route-detail {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-top: 16px;
+
+  padding-top: 16px;
+
+  border-top:
+    1px solid
+    rgba(240, 213, 140, 0.12);
+}
+
+.route-detail-icon {
+  flex-shrink: 0;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid
+    rgba(240, 213, 140, 0.35);
+
+  border-radius: 50%;
+
+  color: var(--gold-light);
+
+  font-size: 1rem;
+}
+
+.route-detail div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.route-detail-label {
+  color:
+    rgba(240, 213, 140, 0.58);
+
+  font-family:
+    'Courier New',
+    monospace;
+
+  font-size: 0.55rem;
+
+  letter-spacing: 0.14em;
+}
+
+.route-detail strong {
+  color: var(--cream);
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size: 0.95rem;
+
+  font-weight: 400;
+}
+
+
+/* =========================================
+   NOTA ARRIVO
+   ========================================= */
+
+.arrival-note {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 15px;
+
+  margin-top: 30px;
+
+  padding-top: 22px;
+
+  border-top:
+    1px solid
+    rgba(240, 213, 140, 0.12);
+
+  text-align: left;
+}
+
+.arrival-note-icon {
+  flex-shrink: 0;
+
+  color: var(--gold-light);
+
+  font-size: 1rem;
+}
+
+.arrival-note-label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color:
+    rgba(240, 213, 140, 0.62);
+
+  font-family:
+    'Courier New',
+    monospace;
+
+  font-size: 0.55rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+}
+
+.arrival-note p {
+  margin: 0;
+
+  color:
+    rgba(255, 250, 240, 0.55);
+
+  font-size: 0.82rem;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   LINEA CENTRALE
+   ========================================= */
+
+.route-line {
+  position: relative;
+
+  height: 220px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.route-line::before {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  left: 50%;
+
+  width: 1px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(217, 173, 79, 0.65) 20%,
+      rgba(240, 213, 140, 0.85) 50%,
+      rgba(217, 173, 79, 0.65) 80%,
+      transparent
+    );
+}
+
+.route-line-symbol {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  border:
+    1px solid
+    rgba(240, 213, 140, 0.4);
+
+  border-radius: 50%;
+
+  color: var(--gold-light);
+
+  background: var(--forest);
+
+  font-size: 1rem;
+
+  box-shadow:
+    0 8px 20px
+    rgba(0, 0, 0, 0.16);
+}
+
+
+/* =========================================
+   NAVETTA
+   ========================================= */
+
+.shuttle-section {
+  padding: 80px 25px 130px;
+
+  text-align: center;
+}
+
+.shuttle-frame {
+  position: relative;
+
+  width: min(1050px, 100%);
+
+  margin: 0 auto;
+
+  padding: 65px 55px;
+}
+
+.shuttle-frame h2 {
+  margin: 18px 0;
+
+  color: var(--cream);
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size:
+    clamp(2.4rem, 5vw, 4rem);
+
+  font-weight: 400;
+}
+
+.shuttle-frame > p {
+  max-width: 650px;
+
+  margin: 0 auto 12px;
+
+  color:
+    rgba(255, 250, 240, 0.64);
+
+  line-height: 1.8;
+}
+
+.shuttle-info {
+  margin-top: 55px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    50px
+    1fr
+    50px
+    1fr;
+
+  align-items: center;
+}
+
+.shuttle-info-item {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.shuttle-icon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 8px;
+
+  border:
+    1px solid
+    rgba(240, 213, 140, 0.4);
+
+  border-radius: 50%;
+
+  color: var(--gold-light);
+
+  font-size: 1.1rem;
+}
+
+.shuttle-label {
+  color:
+    rgba(240, 213, 140, 0.62);
+
+  font-family:
+    'Courier New',
+    monospace;
+
+  font-size: 0.56rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+}
+
+.shuttle-info-item strong {
+  color: var(--cream);
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size: 1rem;
+
+  font-weight: 400;
+}
+
+.shuttle-info-item small {
+  color:
+    rgba(255, 250, 240, 0.45);
+
+  font-size: 0.75rem;
+}
+
+.shuttle-info-divider {
+  color: var(--gold);
+
+  font-size: 0.9rem;
+}
+
+
+/* =========================================
+   AUTO
+   ========================================= */
+
+.car-section {
+  padding: 100px 25px 130px;
+
+  text-align: center;
+}
+
+.car-content {
+  width: min(760px, 100%);
+
+  margin: 0 auto;
+}
+
+.car-content h2 {
+  margin: 18px 0;
+
+  color: var(--cream);
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size:
+    clamp(2.3rem, 5vw, 4rem);
+
+  font-weight: 400;
+
+  line-height: 1.1;
+}
+
+.car-content > p {
+  max-width: 600px;
+
+  margin: 0 auto;
+
+  color:
+    rgba(255, 250, 240, 0.62);
+
+  line-height: 1.8;
+}
+
+.car-route {
+  margin: 45px auto;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 25px;
+}
+
+.car-route-point {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.car-route-point span {
+  color:
+    rgba(240, 213, 140, 0.55);
+
+  font-family:
+    'Courier New',
+    monospace;
+
+  font-size: 0.55rem;
+
+  letter-spacing: 0.15em;
+}
+
+.car-route-point strong {
+  color: var(--cream);
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size: 1.15rem;
+
+  font-weight: 400;
+}
+
+.car-route-line {
+  color: var(--gold-light);
+
+  font-size: 1.5rem;
+}
+
+
+/* =========================================
+   NOTA AUTO
+   ========================================= */
+
+.car-note {
+  max-width: 560px;
+
+  margin: 0 auto;
+
+  padding-top: 25px;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  border-top:
+    1px solid
+    rgba(240, 213, 140, 0.12);
+}
+
+.car-note-icon {
+  flex-shrink: 0;
+
+  color: var(--gold-light);
+
+  font-size: 0.9rem;
+}
+
+.car-note p {
+  margin: 0;
+
+  color:
+    rgba(255, 250, 240, 0.5);
+
+  font-size: 0.82rem;
+
+  line-height: 1.7;
+
+  text-align: left;
+}
+
+
+/* =========================================
+   MAPPA
+   ========================================= */
+
+.travel-map-section {
+  padding: 80px 25px 130px;
+}
+
+.travel-map-heading {
+  max-width: 700px;
+
+  margin: 0 auto 45px;
+
+  text-align: center;
+}
+
+.travel-map-heading h2 {
+  margin: 18px 0;
+
+  color: var(--cream);
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size:
+    clamp(2.3rem, 5vw, 3.8rem);
+
+  font-weight: 400;
+}
+
+.travel-map-heading p {
+  max-width: 580px;
+
+  margin: 0 auto;
+
+  color:
+    rgba(255, 250, 240, 0.62);
+
+  line-height: 1.8;
+}
+
+.travel-map {
+  position: relative;
+
+  width: min(1100px, 100%);
+
+  margin: 0 auto;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(240, 213, 140, 0.28);
+
+  box-shadow:
+    0 25px 60px
+    rgba(0, 0, 0, 0.14);
+}
+
+.travel-map img {
+  display: block;
+
+  width: 100%;
+
+  height: auto;
+
+  min-height: 430px;
+
+  object-fit: cover;
+}
+
+
+/* =========================================
+   UNICO LINK GOOGLE MAPS
+   ========================================= */
+
+.travel-map-overlay {
+  position: absolute;
+
+  right: 25px;
+  bottom: 25px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  min-width: 245px;
+
+  padding: 16px 20px;
+
+  color: var(--cream);
+
+  background: var(--forest);
+
+  border:
+    1px solid
+    var(--gold);
+
+  text-decoration: none;
+
+  box-shadow:
+    0 10px 25px
+    rgba(36, 55, 42, 0.22);
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.travel-map-overlay:hover {
+  background: var(--forest-deep);
+
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 15px 30px
+    rgba(36, 55, 42, 0.28);
+}
+
+.travel-map-icon {
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid
+    rgba(240, 213, 140, 0.65);
+
+  border-radius: 50%;
+
+  color: var(--gold-light);
+
+  font-size: 1.25rem;
+}
+
+.travel-map-text {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.travel-map-label {
+  color: var(--cream);
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size: 1rem;
+
+  font-weight: 600;
+}
+
+.travel-map-detail {
+  color:
+    rgba(255, 250, 240, 0.68);
+
+  font-family:
+    'Courier New',
+    monospace;
+
+  font-size: 0.65rem;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+.travel-map-arrow {
+  margin-left: auto;
+
+  color: var(--gold-light);
+
+  font-size: 1.4rem;
+
+  transition:
+    transform 0.3s ease;
+}
+
+.travel-map-overlay:hover .travel-map-arrow {
+  transform: translate(3px, -3px);
+}
+
+
+/* =========================================
+   FINALE
+   ========================================= */
+
+.travel-ending {
+  padding: 80px 25px 140px;
+
+  text-align: center;
+}
+
+.travel-ending-frame {
+  position: relative;
+
+  width: min(800px, 100%);
+
+  margin: 0 auto;
+
+  padding: 65px 40px;
+}
+
+.travel-ending-frame h2 {
+  max-width: 600px;
+
+  margin: 25px auto;
+
+  color: var(--cream);
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size:
+    clamp(2.4rem, 6vw, 4.5rem);
+
+  font-weight: 400;
+
+  line-height: 1.05;
+}
+
+.travel-ending-frame p {
+  margin: 0;
+
+  color: var(--gold-light);
+
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
+
+  font-size: 1.1rem;
+
+  font-style: italic;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+  .travel-route {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+
+    padding-top: 50px;
+  }
+
+  .route-line {
+    height: 70px;
+  }
+
+  .route-line::before {
+    top: 0;
+    bottom: 0;
+  }
+
+  .shuttle-info {
+    grid-template-columns: 1fr;
+
+    gap: 30px;
+  }
+
+  .shuttle-info-divider {
+    display: none;
+  }
+
+  .shuttle-info-item {
+    padding: 20px 0;
+
+    border-bottom:
+      1px solid
+      rgba(240, 213, 140, 0.1);
+  }
+
+  .shuttle-info-item:last-child {
+    border-bottom: none;
+  }
+}
+
+
+@media (max-width: 700px) {
+
+  .travel-intro {
+    min-height: 520px;
+
+    padding:
+      120px
+      20px
+      70px;
+  }
+
+  .travel-intro-text {
+    font-size: 0.9rem;
+  }
+
+  .travel-couple-illustration {
+    width: min(230px, 65%);
+
+    height: 120px;
+
+    margin-top: 20px;
+  }
+
+  .travel-route {
+    width: min(100% - 40px, 600px);
+
+    padding-bottom: 90px;
+  }
+
+  .route-point {
+    padding: 35px 25px;
+  }
+
+  .route-point h2 {
+    font-size: 2rem;
+  }
+
+  .shuttle-section {
+    padding:
+      60px 20px
+      90px;
+  }
+
+  .shuttle-frame {
+    padding:
+      50px 25px;
+  }
+
+  .car-section {
+    padding:
+      70px 20px
+      90px;
+  }
+
+  .car-route {
+    gap: 14px;
+  }
+
+  .car-route-point strong {
+    font-size: 0.95rem;
+  }
+
+  .travel-map-section {
+    padding:
+      60px 15px
+      90px;
+  }
+
+  .travel-map img {
+    min-height: 320px;
+  }
+
+  .travel-map-overlay {
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+
+    min-width: 0;
+
+    justify-content: flex-start;
+  }
+
+  .travel-ending {
+    padding:
+      60px 20px
+      100px;
+  }
+
+  .travel-ending-frame {
+    padding:
+      50px 25px;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .travel-intro {
+    padding-top: 105px;
+  }
+
+  .travel-couple-illustration {
+    width: 200px;
+    height: 105px;
+  }
+
+  .route-point {
+    padding: 30px 20px;
+  }
+
+  .route-detail strong {
+    font-size: 0.82rem;
+  }
+
+  .shuttle-frame h2 {
+    font-size: 2.3rem;
+  }
+
+  .shuttle-info-item strong {
+    font-size: 0.9rem;
+  }
+
+  .car-route {
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+  .car-route-line {
+    transform: rotate(90deg);
+  }
+
+  .car-note {
+    align-items: flex-start;
+  }
+
+  .travel-map-overlay {
+    gap: 10px;
+
+    padding: 12px 14px;
+  }
+
+  .travel-map-icon {
+    width: 36px;
+    height: 36px;
+
+    font-size: 1rem;
+  }
+
+  .travel-map-label {
+    font-size: 0.85rem;
+  }
+
+  .travel-map-detail {
+    font-size: 0.55rem;
+  }
+
+  .travel-ending-frame h2 {
+    font-size: 2.5rem;
+  }
+}

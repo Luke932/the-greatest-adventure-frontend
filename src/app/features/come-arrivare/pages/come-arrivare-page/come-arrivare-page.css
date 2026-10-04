@@ -4,13 +4,14 @@
 
 .travel-intro {
   position: relative;
-  min-height: 610px;
+
+  min-height: 560px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 150px 25px 90px;
+  padding: 130px 25px 60px;
 
   text-align: center;
 
@@ -40,15 +41,14 @@
 
 
 /* =========================================
-   PICCOLA ILLUSTRAZIONE
+   ILLUSTRAZIONE VAN
    ========================================= */
 
 .travel-couple-illustration {
-  width: min(280px, 65%);
+  width: min(420px, 85%);
+  height: 210px;
 
-  height: 145px;
-
-  margin: 25px auto 0;
+  margin: 20px auto 0;
 
   display: flex;
   align-items: center;
@@ -152,11 +152,13 @@
    ========================================= */
 
 .travel-route {
+  position: relative;
+
   width: min(1100px, 90%);
 
   margin: 0 auto;
 
-  padding: 80px 0 130px;
+  padding: 40px 0 80px;
 
   display: grid;
 
@@ -167,7 +169,7 @@
 
   align-items: center;
 
-  gap: 35px;
+  gap: 30px;
 }
 
 .route-point {
@@ -271,6 +273,7 @@
   height: 38px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -388,7 +391,7 @@
 .route-line {
   position: relative;
 
-  height: 220px;
+  height: 180px;
 
   display: flex;
 
@@ -455,7 +458,9 @@
    ========================================= */
 
 .shuttle-section {
-  padding: 80px 25px 130px;
+  position: relative;
+
+  padding: 40px 25px 80px;
 
   text-align: center;
 }
@@ -467,7 +472,7 @@
 
   margin: 0 auto;
 
-  padding: 65px 55px;
+  padding: 55px 55px;
 }
 
 .shuttle-frame h2 {
@@ -498,7 +503,7 @@
 }
 
 .shuttle-info {
-  margin-top: 55px;
+  margin-top: 40px;
 
   display: grid;
 
@@ -587,11 +592,34 @@
 
 
 /* =========================================
+   SEPARATORE TRA SEZIONI
+   ========================================= */
+
+.shuttle-section::after,
+.car-section::after {
+  content: '❦';
+
+  display: block;
+
+  margin-top: 45px;
+
+  color:
+    rgba(240, 213, 140, 0.35);
+
+  font-size: 0.9rem;
+
+  text-align: center;
+}
+
+
+/* =========================================
    AUTO
    ========================================= */
 
 .car-section {
-  padding: 100px 25px 130px;
+  position: relative;
+
+  padding: 50px 25px 80px;
 
   text-align: center;
 }
@@ -734,13 +762,13 @@
    ========================================= */
 
 .travel-map-section {
-  padding: 80px 25px 130px;
+  padding: 50px 25px 90px;
 }
 
 .travel-map-heading {
   max-width: 700px;
 
-  margin: 0 auto 45px;
+  margin: 0 auto 40px;
 
   text-align: center;
 }
@@ -932,7 +960,7 @@
    ========================================= */
 
 .travel-ending {
-  padding: 80px 25px 140px;
+  padding: 50px 25px 100px;
 
   text-align: center;
 }
@@ -944,7 +972,7 @@
 
   margin: 0 auto;
 
-  padding: 65px 40px;
+  padding: 60px 40px;
 }
 
 .travel-ending-frame h2 {
@@ -992,13 +1020,14 @@
   .travel-route {
     grid-template-columns: 1fr;
 
-    gap: 25px;
+    gap: 20px;
 
-    padding-top: 50px;
+    padding-top: 30px;
+    padding-bottom: 70px;
   }
 
   .route-line {
-    height: 70px;
+    height: 60px;
   }
 
   .route-line::before {
@@ -1009,7 +1038,7 @@
   .shuttle-info {
     grid-template-columns: 1fr;
 
-    gap: 30px;
+    gap: 20px;
   }
 
   .shuttle-info-divider {
@@ -1017,7 +1046,7 @@
   }
 
   .shuttle-info-item {
-    padding: 20px 0;
+    padding: 18px 0;
 
     border-bottom:
       1px solid
@@ -1030,15 +1059,19 @@
 }
 
 
+/* =========================================
+   MOBILE
+   ========================================= */
+
 @media (max-width: 700px) {
 
   .travel-intro {
     min-height: 520px;
 
     padding:
-      120px
+      110px
       20px
-      70px;
+      55px;
   }
 
   .travel-intro-text {
@@ -1046,17 +1079,18 @@
   }
 
   .travel-couple-illustration {
-    width: min(230px, 65%);
+    width: min(330px, 85%);
 
-    height: 120px;
+    height: 165px;
 
-    margin-top: 20px;
+    margin-top: 15px;
   }
 
   .travel-route {
     width: min(100% - 40px, 600px);
 
-    padding-bottom: 90px;
+    padding-top: 25px;
+    padding-bottom: 65px;
   }
 
   .route-point {
@@ -1067,21 +1101,29 @@
     font-size: 2rem;
   }
 
+  .route-line {
+    height: 55px;
+  }
+
   .shuttle-section {
     padding:
-      60px 20px
-      90px;
+      30px 20px
+      65px;
   }
 
   .shuttle-frame {
     padding:
-      50px 25px;
+      45px 25px;
+  }
+
+  .shuttle-info {
+    margin-top: 35px;
   }
 
   .car-section {
     padding:
-      70px 20px
-      90px;
+      40px 20px
+      65px;
   }
 
   .car-route {
@@ -1094,8 +1136,12 @@
 
   .travel-map-section {
     padding:
-      60px 15px
-      90px;
+      40px 15px
+      70px;
+  }
+
+  .travel-map-heading {
+    margin-bottom: 30px;
   }
 
   .travel-map img {
@@ -1114,26 +1160,33 @@
 
   .travel-ending {
     padding:
-      60px 20px
-      100px;
+      40px 20px
+      80px;
   }
 
   .travel-ending-frame {
     padding:
-      50px 25px;
+      45px 25px;
   }
 }
 
 
+/* =========================================
+   MOBILE PICCOLO
+   ========================================= */
+
 @media (max-width: 480px) {
 
   .travel-intro {
-    padding-top: 105px;
+    padding-top: 100px;
   }
 
   .travel-couple-illustration {
-    width: 200px;
-    height: 105px;
+    width: 280px;
+
+    max-width: 90%;
+
+    height: 140px;
   }
 
   .route-point {

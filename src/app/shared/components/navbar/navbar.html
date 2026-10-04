@@ -6,13 +6,13 @@
     aria-label="Obiettivo Sbloccato: Matrimonio - Home"
   >
     <span class="brand-symbol">✦</span>
-
     <span class="brand-text">
       Obiettivo Sbloccato: Matrimonio
     </span>
   </a>
 
 
+  <!-- MENU DESKTOP -->
   <div class="navbar-links">
 
     <a routerLink="/">
@@ -42,11 +42,81 @@
   </div>
 
 
-  <a
-    class="navbar-rsvp"
-    routerLink="/dashboard"
+  <div class="navbar-actions">
+
+    <a
+      class="navbar-rsvp"
+      routerLink="/dashboard"
+    >
+      Dashboard
+    </a>
+
+
+    <!-- HAMBURGER MOBILE -->
+    <button
+      class="navbar-toggle"
+      type="button"
+      aria-label="Apri menu"
+      aria-controls="mobile-menu"
+      (click)="toggleMenu()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+
+  <!-- MENU MOBILE -->
+  <div
+    id="mobile-menu"
+    class="mobile-menu"
+    [class.mobile-menu-open]="menuOpen"
   >
-    Dashboard
-  </a>
+
+    <a
+      routerLink="/"
+      (click)="closeMenu()"
+    >
+      Home
+    </a>
+
+    <a
+      routerLink="/giornata"
+      (click)="closeMenu()"
+    >
+      La giornata
+    </a>
+
+    <a
+      routerLink="/location"
+      (click)="closeMenu()"
+    >
+      Location
+    </a>
+
+    <a
+      routerLink="/come-arrivare"
+      (click)="closeMenu()"
+    >
+      Come arrivare
+    </a>
+
+    <a
+      routerLink="/dove-dormire"
+      (click)="closeMenu()"
+    >
+      Dove dormire
+    </a>
+
+    <a
+      routerLink="/testimoni"
+      (click)="closeMenu()"
+    >
+      Testimoni
+    </a>
+
+  </div>
 
 </nav>

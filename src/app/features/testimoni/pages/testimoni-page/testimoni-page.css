@@ -1,0 +1,656 @@
+/* =========================================================
+   TESTIMONI
+   ========================================================= */
+
+.witnesses-header {
+  padding-bottom: 55px;
+}
+
+.witnesses-header .text-frame {
+  max-width: 850px;
+}
+
+
+/* =========================================================
+   INTRO
+   ========================================================= */
+
+.witnesses-intro {
+  width: min(760px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 30px 0 90px;
+  text-align: center;
+}
+
+.witnesses-intro .wedding-title {
+  margin-top: 16px;
+}
+
+
+/* =========================================================
+   GRUPPI
+   ========================================================= */
+
+.witnesses-group {
+  width: min(1050px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 40px 0 100px;
+}
+
+.group-heading {
+  margin-bottom: 55px;
+  text-align: center;
+}
+
+.group-heading .wedding-title {
+  margin: 15px 0;
+}
+
+
+/* =========================================================
+   GRID TESTIMONI
+   ========================================================= */
+
+.witness-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+  align-items: stretch;
+}
+
+.witness-grid-single {
+  grid-template-columns: minmax(280px, 500px);
+  justify-content: center;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.witness-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-height: 380px;
+
+  padding: 42px 38px 35px;
+
+  border: 1px solid rgba(240, 213, 140, 0.35);
+  border-radius: 2px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 250, 240, 0.08),
+      rgba(23, 37, 27, 0.32)
+    );
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 244, 194, 0.08),
+    0 16px 40px rgba(0, 0, 0, 0.20);
+
+  backdrop-filter: blur(7px);
+
+  text-align: center;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.witness-card::before {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(240, 213, 140, 0.12),
+      transparent 42%
+    );
+
+  pointer-events: none;
+}
+
+
+.witness-card::after {
+  content: '';
+
+  position: absolute;
+  top: 0;
+  left: 18%;
+  right: 18%;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      to right,
+      transparent,
+      rgba(240, 213, 140, 0.65),
+      transparent
+    );
+}
+
+
+.witness-card:hover {
+  transform: translateY(-7px);
+
+  border-color: rgba(240, 213, 140, 0.62);
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 244, 194, 0.10),
+    0 22px 50px rgba(0, 0, 0, 0.28);
+}
+
+
+/* =========================================================
+   INIZIALE
+   ========================================================= */
+
+.witness-symbol {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 82px;
+  height: 82px;
+
+  margin-bottom: 25px;
+
+  border: 1px solid rgba(240, 213, 140, 0.55);
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(214, 181, 109, 0.18),
+      rgba(23, 37, 27, 0.30)
+    );
+
+  color: var(--gold-light);
+
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 400;
+
+  box-shadow:
+    0 0 0 5px rgba(240, 213, 140, 0.035),
+    0 8px 25px rgba(0, 0, 0, 0.20);
+}
+
+
+.witness-symbol::before {
+  content: '✦';
+
+  position: absolute;
+  top: -8px;
+  left: -8px;
+
+  color: var(--gold-light);
+  font-size: 0.75rem;
+}
+
+
+.witness-symbol::after {
+  content: '✦';
+
+  position: absolute;
+  right: -8px;
+  bottom: -6px;
+
+  color: var(--gold-light);
+  font-size: 0.65rem;
+}
+
+
+/* =========================================================
+   TESTO CARD
+   ========================================================= */
+
+.witness-role {
+  position: relative;
+  z-index: 1;
+
+  margin-bottom: 10px;
+
+  color: var(--gold-light);
+
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+
+.witness-card h3 {
+  position: relative;
+  z-index: 1;
+
+  margin: 0;
+
+  color: var(--cream);
+
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+
+.witness-nickname {
+  position: relative;
+  z-index: 1;
+
+  margin: 7px 0 18px;
+
+  color: var(--text-secondary);
+
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-style: italic;
+}
+
+
+.witness-description {
+  position: relative;
+  z-index: 1;
+
+  max-width: 350px;
+  margin: 0 auto;
+
+  color: var(--text-secondary);
+
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  line-height: 1.75;
+}
+
+
+/* =========================================================
+   CONTATTI
+   ========================================================= */
+
+.witness-contact {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+
+  margin-top: 25px;
+  padding-top: 20px;
+
+  border-top: 1px solid rgba(240, 213, 140, 0.14);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+}
+
+
+.witness-contact-label {
+  margin-bottom: 4px;
+
+  color: rgba(240, 213, 140, 0.62);
+
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+
+.witness-contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: rgba(255, 250, 240, 0.72);
+
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.witness-contact-item:hover {
+  color: var(--gold-light);
+  transform: translateY(-1px);
+}
+
+
+.contact-icon {
+  color: var(--gold-light);
+  font-size: 0.75rem;
+}
+
+
+.witness-contact-placeholder {
+  color: var(--text-muted);
+
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-style: italic;
+}
+
+
+/* =========================================================
+   ACHIEVEMENT
+   ========================================================= */
+
+.witness-achievement {
+  position: relative;
+  z-index: 1;
+
+  margin-top: auto;
+  padding-top: 28px;
+
+  color: rgba(240, 213, 140, 0.75);
+
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   SEPARAZIONE ERIKA / LUCA
+   ========================================================= */
+
+.witnesses-group-luca {
+  position: relative;
+  padding-top: 80px;
+}
+
+
+.witnesses-group-luca::before {
+  content: '✦';
+
+  position: absolute;
+  top: 0;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  color: rgba(240, 213, 140, 0.65);
+
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+}
+
+
+.witnesses-group-luca::after {
+  content: '';
+
+  position: absolute;
+  top: 8px;
+  left: 50%;
+
+  width: min(420px, 60%);
+
+  height: 1px;
+
+  transform: translateX(-50%);
+
+  background:
+    linear-gradient(
+      to right,
+      transparent,
+      rgba(217, 173, 79, 0.35),
+      transparent
+    );
+
+  z-index: -1;
+}
+
+
+/* =========================================================
+   FINALE
+   ========================================================= */
+
+.witnesses-final {
+  width: min(850px, calc(100% - 40px));
+  margin: 20px auto 110px;
+
+  text-align: center;
+}
+
+
+.witnesses-final .text-frame {
+  padding: 55px 45px;
+}
+
+
+.witnesses-final .wedding-title {
+  margin-top: 16px;
+}
+
+
+.final-signature {
+  display: block;
+
+  margin-top: 8px;
+
+  color: var(--gold-light);
+
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-style: italic;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+  .witnesses-intro {
+    padding-bottom: 65px;
+  }
+
+  .witnesses-group {
+    padding-bottom: 75px;
+  }
+
+  .witness-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .witness-card {
+    min-height: 350px;
+  }
+
+  .witnesses-group-luca {
+    padding-top: 65px;
+  }
+
+  .witnesses-final {
+    margin-bottom: 80px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .witnesses-header {
+    padding-bottom: 35px;
+  }
+
+  .witnesses-intro {
+    width: min(100% - 30px, 600px);
+    padding-top: 15px;
+    padding-bottom: 55px;
+  }
+
+  .witnesses-group {
+    width: min(100% - 30px, 600px);
+    padding-top: 25px;
+    padding-bottom: 65px;
+  }
+
+  .group-heading {
+    margin-bottom: 38px;
+  }
+
+  .witness-grid {
+    gap: 20px;
+  }
+
+  .witness-card {
+    min-height: 330px;
+    padding: 35px 25px 30px;
+  }
+
+  .witness-symbol {
+    width: 72px;
+    height: 72px;
+
+    margin-bottom: 21px;
+
+    font-size: 1.7rem;
+  }
+
+  .witness-card h3 {
+    font-size: 1.8rem;
+  }
+
+  .witness-description {
+    font-size: 0.82rem;
+  }
+
+  .witness-achievement {
+    font-size: 0.55rem;
+  }
+
+  .witnesses-group-luca {
+    padding-top: 55px;
+  }
+
+  .witnesses-final {
+    width: min(100% - 30px, 600px);
+    margin-top: 0;
+    margin-bottom: 65px;
+  }
+
+  .witnesses-final .text-frame {
+    padding: 42px 22px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE PICCOLO
+   ========================================================= */
+
+@media (max-width: 450px) {
+
+  .witnesses-intro {
+    padding-bottom: 45px;
+  }
+
+  .witnesses-group {
+    padding-bottom: 55px;
+  }
+
+  .group-heading {
+    margin-bottom: 32px;
+  }
+
+  .witness-card {
+    min-height: 310px;
+    padding: 30px 20px 26px;
+  }
+
+  .witness-symbol {
+    width: 65px;
+    height: 65px;
+
+    margin-bottom: 18px;
+
+    font-size: 1.55rem;
+  }
+
+  .witness-role {
+    font-size: 0.52rem;
+    letter-spacing: 0.14em;
+  }
+
+  .witness-card h3 {
+    font-size: 1.65rem;
+  }
+
+  .witness-nickname {
+    font-size: 0.9rem;
+  }
+
+  .witness-description {
+    font-size: 0.78rem;
+    line-height: 1.65;
+  }
+
+  .witness-contact {
+    margin-top: 20px;
+    padding-top: 16px;
+  }
+
+  .witness-contact-item {
+    font-size: 0.68rem;
+  }
+
+  .witness-achievement {
+    padding-top: 22px;
+    font-size: 0.5rem;
+  }
+
+  .witnesses-final .text-frame {
+    padding: 38px 18px;
+  }
+
+  .final-signature {
+    font-size: 1.1rem;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITÀ
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .witness-card {
+    transition: none;
+  }
+
+  .witness-card:hover {
+    transform: none;
+  }
+}

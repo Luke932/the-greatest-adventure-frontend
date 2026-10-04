@@ -11,4 +11,10 @@ import { Footer } from '../../../../shared/components/footer/footer';
   styleUrl: './testimoni-page.css',
   templateUrl: './testimoni-page.html',
 })
-export class TestimoniPage {}
+export class TestimoniPage { 
+  alessandro = 
+  { telefono: '3805952885', whatsapp: '3805952885', email: '' };
+  eleonora =
+  { telefono: '', whatsapp: '', email: '' }; 
+  chiara =
+  { telefono: '', whatsapp: '', email: '' }; }

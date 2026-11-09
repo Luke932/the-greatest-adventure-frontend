@@ -20,7 +20,7 @@ export class AuthService {
   private readonly http = inject(HttpClient);
 
   private readonly apiUrlEnv = environment.apiUrl;
-  private readonly apiUrl = `${this.apiUrlEnv}/api/public/invites`;
+  private readonly apiUrl = `${this.apiUrlEnv}/api`;
   private readonly tokenKey = 'wedding_admin_token';
 
 

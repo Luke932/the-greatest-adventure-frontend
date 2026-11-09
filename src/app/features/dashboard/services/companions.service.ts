@@ -34,7 +34,7 @@ export class CompanionsService {
 private readonly http = inject(HttpClient);
 
 private readonly apiUrlEnv = environment.apiUrl;
-private readonly apiUrl = `${this.apiUrlEnv}/api/public/invites`;
+private readonly apiUrl = `${this.apiUrlEnv}/api/companions`;
 
 getCompanions(): Observable<Companion[]> {
 

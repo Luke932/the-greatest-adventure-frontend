@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { environment } from '../../../environments/environment.prod';
 
 interface LoginRequest {
   email: string;
@@ -18,7 +19,8 @@ export class AuthService {
 
   private readonly http = inject(HttpClient);
 
-  private readonly apiUrl = 'http://localhost:8080/api';
+  private readonly apiUrlEnv = environment.apiUrl;
+  private readonly apiUrl = `${this.apiUrlEnv}/api/public/invites`;
   private readonly tokenKey = 'wedding_admin_token';
 
 

@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MenuType } from '../../../core/models/menu-type';
 import { CompanionRequest } from '../../invite/models/companion-request';
+import { environment } from '../../../../environments/environment.prod';
+
 
 export interface Companion {
 
@@ -31,8 +33,8 @@ export class CompanionsService {
 
 private readonly http = inject(HttpClient);
 
-private readonly apiUrl =
-'http://localhost:8080/api/companions';
+private readonly apiUrlEnv = environment.apiUrl;
+private readonly apiUrl = `${this.apiUrlEnv}/api/public/invites`;
 
 getCompanions(): Observable<Companion[]> {
 

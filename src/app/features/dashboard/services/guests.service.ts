@@ -2,6 +2,8 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MenuType } from '../../../core/models/menu-type';
+import { environment } from '../../../../environments/environment.prod';
+
 
 export type RsvpStatus =
   | 'PENDING'
@@ -86,7 +88,8 @@ export class GuestsService {
 
   private readonly http = inject(HttpClient);
 
-  private readonly apiUrl = 'http://localhost:8080/api/guests';
+  private readonly apiUrlEnv = environment.apiUrl;
+  private readonly apiUrl = `${this.apiUrlEnv}/api/public/invites`;
 
 
   /**

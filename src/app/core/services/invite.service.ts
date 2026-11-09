@@ -7,6 +7,7 @@ import { CompanionRequest } from '../../features/invite/models/companion-request
 import { CompanionResponse } from '../../features/invite/models/companion-response';
 import { RsvpStatus } from '../models/rsvp-status';
 import { PublicInviteUpdateRequest } from '../../features/invite/models/public-invite-update-request';
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class InviteService {
 
   private readonly http = inject(HttpClient);
 
-  private readonly apiUrl = 'http://localhost:8080/api/public/invites';
+  private readonly apiUrlEnv = environment.apiUrl;
+  private readonly apiUrl = `${this.apiUrlEnv}/api/public/invites`;
 
   getInvite(token: string): Observable<PublicInviteResponse> {
     return this.http.get<PublicInviteResponse>(

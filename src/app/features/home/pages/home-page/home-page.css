@@ -952,7 +952,7 @@
   .hero-content {
     padding-top: 100px;
 
-    padding-bottom: 90px;
+    padding-bottom: 0px;
   }
 
 
@@ -1038,7 +1038,7 @@
 
 
   .intro-section {
-    padding: 80px 20px;
+    padding: 10px 20px;
   }
 
 

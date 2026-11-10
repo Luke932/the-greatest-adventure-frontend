@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { Location } from '@angular/common';
 import {
   FormBuilder,
   ReactiveFormsModule,
@@ -18,16 +17,14 @@ import { AuthService } from '../../../../core/services/auth.service';
   styleUrl: './login.css'
 })
 export class Login {
-  constructor(
-    private location: Location
-  ) {}
+
 
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
 
   goBack(): void {
-    this.location.back();
+    this.router.navigate(['/']);
   }
 
   loginForm = this.fb.nonNullable.group({

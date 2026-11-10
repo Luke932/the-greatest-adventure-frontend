@@ -203,7 +203,7 @@
 .witness-symbol img {
   width: 100%;
   height: 100%;
-  object-fit: contains;
+  object-fit: cover;
   object-position: center 30%;
   display: block;
 }

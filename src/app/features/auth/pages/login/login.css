@@ -162,6 +162,59 @@
    ======================================== */
 
 .petals {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.petals img {
+    position: absolute;
+    top: -100px;
+    width: 38px;
+    height: auto;
+    opacity: 0;
+    animation: falling 13s linear infinite;
+}
+
+.petals img:nth-child(1) { left: 5%; width: 35px; animation-delay: 0s; }
+.petals img:nth-child(2) { left: 15%; width: 45px; animation-delay: 3s; }
+.petals img:nth-child(3) { left: 25%; width: 30px; animation-delay: 6s; }
+.petals img:nth-child(4) { left: 35%; width: 42px; animation-delay: 1s; }
+.petals img:nth-child(5) { left: 45%; width: 32px; animation-delay: 5s; }
+.petals img:nth-child(6) { left: 55%; width: 48px; animation-delay: 8s; }
+.petals img:nth-child(7) { left: 65%; width: 35px; animation-delay: 2s; }
+.petals img:nth-child(8) { left: 75%; width: 40px; animation-delay: 7s; }
+.petals img:nth-child(9) { left: 85%; width: 30px; animation-delay: 4s; }
+.petals img:nth-child(10) { left: 95%; width: 44px; animation-delay: 9s; }
+.petals img:nth-child(11) { left: 50%; width: 28px; animation-delay: 11s; }
+
+@keyframes falling {
+    0% {
+        transform: translate3d(0, -10vh, 0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.95;
+    }
+
+    50% {
+        transform: translate3d(65px, 50vh, 0) rotate(300deg);
+    }
+
+    90% {
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: translate3d(-50px, 110vh, 0) rotate(650deg);
+        opacity: 0;
+    }
+}
+
+/* .petals {
   position: fixed;
 
   inset: 0;
@@ -291,7 +344,7 @@
 
     opacity: 0;
   }
-}
+} */
 
 
 /* ========================================
@@ -707,9 +760,9 @@
 
 @media (prefers-reduced-motion: reduce) {
 
-  .petals span {
+  /* .petals span {
     animation: none;
-  }
+  } */
 
 
   .form-field input,

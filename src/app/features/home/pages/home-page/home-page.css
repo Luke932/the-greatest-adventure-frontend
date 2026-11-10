@@ -59,7 +59,7 @@
 
   width: min(760px, 90%);
 
-  padding: 120px 20px 100px;
+  /* padding: 120px 20px 100px; */
 
   text-align: center;
 
@@ -950,7 +950,7 @@
 @media (max-width: 600px) {
 
   .hero-content {
-    padding-top: 100px;
+    padding-top: 0px;
 
     padding-bottom: 0px;
   }

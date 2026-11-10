@@ -87,7 +87,7 @@ companion: CompanionRequest
 ): Observable<Companion> {
 
 return this.http.post<Companion>(
-`http://localhost:8080/api/guests/${guestId}/companions`,
+  `${this.apiUrlEnv}/api/guests/${guestId}/companions`,
 companion
 );
 

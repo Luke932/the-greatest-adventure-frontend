@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment.prod';
 
 export interface StatsResponse {
 
@@ -38,8 +39,8 @@ export interface StatsResponse {
 export class StatsService {
 
   private readonly http = inject(HttpClient);
-
-  private readonly apiUrl = 'http://localhost:8080/api';
+  private readonly apiUrlEnv = environment.apiUrl;
+  private readonly apiUrl = `${this.apiUrlEnv}/api`;
 
 
   getStats(): Observable<StatsResponse> {

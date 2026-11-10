@@ -311,25 +311,34 @@
 
         </div>
 
+        <div class="invitation-actions">
 
-        <button
-          type="button"
-          class="copy-invite-button"
-          (click)="copyInvitationLink()"
-          [disabled]="isCopyingInviteLink"
-        >
+          <button
+            type="button"
+            class="copy-invite-button"
+            (click)="copyInvitationLink()"
+            [disabled]="isCopyingInviteLink"
+          >
 
-          @if (isCopyingInviteLink) {
+            @if (isCopyingInviteLink) {
+              ⏳ Copia...
+            } @else {
+              🔗 Copia link
+            }
 
-            ⏳ Copia...
+          </button>
 
-          } @else {
+          <button
+            type="button"
+            class="whatsapp-invite-button"
+            (click)="sendWhatsAppInvitation()"
+            [disabled]="!guest.phone || !guest.inviteUrl"
+          >
+            <i class="bi bi-whatsapp"></i>
+            Invia su WhatsApp
+          </button>
 
-            🔗 Copia link
-
-          }
-
-        </button>
+        </div>
 
       </div>
 

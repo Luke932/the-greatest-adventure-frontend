@@ -477,6 +477,49 @@ export class GuestDetail implements OnInit {
 
   }
 
+  sendWhatsAppInvitation(): void {
+  if (!this.guest?.phone || !this.guest?.inviteUrl) {
+    return;
+  }
+
+  // Rimuove spazi, parentesi, trattini e simboli
+  let telefono = this.guest.phone.replace(/\D/g, '');
+
+  // Gestisce il prefisso internazionale 00
+  if (telefono.startsWith('00')) {
+    telefono = telefono.substring(2);
+  }
+
+  // Se è un numero italiano locale, aggiunge il prefisso 39
+  if (!telefono.startsWith('39') && telefono.length === 10) {
+    telefono = '39' + telefono;
+  }
+
+  // Controllo minimo del formato internazionale
+  if (telefono.length < 8 || telefono.length > 15) {
+    console.error('Numero di telefono non valido');
+    return;
+  }
+
+  const messaggio =
+    `Ciao ${this.guest.name}! ❤️
+
+Siamo felicissimi di invitarti al nostro matrimonio!
+
+Abbiamo preparato un invito speciale per te. Puoi consultarlo qui:
+
+${this.guest.inviteUrl}
+
+Non vediamo l'ora di festeggiare insieme! 🥂
+
+Luca ed Erika`;
+
+  const url =
+    `https://wa.me/${telefono}?text=${encodeURIComponent(messaggio)}`;
+
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
   sendInvitation(): void {
 
     if (!this.guest) {

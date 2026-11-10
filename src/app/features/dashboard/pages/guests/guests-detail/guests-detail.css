@@ -179,6 +179,48 @@
   transform: translateY(0);
 }
 
+.invitation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.whatsapp-invite-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #25D366;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.whatsapp-invite-button:hover:not(:disabled) {
+  background: #1ebe5d;
+  transform: translateY(-1px);
+}
+
+.whatsapp-invite-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .invitation-actions {
+    flex-direction: column;
+  }
+
+  .invitation-actions button {
+    width: 100%;
+  }
+}
+
 
 /* =========================================
    DELETE

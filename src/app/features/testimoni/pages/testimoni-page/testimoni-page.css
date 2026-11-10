@@ -193,8 +193,8 @@
 } */
 
 .witness-symbol {
-  width: 90px;
-  height: 90px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   overflow: hidden;
   margin: 0 auto 20px;
@@ -204,7 +204,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 30%;
   display: block;
 }
 

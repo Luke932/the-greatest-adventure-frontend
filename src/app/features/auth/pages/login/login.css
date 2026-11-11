@@ -178,6 +178,11 @@
     animation: falling 13s linear infinite;
 }
 
+.petals img {
+    scale: 0.55;
+    filter: grayscale(1) brightness(1.8) contrast(0.65);
+}
+
 .petals img:nth-child(1) { left: 5%; width: 35px; animation-delay: 0s; }
 .petals img:nth-child(2) { left: 15%; width: 45px; animation-delay: 3s; }
 .petals img:nth-child(3) { left: 25%; width: 30px; animation-delay: 6s; }

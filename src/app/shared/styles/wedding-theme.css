@@ -577,7 +577,7 @@ img {
    9. CORNICE DORATA
    ========================================================= */
 
-.text-frame {
+/* .text-frame {
 
   position: relative;
 
@@ -611,14 +611,14 @@ img {
 
   backdrop-filter:
     blur(5px);
-}
+} */
 
 
 /* =========================================================
    10. DECORAZIONI DELLA CORNICE
    ========================================================= */
 
-.text-frame::before,
+/* .text-frame::before,
 .text-frame::after {
 
   content: '✦';
@@ -657,14 +657,14 @@ img {
   right: 14px;
 
   bottom: 12px;
-}
+} */
 
 
 /* =========================================================
    11. ORNAMENTI AGLI ANGOLI
    ========================================================= */
 
-.frame-ornament {
+/* .frame-ornament {
 
   position: absolute;
 
@@ -711,7 +711,148 @@ img {
   right: 10px;
   bottom: 10px;
   transform: scale(-1);
+} */
+
+
+/* =========================================================
+   9. CORNICE TESTUALE - STILE ELEGANTE
+   ========================================================= */
+
+.text-frame {
+    position: relative;
+    box-sizing: border-box;
+
+    padding: 48px 35px;
+
+    border-top: 1px solid var(--border-gold);
+    border-bottom: 1px solid var(--border-gold);
+
+    border-left: none;
+    border-right: none;
+
+    background: transparent;
+
+    box-shadow: none;
+
+    backdrop-filter: none;
 }
+
+/* ELIMINA LE VECCHIE DECORAZIONI */
+
+.text-frame::before,
+.text-frame::after {
+    content: none;
+}
+
+/* ELIMINA GLI ORNAMENTI AGLI ANGOLI */
+
+.frame-ornament {
+    display: none;
+}
+
+/* ETICHETTA */
+
+.text-frame .section-kicker {
+    display: block;
+
+    margin: 0 auto 25px;
+
+    color: var(--gold-light);
+
+    font-family: var(--font-mono);
+
+    font-size: 0.65rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.30em;
+
+    text-align: center;
+}
+
+/* LINEA DECORATIVA SOTTO L'ETICHETTA */
+
+.text-frame .section-kicker::after {
+    content: "";
+
+    display: block;
+
+    width: 42px;
+    height: 1px;
+
+    margin: 22px auto 0;
+
+    background: var(--gold);
+
+    opacity: 0.75;
+}
+
+/* TITOLI */
+
+.text-frame h2 {
+    margin: 0 auto 25px;
+
+    color: var(--cream);
+
+    font-family: var(--font-serif);
+
+    font-size: clamp(2rem, 5vw, 3.4rem);
+
+    font-weight: 400;
+
+    line-height: 1.2;
+
+    text-align: center;
+}
+
+/* PARAGRAFI */
+
+.text-frame p {
+    max-width: 570px;
+
+    margin: 0 auto;
+
+    color: var(--text-secondary);
+
+    font-size: 0.95rem;
+
+    font-weight: 300;
+
+    line-height: 1.9;
+
+    text-align: center;
+}
+
+/* PULSANTI */
+
+.text-frame .preview-button {
+    margin-top: 28px;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .text-frame {
+        padding: 38px 20px;
+    }
+
+    .text-frame h2 {
+        font-size: clamp(1.9rem, 8vw, 2.5rem);
+        line-height: 1.2;
+    }
+
+    .text-frame p {
+        font-size: 0.88rem;
+        line-height: 1.8;
+    }
+
+    .text-frame .section-kicker {
+        font-size: 0.58rem;
+        letter-spacing: 0.22em;
+    }
+}
+
 
 
 /* =========================================================
@@ -1018,14 +1159,14 @@ img {
   }
 
 
-  .text-frame {
+  /* .text-frame {
 
     padding:
       40px 25px;
 
     border-width:
       4px;
-  }
+  } */
 
 
   .frame-ornament {

@@ -942,7 +942,7 @@
 
 
   .witnesses-preview {
-    padding: 90px 25px;
+    padding: 50px 25px;
   }
 }
 
@@ -1043,7 +1043,7 @@
 
 
   .date-section {
-    padding: 90px 20px;
+    padding: 10px 20px;
   }
 }
 
@@ -1059,4 +1059,129 @@
   .hero-scroll {
     animation: none;
   }
+}
+
+
+/* =========================================
+   TEXT FRAME - NUOVO STILE ELEGANTE
+   ========================================= */
+
+.text-frame {
+    position: relative;
+    box-sizing: border-box;
+
+    width: 100%;
+    max-width: 850px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding: 48px 35px;
+
+    text-align: center;
+
+    border-top: 1px solid rgba(240, 213, 140, 0.38);
+    border-bottom: 1px solid rgba(240, 213, 140, 0.38);
+
+    background: transparent;
+}
+
+/* ETICHETTA */
+.text-frame .section-kicker {
+    display: block;
+
+    margin: 0 auto 25px;
+
+    color: var(--gold-light);
+
+    font-family: 'Courier New', monospace;
+
+    font-size: 0.65rem;
+    font-weight: 600;
+
+    letter-spacing: 0.30em;
+}
+
+/* PICCOLO DETTAGLIO DECORATIVO */
+.text-frame .section-kicker::after {
+    content: "";
+
+    display: block;
+
+    width: 42px;
+    height: 1px;
+
+    margin: 22px auto 0;
+
+    background: var(--gold);
+    opacity: 0.75;
+}
+
+/* TITOLI */
+.text-frame h2 {
+    margin: 0 auto 25px;
+
+    color: var(--cream);
+
+    font-family:
+        Georgia,
+        'Times New Roman',
+        serif;
+
+    font-size: clamp(2rem, 5vw, 3.4rem);
+
+    font-weight: 400;
+
+    line-height: 1.2;
+
+    letter-spacing: -0.025em;
+}
+
+/* TESTI */
+.text-frame p {
+    max-width: 570px;
+
+    margin: 0 auto;
+
+    color: rgba(255, 250, 240, 0.72);
+
+    font-size: 0.95rem;
+
+    font-weight: 300;
+
+    line-height: 1.9;
+}
+
+/* PULSANTI */
+.text-frame .preview-button {
+    margin-top: 28px;
+}
+
+/* SAVE THE DATE */
+.text-frame .date-number {
+    margin-top: 12px;
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+
+    .text-frame {
+        padding: 38px 20px;
+    }
+
+    .text-frame h2 {
+        font-size: clamp(1.9rem, 8vw, 2.5rem);
+        line-height: 1.2;
+    }
+
+    .text-frame p {
+        font-size: 0.88rem;
+        line-height: 1.8;
+    }
+
+    .text-frame .section-kicker {
+        font-size: 0.58rem;
+        letter-spacing: 0.22em;
+    }
+
 }

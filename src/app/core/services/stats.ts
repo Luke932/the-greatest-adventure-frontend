@@ -42,6 +42,11 @@ export class StatsService {
   private readonly apiUrlEnv = environment.apiUrl;
   private readonly apiUrl = `${this.apiUrlEnv}/api`;
 
+  exportGuestsCsv(): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/guests/export`, {
+      responseType: 'blob'
+    });
+  }
 
   getStats(): Observable<StatsResponse> {
 

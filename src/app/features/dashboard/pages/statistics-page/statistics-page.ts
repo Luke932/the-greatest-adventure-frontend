@@ -405,4 +405,25 @@ export class StatisticsPage
 
   }
 
+  downloadGuestsCsv(): void {
+    this.statsService.exportGuestsCsv().subscribe({
+      next: (blob: Blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+
+        link.href = url;
+        link.download = 'invitati_matrimonio.csv';
+
+        document.body.appendChild(link);
+        link.click();
+
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      },
+      error: (error) => {
+        console.error('Errore durante il download del CSV:', error);
+      }
+    });
+  }
+
 }

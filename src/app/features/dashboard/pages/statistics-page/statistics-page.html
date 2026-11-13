@@ -57,18 +57,28 @@
           </p>
         </div>
 
-        <button
-          type="button"
-          class="export-button"
-          (click)="downloadGuestsExcel()"
-        >
-          <span class="export-icon">↓</span>
+        
+      <button
+        type="button"
+        class="export-button"
+        (click)="downloadGuestsExcel()"
+        aria-label="Scarica il file Excel con tutti gli invitati"
+      >
+        <span class="export-icon">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3v12m0 0 4-4m-4 4-4-4" />
+            <path d="M5 16v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3" />
+          </svg>
+        </span>
 
-          <span>
-            <strong>Esporta invitati</strong>
-            <small>Scarica il file Excel</small>
-          </span>
-        </button>
+        <span class="export-text">
+          <strong>Esporta invitati</strong>
+          <small>Scarica il riepilogo in Excel</small>
+        </span>
+
+        <span class="export-arrow">↗</span>
+      </button>
+
 
       </div>
 

@@ -286,6 +286,512 @@
 
 
 /* =========================================
+   INVITO HOGWARTS — PULSANTE
+   ========================================= */
+
+.hogwarts-invitation-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  margin-top: 30px;
+  padding: 14px 24px;
+
+  border: 1px solid var(--gold);
+  border-radius: 3px;
+
+  background: rgba(30, 48, 39, 0.92);
+  color: var(--cream);
+
+  font-family: var(--font-serif);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.hogwarts-invitation-trigger:hover {
+  background: var(--gold);
+  color: var(--forest);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.invitation-sparkle {
+  color: var(--gold-light);
+  font-size: 17px;
+}
+
+.hogwarts-invitation-trigger:hover .invitation-sparkle {
+  color: var(--forest);
+}
+
+
+/* =========================================
+   OVERLAY
+   ========================================= */
+
+.hogwarts-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(12, 18, 15, 0.82);
+  backdrop-filter: blur(5px);
+
+  overflow-y: auto;
+
+  animation: hogwartsOverlayIn 0.35s ease both;
+}
+
+@keyframes hogwartsOverlayIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* =========================================
+   SCENA
+   ========================================= */
+
+.hogwarts-envelope-scene {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 560px;
+  min-height: 420px;
+
+  margin: auto;
+  padding: 55px 10px 20px;
+
+  perspective: 1200px;
+}
+
+
+/* =========================================
+   PULSANTE CHIUSURA
+   ========================================= */
+
+.hogwarts-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+
+  background: var(--cream);
+  color: var(--forest);
+
+  font-family: Arial, sans-serif;
+  font-size: 30px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.hogwarts-close:hover {
+  transform: rotate(90deg);
+  background: var(--gold-light);
+}
+
+
+/* =========================================
+   BUSTA
+   ========================================= */
+
+.hogwarts-envelope {
+  position: relative;
+
+  width: min(440px, 88vw);
+  height: 290px;
+
+  margin: 0 auto;
+
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+
+/* Retro della busta */
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background: #c9a879;
+
+  border: 1px solid #a98758;
+  border-radius: 4px;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================
+   LETTERA
+   ========================================= */
+
+.envelope-letter {
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  z-index: 2;
+
+  width: min(440px, 90vw);
+  height: 255px;
+  box-sizing: border-box;
+
+  padding: 28px 30px;
+
+  overflow: hidden;
+
+  background: linear-gradient(135deg, #fffdf4 0%, #f5ecd8 100%);
+  border: 1px solid #d8c5a0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+
+  transform: translateX(-50%) translateY(0);
+  transform-origin: top center;
+
+  animation: letterRise 1.5s 1.8s cubic-bezier(0.22, 0.8, 0.3, 1) forwards;
+
+  color: #493b2b;
+}
+
+
+/* Contenuto della lettera */
+
+.letter-content {
+  width: 100%;
+  max-width: 470px;
+  margin: 0 auto;
+
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.65;
+  text-align: center;
+}
+
+.letter-eyebrow {
+  margin: 0 0 6px;
+
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.letter-content h2 {
+  margin: 0;
+
+  color: #49351e;
+
+  font-family: var(--font-serif);
+  font-size: 38px;
+  font-weight: normal;
+}
+
+.letter-divider {
+  margin: 10px 0 20px;
+
+  color: #a47a38;
+  letter-spacing: 0.3em;
+}
+
+.letter-greeting {
+  font-weight: bold;
+}
+
+.letter-content p {
+  margin: 0 0 13px;
+}
+
+.letter-signature {
+  margin-top: 20px !important;
+}
+
+.letter-footer {
+  margin-top: 22px;
+  padding-top: 12px;
+
+  border-top: 1px solid #d4c19e;
+
+  font-size: 10px;
+  font-style: italic;
+  letter-spacing: 0.06em;
+}
+
+
+/* =========================================
+   ANIMAZIONE LETTERA
+   ========================================= */
+
+@keyframes letterRise {
+  0% {
+    height: 255px;
+    transform: translateX(-50%) translateY(0);
+    overflow: hidden;
+  }
+
+  100% {
+    height: min(680px, 78vh);
+    transform: translateX(-50%) translateY(-270px);
+    overflow-y: auto;
+  }
+}
+
+
+/* La parte frontale della busta scompare */
+.envelope-front {
+  animation: envelopeDisappear 0.5s 2s ease forwards;
+}
+
+.envelope-back {
+  animation: envelopeDisappear 0.5s 2s ease forwards;
+}
+
+.envelope-flap {
+  animation:
+    envelopeFlapOpen 0.9s 0.25s ease forwards,
+    envelopeDisappear 0.5s 2s ease forwards;
+}
+
+@keyframes envelopeDisappear {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* =========================================
+   LEMBO SUPERIORE
+   ========================================= */
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: 5;
+
+  width: 0;
+  height: 0;
+
+  border-left: 220px solid transparent;
+  border-right: 220px solid transparent;
+  border-top: 155px solid #b99565;
+
+  transform-origin: top center;
+  transform: rotateX(0deg);
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  animation: envelopeFlapOpen 0.9s 0.25s ease forwards;
+}
+
+@keyframes envelopeFlapOpen {
+  0% {
+    transform: rotateX(0deg);
+  }
+
+  100% {
+    transform: rotateX(180deg);
+  }
+}
+
+
+/* =========================================
+   PARTE FRONTALE DELLA BUSTA
+   ========================================= */
+
+.envelope-front {
+  position: absolute;
+  inset: 0;
+
+  z-index: 4;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      145deg,
+      transparent 49.5%,
+      #d4b486 50%
+    );
+
+  border-radius: 4px;
+}
+
+
+/* Sigillo */
+
+.wax-seal {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+
+  width: 62px;
+  height: 62px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #a83c35,
+      #741e1c 75%
+    );
+
+  border: 3px solid #c18a5c;
+
+  color: #f4dfb4;
+
+  font-family: var(--font-serif);
+  font-size: 15px;
+
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.3),
+    inset 0 0 8px rgba(0, 0, 0, 0.25);
+
+  transform: translate(-50%, -50%);
+}
+
+.wax-seal span {
+  font-size: 12px;
+}
+
+
+/* =========================================
+   TESTO SOTTO LA BUSTA
+   ========================================= */
+
+.letter-hint {
+  margin: 28px 0 0;
+
+  color: var(--cream);
+
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+  .hogwarts-overlay {
+    padding: 12px;
+  }
+
+  .hogwarts-envelope-scene {
+    min-height: 350px;
+    padding-top: 55px;
+  }
+
+  .hogwarts-envelope {
+    width: min(340px, 88vw);
+    height: 225px;
+  }
+
+  .envelope-letter {
+    height: 200px;
+    padding: 18px 16px;
+  }
+
+  .letter-content {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .letter-content h2 {
+    font-size: 29px;
+  }
+
+  .letter-divider {
+    margin: 6px 0 12px;
+  }
+
+  .letter-content p {
+    margin-bottom: 9px;
+  }
+
+  .envelope-flap {
+    border-left-width: min(44vw, 170px);
+    border-right-width: min(44vw, 170px);
+    border-top-width: 120px;
+  }
+
+  .wax-seal {
+    width: 50px;
+    height: 50px;
+    font-size: 12px;
+  }
+
+  .letter-hint {
+    font-size: 12px;
+  }
+
+  .hogwarts-invitation-trigger {
+    max-width: 90%;
+    font-size: 13px;
+  }
+}
+
+
+/* =========================================
    HERO SCROLL
    ========================================= */
 

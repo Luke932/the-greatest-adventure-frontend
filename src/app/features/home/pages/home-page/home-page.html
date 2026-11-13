@@ -6,33 +6,18 @@
   <!-- =========================================
        PETALI
        ========================================= -->
-  <!-- <div class="petals" aria-hidden="true">
-    <span>❧</span>
-    <span>❧</span>
-    <span>❧</span>
-    <span>❧</span>
-    <span>❧</span>
-    <span>❧</span>
-    <span>❧</span>
-    <span>❧</span>
-    <span>❧</span>
-    <span>❧</span>
-    <span>❧</span>
-    <span>❧</span>
-  </div> -->
-
   <div class="petals" aria-hidden="true">
-      <img src="images/petali/petal-01.png">
-      <img src="images/petali/petal-02.png">
-      <img src="images/petali/petal-03.png">
-      <img src="images/petali/petal-04.png">
-      <img src="images/petali/petal-05.png">
-      <img src="images/petali/petal-06.png">
-      <img src="images/petali/petal-07.png">
-      <img src="images/petali/petal-08.png">
-      <img src="images/petali/petal-09.png">
-      <img src="images/petali/petal-10.png">
-      <img src="images/petali/petal-11.png">
+    <img src="images/petali/petal-01.png" alt="" />
+    <img src="images/petali/petal-02.png" alt="" />
+    <img src="images/petali/petal-03.png" alt="" />
+    <img src="images/petali/petal-04.png" alt="" />
+    <img src="images/petali/petal-05.png" alt="" />
+    <img src="images/petali/petal-06.png" alt="" />
+    <img src="images/petali/petal-07.png" alt="" />
+    <img src="images/petali/petal-08.png" alt="" />
+    <img src="images/petali/petal-09.png" alt="" />
+    <img src="images/petali/petal-10.png" alt="" />
+    <img src="images/petali/petal-11.png" alt="" />
   </div>
 
   <main>
@@ -117,7 +102,7 @@
           <div class="countdown-items">
 
             <div class="countdown-item">
-              <strong>{{ days() }}</strong>
+              <strong>{{ formatNumber(days()) }}</strong>
               <span>GIORNI</span>
             </div>
 
@@ -161,6 +146,18 @@
 
         </div>
 
+        <!-- INVITO HOGWARTS -->
+        <button
+          type="button"
+          class="hogwarts-invitation-trigger"
+          (click)="openHogwartsLetter()"
+          aria-haspopup="dialog"
+        >
+          <span class="invitation-sparkle">✦</span>
+          Hai ricevuto una lettera speciale...
+          <span class="invitation-sparkle">✦</span>
+        </button>
+
       </div>
 
       <div class="hero-scroll">
@@ -180,6 +177,113 @@
 
     </section>
 
+    <!-- =========================================
+         LETTERA DI HOGWARTS
+         ========================================= -->
+    @if (isHogwartsLetterOpen) {
+
+      <div
+        class="hogwarts-overlay"
+        (click)="closeHogwartsLetter()"
+      >
+
+        <div
+          class="hogwarts-envelope-scene"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="hogwarts-letter-title"
+          (click)="$event.stopPropagation()"
+        >
+
+          <button
+            type="button"
+            class="hogwarts-close"
+            (click)="closeHogwartsLetter()"
+            aria-label="Chiudi la lettera"
+          >
+            ×
+          </button>
+
+          <div class="hogwarts-envelope">
+
+            <div class="envelope-back"></div>
+
+            <div class="envelope-letter">
+
+              <div class="letter-content">
+
+                <p class="letter-eyebrow">
+                  Scuola di Magia e Stregoneria
+                </p>
+
+                <h2 id="hogwarts-letter-title">
+                  Hogwarts
+                </h2>
+
+                <div class="letter-divider">
+                  ✦ ✧ ✦
+                </div>
+
+                <p class="letter-greeting">
+                  Cari futuri maghi e streghe,
+                </p>
+
+                <p>
+                  Abbiamo il piacere di informarvi che siete stati
+                  ufficialmente invitati a partecipare a un evento
+                  straordinariamente magico.
+                </p>
+
+                <p>
+                  Il giorno <strong>18 giugno 2027</strong>, Erika e Luca
+                  celebreranno la loro unione e desiderano avervi al loro
+                  fianco per questa incredibile avventura.
+                </p>
+
+                <p>
+                  La cerimonia avrà luogo presso il
+                  <strong>Parco Chiaramontano, Siculiana</strong>.
+                </p>
+
+                <p>
+                  La vostra presenza è richiesta. Bacchette facoltative,
+                  sorrisi obbligatori.
+                </p>
+
+                <p class="letter-signature">
+                  Con affetto e un pizzico di magia,<br />
+                  <strong>Erika &amp; Luca</strong>
+                </p>
+
+                <div class="letter-footer">
+                  Draco Dormiens Nunquam Titillandus
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="envelope-flap"></div>
+
+            <div class="envelope-front">
+
+              <div class="wax-seal">
+                E <span>&amp;</span> L
+              </div>
+
+            </div>
+
+          </div>
+
+          <p class="letter-hint">
+            Un invito speciale, per persone speciali ✨
+          </p>
+
+        </div>
+
+      </div>
+
+    }
 
     <!-- =========================================
          LA NOSTRA STORIA
@@ -212,7 +316,6 @@
       </div>
 
     </section>
-
 
     <!-- =========================================
          LA GIORNATA
@@ -265,7 +368,6 @@
       </div>
 
     </section>
-
 
     <!-- =========================================
          LOCATION
@@ -324,7 +426,6 @@
 
     </section>
 
-
     <!-- =========================================
          COME ARRIVARE
          ========================================= -->
@@ -365,7 +466,7 @@
         <div class="illustration-placeholder">
 
           <a
-            href="https://www.google.com/maps/place/Parco+Chiaramontano/@37.3385284,13.419095,448m/data=!3m1!1e3!4m6!3m5!1s0x131a7a4d269e5aeb:0x34156a669e0dfd05!8m2!3d37.3388252!4d13.4199867!16s%2Fg%2F1td8v3mm?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D"
+            href="https://www.google.com/maps/place/Parco+Chiaramontano/@37.3385284,13.419095,448m/data=!3m1!1e3!4m6!3m5!1s0x131a7a4d269e5aeb:0x34156a669e0dfd05!8m2!3d37.3388252!4d13.4199867!16s%2Fg%2F1td8v3mm?entry=ttu&amp;g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -381,7 +482,6 @@
 
     </section>
 
-
     <!-- =========================================
          DOVE DORMIRE
          ========================================= -->
@@ -392,7 +492,7 @@
         <div class="illustration-placeholder">
 
           <a
-            href="https://www.google.com/travel/search?q=Siculiana&qs=CAAgACgA&ved=0CAAQ5JsGahgKEwiQ4fbXyYyXAxUAAAAAHQAAAAAQhgE&ictx=111&ts=CAEqBwoFOgNFVVI&ap=MAA"
+            href="https://www.google.com/travel/search?q=Siculiana&amp;qs=CAAgACgA&amp;ved=0CAAQ5JsGahgKEwiQ4fbXyYyXAxUAAAAAHQAAAAAQhgE&amp;ictx=111&amp;ts=CAEqBwoFOgNFVVI&amp;ap=MAA"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -439,7 +539,6 @@
 
     </section>
 
-
     <!-- =========================================
          TESTIMONI
          ========================================= -->
@@ -480,7 +579,6 @@
       </div>
 
     </section>
-
 
     <!-- =========================================
          SAVE THE DATE

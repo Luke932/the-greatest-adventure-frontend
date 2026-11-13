@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.prod';
 
+
 export interface StatsResponse {
 
   totalGuests: number;
@@ -42,7 +43,7 @@ export class StatsService {
   private readonly apiUrlEnv = environment.apiUrl;
   private readonly apiUrl = `${this.apiUrlEnv}/api`;
 
-  exportGuestsCsv(): Observable<Blob> {
+  exportGuestsExcel(): Observable<Blob> {
     return this.http.get(`${this.apiUrl}/guests/export`, {
       responseType: 'blob'
     });

@@ -405,14 +405,14 @@ export class StatisticsPage
 
   }
 
-  downloadGuestsCsv(): void {
-    this.statsService.exportGuestsCsv().subscribe({
+  downloadGuestsExcel(): void {
+    this.statsService.exportGuestsExcel().subscribe({
       next: (blob: Blob) => {
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement('a');
 
         link.href = url;
-        link.download = 'invitati_matrimonio.csv';
+        link.download = 'invitati_matrimonio.xlsx';
 
         document.body.appendChild(link);
         link.click();
@@ -421,7 +421,7 @@ export class StatisticsPage
         window.URL.revokeObjectURL(url);
       },
       error: (error) => {
-        console.error('Errore durante il download del CSV:', error);
+        console.error('Errore durante il download del file Excel:', error);
       }
     });
   }

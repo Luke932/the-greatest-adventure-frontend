@@ -15,15 +15,6 @@
       </span>
     </button>
 
-    <button
-      type="button"
-      class="wedding-button"
-      (click)="downloadGuestsCsv()"
-    >
-      <span>↓</span>
-      Esporta invitati CSV
-    </button>
-
     <div class="header-title">
 
       <span class="section-kicker">
@@ -45,20 +36,41 @@
 
     <!-- INTRO -->
 
+    <!-- INTRO -->
+
     <section class="intro-section">
 
-      <span class="section-kicker">
-        PANORAMICA
-      </span>
+      <div class="intro-content">
 
-      <h2>
-        Come procede l'avventura?
-      </h2>
+        <div>
+          <span class="section-kicker">
+            PANORAMICA
+          </span>
 
-      <p>
-        Una panoramica delle conferme, delle persone previste
-        e delle necessità organizzative del grande giorno.
-      </p>
+          <h2>
+            Come procede l'avventura?
+          </h2>
+
+          <p>
+            Una panoramica delle conferme, delle persone previste
+            e delle necessità organizzative del grande giorno.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          class="export-button"
+          (click)="downloadGuestsExcel()"
+        >
+          <span class="export-icon">↓</span>
+
+          <span>
+            <strong>Esporta invitati</strong>
+            <small>Scarica il file Excel</small>
+          </span>
+        </button>
+
+      </div>
 
     </section>
 

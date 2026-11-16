@@ -475,7 +475,7 @@
 .envelope-letter {
   position: absolute;
   left: 50%;
-  top: 12px;
+  top: 50px;
   z-index: 2;
 
   width: min(440px, 90vw);

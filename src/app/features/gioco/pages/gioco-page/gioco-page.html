@@ -1,0 +1,360 @@
+
+<div class="wedding-page game-page">
+
+  <app-navbar />
+
+  <main class="game-main">
+
+    <!-- ATTO 1: GRAND OPENING -->
+    @if (stage === 'intro') {
+      <section class="game-intro stage-enter">
+
+        <div class="spotlight spotlight-left"></div>
+        <div class="spotlight spotlight-right"></div>
+
+        <div class="curtain curtain-left"></div>
+        <div class="curtain curtain-right"></div>
+
+        <div class="intro-content">
+
+          <span class="game-kicker">
+            CHAPTER II — THE FUN SIDE OF LOVE
+          </span>
+
+          <div class="show-emblem" aria-hidden="true">
+            <span>✦</span>
+            <strong>THE</strong>
+            <span class="emblem-line"></span>
+            <strong>SHOW</strong>
+            <span>✦</span>
+          </div>
+
+          <p class="act-label">ACT I · GRAND OPENING</p>
+
+          <h1>
+            THE ERIKA
+            <span>&</span>
+            LUCA SHOW
+          </h1>
+
+          <p class="game-tagline">
+            One wedding. Many stories. One legendary quiz.
+          </p>
+
+          <div class="game-divider">✦ ✧ ✦</div>
+
+          <p class="game-description">
+            Pensate di conoscere davvero Erika e Luca?
+            È arrivato il momento di dimostrarlo!
+
+            Tra serie TV, coppie leggendarie e verità
+            decisamente compromettenti sui futuri sposi,
+            solo i veri esperti riusciranno a conquistare
+            il titolo finale.
+          </p>
+
+          <div class="game-details">
+            <span>5 ACTS</span>
+            <span>✦</span>
+            <span>17 QUESTIONS</span>
+            <span>✦</span>
+            <span>1 LEGENDARY COUPLE</span>
+          </div>
+
+          <button
+            type="button"
+            class="game-button start-button"
+            (click)="startGame()"
+          >
+            <span>LET THE SHOW BEGIN</span>
+            <span class="button-arrow">→</span>
+          </button>
+
+          <p class="game-small-note">
+            Nessun premio in denaro. Solo gloria eterna.
+          </p>
+
+        </div>
+
+        <div class="stage-bottom">
+          <span>ERIKA & LUCA</span>
+          <span>18 · 06 · 2027</span>
+        </div>
+
+      </section>
+    }
+
+    <!-- ATTI 2, 3 E 4: QUIZ -->
+    @if (stage === 'playing') {
+      <section class="quiz-section stage-enter">
+
+        <div class="quiz-atmosphere">
+          <span class="light-orb orb-one"></span>
+          <span class="light-orb orb-two"></span>
+        </div>
+
+        <header class="quiz-header">
+
+          <span class="game-kicker">
+            THE ERIKA & LUCA SHOW
+          </span>
+
+          <div class="act-progress">
+            <span class="act-progress-label">
+              ACT {{ actNumber }} OF 5
+            </span>
+
+            <span class="act-progress-name">
+              {{ actName }}
+            </span>
+          </div>
+
+          <div class="act-markers" aria-label="Avanzamento degli atti">
+            @for (act of [1, 2, 3, 4, 5]; track act) {
+              <span
+                class="act-marker"
+                [class.act-completed]="act < actNumber"
+                [class.act-active]="act === actNumber"
+              ></span>
+            }
+          </div>
+
+          <h1>{{ currentRound.title }}</h1>
+
+          <p class="round-subtitle">
+            {{ currentRound.subtitle }}
+          </p>
+
+        </header>
+
+        <div class="quiz-progress">
+
+          <div class="progress-info">
+            <span>
+              QUESTION {{ questionNumber }} / {{ totalQuestions }}
+            </span>
+
+            <span>
+              SCORE <strong>{{ score }}</strong>
+            </span>
+          </div>
+
+          <div
+            class="progress-track"
+            role="progressbar"
+            [attr.aria-valuenow]="progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            [attr.aria-label]="'Completamento quiz: ' + progress + '%'"
+          >
+            <div
+              class="progress-fill"
+              [style.width.%]="progress"
+            ></div>
+          </div>
+
+        </div>
+
+        <div class="question-card">
+
+          <div class="question-card-top">
+            <span class="question-number">
+              QUESTION {{ questionIndex + 1 }}
+            </span>
+
+            <span class="question-star">✦</span>
+          </div>
+
+          <div class="question-ornament" aria-hidden="true">
+            ✧
+          </div>
+
+          <h2>
+            {{ currentQuestion.question }}
+          </h2>
+
+          <p class="answer-instruction">
+            Scegliete la vostra risposta
+          </p>
+
+          <div class="answer-list">
+
+            @for (
+              answer of currentQuestion.answers;
+              track $index
+            ) {
+              <button
+                type="button"
+                class="answer-option"
+                [class.selected]="selectedAnswer === $index"
+                [class.correct]="
+                  selectedAnswer !== null &&
+                  $index === currentQuestion.correctAnswer
+                "
+                [class.wrong]="
+                  selectedAnswer === $index &&
+                  !isCorrect
+                "
+                [disabled]="selectedAnswer !== null"
+                (click)="selectAnswer($index)"
+              >
+
+                <span class="answer-letter">
+                  {{ ['A', 'B', 'C', 'D'][$index] }}
+                </span>
+
+                <span class="answer-text">
+                  {{ answer }}
+                </span>
+
+                @if (
+                  selectedAnswer !== null &&
+                  $index === currentQuestion.correctAnswer
+                ) {
+                  <span class="answer-symbol">✓</span>
+                }
+
+                @if (
+                  selectedAnswer === $index &&
+                  !isCorrect
+                ) {
+                  <span class="answer-symbol">✕</span>
+                }
+
+              </button>
+            }
+
+          </div>
+
+          @if (selectedAnswer !== null) {
+            <div
+              class="answer-feedback"
+              [class.feedback-correct]="isCorrect"
+              [class.feedback-wrong]="!isCorrect"
+              aria-live="polite"
+            >
+
+              <span class="feedback-icon">
+                {{ isCorrect ? '✦' : '✧' }}
+              </span>
+
+              <div>
+                <strong>
+                  {{ isCorrect ? 'CORRECT ANSWER!' : 'OOPS... NOT QUITE!' }}
+                </strong>
+
+                <p>{{ currentQuestion.explanation }}</p>
+              </div>
+
+            </div>
+
+            <button
+              type="button"
+              class="game-button next-button"
+              (click)="nextQuestion()"
+            >
+              <span>
+                {{ isLastQuestion ? 'REVEAL THE FINALE' : 'CONTINUE' }}
+              </span>
+              <span class="button-arrow">→</span>
+            </button>
+          }
+
+        </div>
+
+        <div class="quiz-footer">
+          <span>THE ERIKA & LUCA SHOW</span>
+          <span>18 · 06 · 2027</span>
+        </div>
+
+      </section>
+    }
+
+    <!-- ATTO 5: GRAND FINALE -->
+    @if (stage === 'result') {
+      <section class="result-section stage-enter">
+
+        <div class="finale-glow"></div>
+
+        <div class="result-card">
+
+          <span class="game-kicker">
+            ACT V · THE GRAND FINALE
+          </span>
+
+          <div class="finale-stars" aria-hidden="true">
+            <span>✦</span>
+            <span>✧</span>
+            <span>✦</span>
+          </div>
+
+          <p class="finale-overline">
+            THE SHOW IS OVER
+          </p>
+
+          <h1>YOU DID IT!</h1>
+
+          <p class="result-subtitle">
+            Ecco il vostro risultato ufficiale.
+          </p>
+
+          <div class="score-circle">
+
+            <div class="score-inner">
+              <strong>{{ score }}</strong>
+              <span>/ {{ totalQuestions }}</span>
+            </div>
+
+          </div>
+
+          <p class="result-caption">
+            YOUR FINAL SCORE · {{ scorePercentage }}%
+          </p>
+
+          <div class="game-divider">✦ ✧ ✦</div>
+
+          <p class="winner-label">
+            YOUR OFFICIAL TITLE
+          </p>
+
+          <h2>{{ resultTitle }}</h2>
+
+          <p class="result-message">
+            {{ resultMessage }}
+          </p>
+
+          <div class="finale-ticket">
+            <span>ADMIT ONE</span>
+            <strong>ERIKA & LUCA</strong>
+            <span>18 JUNE 2027 · FOREVER</span>
+          </div>
+
+          <p class="result-love">
+            Grazie per aver giocato con noi.
+            Non vediamo l'ora di festeggiare insieme
+            il 18 giugno 2027!
+          </p>
+
+          <button
+            type="button"
+            class="game-button replay-button"
+            (click)="restartGame()"
+          >
+            <span>PLAY AGAIN</span>
+            <span class="button-arrow">↻</span>
+          </button>
+
+          <a routerLink="/" class="back-home">
+            Torna alla homepage
+          </a>
+
+        </div>
+
+      </section>
+    }
+
+  </main>
+
+  <app-footer />
+
+</div>

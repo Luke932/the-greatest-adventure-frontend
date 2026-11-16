@@ -1,0 +1,1219 @@
+
+/* =====================================================
+   THE ERIKA & LUCA SHOW
+   Stili esclusivi della pagina gioco
+   ===================================================== */
+
+.game-page {
+  --show-gold: var(--gold, #d9ad4f);
+  --show-gold-light: var(--gold-light, #f0d58c);
+  --show-cream: var(--cream, #fffaf0);
+  --show-dark: #101c14;
+  --show-panel: rgba(12, 27, 18, 0.82);
+
+  color: var(--show-cream);
+}
+
+.game-page .game-main {
+  position: relative;
+  z-index: 1;
+  min-height: 75vh;
+  overflow: hidden;
+}
+
+/* =====================================================
+   ELEMENTI COMUNI
+   ===================================================== */
+
+.game-page .game-kicker {
+  display: block;
+  color: var(--show-gold-light);
+  font-family: var(--font-mono, 'Courier New', monospace);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-align: center;
+}
+
+.game-page .game-divider {
+  margin: 25px 0;
+  color: var(--show-gold);
+  font-size: 1rem;
+  letter-spacing: 0.35em;
+  text-align: center;
+}
+
+.game-page .game-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  min-height: 54px;
+  padding: 15px 27px;
+  border: 1px solid var(--show-gold);
+  border-radius: 2px;
+  background: linear-gradient(
+    135deg,
+    #d9ad4f,
+    #b98732
+  );
+  color: #17251b;
+  font-family: var(--font-mono, 'Courier New', monospace);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.game-page .game-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 13px 32px rgba(0, 0, 0, 0.35);
+  background: linear-gradient(
+    135deg,
+    #f0d58c,
+    #d9ad4f
+  );
+}
+
+.game-page .game-button:focus-visible,
+.game-page .answer-option:focus-visible,
+.game-page .back-home:focus-visible {
+  outline: 3px solid var(--show-gold-light);
+  outline-offset: 4px;
+}
+
+.game-page .button-arrow {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.game-page .game-button:hover .button-arrow {
+  transform: translateX(4px);
+}
+
+/* =====================================================
+   ANIMAZIONI DI INGRESSO
+   ===================================================== */
+
+.game-page .stage-enter {
+  animation: show-stage-enter 0.8s ease both;
+}
+
+@keyframes show-stage-enter {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================================================
+   ATTO 1 — GRAND OPENING
+   ===================================================== */
+
+.game-page .game-intro {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  min-height: 820px;
+  padding: 110px 24px 100px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 50% 42%,
+      rgba(217, 173, 79, 0.13),
+      transparent 42%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(9, 21, 13, 0.94),
+      rgba(19, 39, 25, 0.92)
+    );
+}
+
+.game-page .intro-content {
+  position: relative;
+  z-index: 4;
+  width: min(720px, 100%);
+  padding: 55px 30px;
+  text-align: center;
+  animation: intro-content-in 1.2s 0.2s ease both;
+}
+
+@keyframes intro-content-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Sipario */
+
+.game-page .curtain {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: 22%;
+  pointer-events: none;
+  opacity: 0.78;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(6, 17, 10, 0.95) 0,
+      rgba(6, 17, 10, 0.95) 13px,
+      rgba(49, 25, 23, 0.95) 23px,
+      rgba(91, 37, 31, 0.9) 36px,
+      rgba(34, 20, 17, 0.98) 48px
+    );
+  box-shadow:
+    inset -18px 0 25px rgba(0, 0, 0, 0.35),
+    0 0 35px rgba(0, 0, 0, 0.35);
+}
+
+.game-page .curtain-left {
+  left: 0;
+  border-right: 2px solid rgba(217, 173, 79, 0.35);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    88% 12%,
+    100% 25%,
+    87% 40%,
+    100% 55%,
+    88% 72%,
+    100% 87%,
+    90% 100%,
+    0 100%
+  );
+}
+
+.game-page .curtain-right {
+  right: 0;
+  border-left: 2px solid rgba(217, 173, 79, 0.35);
+  transform: scaleX(-1);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    88% 12%,
+    100% 25%,
+    87% 40%,
+    100% 55%,
+    88% 72%,
+    100% 87%,
+    90% 100%,
+    0 100%
+  );
+}
+
+/* Riflettori */
+
+.game-page .spotlight {
+  position: absolute;
+  z-index: 1;
+  top: -20%;
+  width: 45%;
+  height: 85%;
+  pointer-events: none;
+  opacity: 0.5;
+  filter: blur(25px);
+}
+
+.game-page .spotlight-left {
+  left: 10%;
+  transform: rotate(25deg);
+  background: linear-gradient(
+    180deg,
+    rgba(240, 213, 140, 0.18),
+    transparent 75%
+  );
+}
+
+.game-page .spotlight-right {
+  right: 10%;
+  transform: rotate(-25deg);
+  background: linear-gradient(
+    180deg,
+    rgba(211, 223, 197, 0.12),
+    transparent 75%
+  );
+}
+
+.game-page .show-emblem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin: 36px auto 28px;
+  color: var(--show-gold-light);
+  text-shadow: 0 0 25px rgba(217, 173, 79, 0.35);
+}
+
+.game-page .show-emblem > span {
+  font-size: 1.2rem;
+}
+
+.game-page .show-emblem strong {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  letter-spacing: 0.38em;
+}
+
+.game-page .show-emblem .emblem-line {
+  width: 70px;
+  height: 1px;
+  margin: 6px 0;
+  background: var(--show-gold);
+}
+
+.game-page .act-label {
+  margin: 0 0 22px;
+  color: var(--show-gold-light);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+}
+
+.game-page .game-intro h1 {
+  margin: 0;
+  color: var(--show-cream);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.game-page .game-intro h1 span {
+  display: block;
+  margin: 12px 0;
+  color: var(--show-gold-light);
+  font-size: 0.48em;
+  font-style: italic;
+}
+
+.game-page .game-tagline {
+  margin: 24px 0 0;
+  color: rgba(255, 250, 240, 0.78);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(0.9rem, 2vw, 1.15rem);
+  font-style: italic;
+}
+
+.game-page .game-description {
+  max-width: 530px;
+  margin: 0 auto;
+  color: rgba(255, 250, 240, 0.76);
+  font-size: 0.94rem;
+  line-height: 1.9;
+  white-space: pre-line;
+}
+
+.game-page .game-details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  margin: 32px 0;
+  color: var(--show-gold-light);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+.game-page .game-details span:nth-child(even) {
+  color: var(--show-gold);
+}
+
+.game-page .start-button {
+  min-width: 245px;
+  margin-top: 8px;
+}
+
+.game-page .game-small-note {
+  margin: 18px 0 0;
+  color: rgba(255, 250, 240, 0.48);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.game-page .stage-bottom {
+  position: absolute;
+  z-index: 3;
+  right: 28px;
+  bottom: 25px;
+  left: 28px;
+  display: flex;
+  justify-content: space-between;
+  color: rgba(240, 213, 140, 0.58);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.55rem;
+  letter-spacing: 0.17em;
+}
+
+/* =====================================================
+   ATTI 2, 3 E 4 — QUIZ
+   ===================================================== */
+
+.game-page .quiz-section {
+  position: relative;
+  isolation: isolate;
+  min-height: 850px;
+  padding: 115px 22px 70px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 50% 25%,
+      rgba(217, 173, 79, 0.12),
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(12, 29, 18, 0.82),
+      rgba(14, 29, 19, 0.94)
+    );
+}
+
+.game-page .quiz-atmosphere {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.game-page .light-orb {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.14;
+}
+
+.game-page .orb-one {
+  top: 12%;
+  left: -100px;
+  background: var(--show-gold);
+}
+
+.game-page .orb-two {
+  right: -100px;
+  bottom: 10%;
+  background: #b7c99e;
+}
+
+.game-page .quiz-header {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto 35px;
+  text-align: center;
+}
+
+.game-page .act-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 30px 0 16px;
+}
+
+.game-page .act-progress-label {
+  color: rgba(240, 213, 140, 0.55);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+}
+
+.game-page .act-progress-name {
+  color: var(--show-gold-light);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.05rem;
+  font-style: italic;
+}
+
+.game-page .act-markers {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto 27px;
+}
+
+.game-page .act-marker {
+  width: 27px;
+  height: 3px;
+  border-radius: 3px;
+  background: rgba(240, 213, 140, 0.2);
+  transition:
+    background 0.3s ease,
+    width 0.3s ease;
+}
+
+.game-page .act-marker.act-completed {
+  background: var(--show-gold);
+}
+
+.game-page .act-marker.act-active {
+  width: 45px;
+  background: var(--show-gold-light);
+  box-shadow: 0 0 12px rgba(240, 213, 140, 0.4);
+}
+
+.game-page .quiz-header h1 {
+  margin: 0;
+  color: var(--show-cream);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(2.3rem, 6vw, 4rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.game-page .round-subtitle {
+  margin: 13px 0 0;
+  color: rgba(255, 250, 240, 0.62);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 0.98rem;
+  font-style: italic;
+}
+
+/* Barra di avanzamento */
+
+.game-page .quiz-progress {
+  width: min(650px, 100%);
+  margin: 0 auto 30px;
+}
+
+.game-page .progress-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 10px;
+  color: rgba(240, 213, 140, 0.72);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+}
+
+.game-page .progress-info strong {
+  color: var(--show-cream);
+  font-size: 0.8rem;
+}
+
+.game-page .progress-track {
+  height: 3px;
+  overflow: hidden;
+  background: rgba(240, 213, 140, 0.16);
+}
+
+.game-page .progress-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #a77b2f,
+    var(--show-gold-light)
+  );
+  box-shadow: 0 0 12px rgba(240, 213, 140, 0.4);
+  transition: width 0.5s ease;
+}
+
+/* Scheda domanda */
+
+.game-page .question-card {
+  position: relative;
+  width: min(720px, 100%);
+  margin: 0 auto;
+  padding: 35px clamp(20px, 5vw, 48px) 40px;
+  border: 1px solid rgba(240, 213, 140, 0.32);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 250, 240, 0.075),
+      rgba(9, 23, 14, 0.74)
+    );
+  box-shadow:
+    0 25px 65px rgba(0, 0, 0, 0.26),
+    inset 0 0 35px rgba(255, 250, 240, 0.018);
+  animation: question-card-in 0.55s ease both;
+}
+
+@keyframes question-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.game-page .question-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.game-page .question-number {
+  color: var(--show-gold-light);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.game-page .question-star {
+  color: var(--show-gold);
+  font-size: 1.1rem;
+}
+
+.game-page .question-ornament {
+  margin: 23px 0 10px;
+  color: rgba(240, 213, 140, 0.58);
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.game-page .question-card h2 {
+  max-width: 570px;
+  margin: 0 auto;
+  color: var(--show-cream);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.35rem, 3.4vw, 2rem);
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.game-page .answer-instruction {
+  margin: 20px 0 22px;
+  color: rgba(255, 250, 240, 0.48);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 0.82rem;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Risposte */
+
+.game-page .answer-list {
+  display: grid;
+  gap: 11px;
+}
+
+.game-page .answer-option {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  min-height: 58px;
+  padding: 12px 16px;
+  border: 1px solid rgba(240, 213, 140, 0.22);
+  border-radius: 2px;
+  background: rgba(255, 250, 240, 0.035);
+  color: rgba(255, 250, 240, 0.88);
+  font-family: var(--font-sans, Arial, sans-serif);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.game-page .answer-option:not(:disabled):hover {
+  transform: translateX(4px);
+  border-color: rgba(240, 213, 140, 0.75);
+  background: rgba(240, 213, 140, 0.09);
+}
+
+.game-page .answer-letter {
+  flex: 0 0 30px;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(240, 213, 140, 0.42);
+  border-radius: 50%;
+  color: var(--show-gold-light);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+}
+
+.game-page .answer-text {
+  flex: 1;
+}
+
+.game-page .answer-symbol {
+  flex: 0 0 24px;
+  color: #d6e7c2;
+  font-size: 1.15rem;
+  text-align: center;
+}
+
+.game-page .answer-option:disabled {
+  cursor: default;
+  opacity: 0.72;
+}
+
+.game-page .answer-option.correct {
+  border-color: rgba(174, 207, 142, 0.85);
+  background: rgba(115, 157, 86, 0.16);
+  color: #e5f0d9;
+  opacity: 1;
+}
+
+.game-page .answer-option.correct .answer-letter {
+  border-color: #b9d39d;
+  color: #d9edc4;
+}
+
+.game-page .answer-option.wrong {
+  border-color: rgba(208, 117, 103, 0.75);
+  background: rgba(150, 54, 45, 0.13);
+  color: rgba(255, 235, 228, 0.85);
+  opacity: 1;
+}
+
+.game-page .answer-option.wrong .answer-letter {
+  border-color: #d78e80;
+  color: #f1b0a2;
+}
+
+.game-page .answer-option.wrong .answer-symbol {
+  color: #ef9d8e;
+}
+
+/* Feedback */
+
+.game-page .answer-feedback {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 24px;
+  padding: 17px 18px;
+  border-left: 2px solid var(--show-gold);
+  background: rgba(255, 250, 240, 0.045);
+  animation: feedback-in 0.35s ease both;
+}
+
+@keyframes feedback-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.game-page .feedback-icon {
+  color: var(--show-gold-light);
+  font-size: 1.2rem;
+}
+
+.game-page .answer-feedback strong {
+  display: block;
+  color: var(--show-gold-light);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+}
+
+.game-page .answer-feedback p {
+  margin: 8px 0 0;
+  color: rgba(255, 250, 240, 0.78);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+.game-page .feedback-correct {
+  border-left-color: #b9d39d;
+}
+
+.game-page .feedback-correct .feedback-icon,
+.game-page .feedback-correct strong {
+  color: #cce3b5;
+}
+
+.game-page .feedback-wrong {
+  border-left-color: #d78e80;
+}
+
+.game-page .feedback-wrong .feedback-icon,
+.game-page .feedback-wrong strong {
+  color: #e8a99d;
+}
+
+.game-page .next-button {
+  display: flex;
+  width: fit-content;
+  min-width: 190px;
+  margin: 25px auto 0;
+}
+
+.game-page .quiz-footer {
+  display: flex;
+  justify-content: space-between;
+  width: min(720px, 100%);
+  margin: 35px auto 0;
+  color: rgba(240, 213, 140, 0.43);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.53rem;
+  letter-spacing: 0.16em;
+}
+
+/* =====================================================
+   ATTO 5 — GRAND FINALE
+   ===================================================== */
+
+.game-page .result-section {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  min-height: 850px;
+  padding: 110px 22px 90px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 50% 40%,
+      rgba(217, 173, 79, 0.16),
+      transparent 48%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(10, 24, 15, 0.92),
+      rgba(19, 39, 25, 0.96)
+    );
+}
+
+.game-page .finale-glow {
+  position: absolute;
+  z-index: -1;
+  top: 10%;
+  left: 50%;
+  width: min(700px, 90vw);
+  height: 500px;
+  border-radius: 50%;
+  background: rgba(217, 173, 79, 0.1);
+  filter: blur(90px);
+  transform: translateX(-50%);
+  animation: finale-glow 5s ease-in-out infinite alternate;
+}
+
+@keyframes finale-glow {
+  from {
+    opacity: 0.45;
+    transform: translateX(-50%) scale(0.9);
+  }
+
+  to {
+    opacity: 0.85;
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+.game-page .result-card {
+  position: relative;
+  width: min(660px, 100%);
+  padding: 48px clamp(22px, 5vw, 55px);
+  border: 1px solid rgba(240, 213, 140, 0.38);
+  background: rgba(10, 25, 15, 0.72);
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.3),
+    inset 0 0 40px rgba(255, 250, 240, 0.025);
+  text-align: center;
+}
+
+.game-page .finale-stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin: 30px 0 22px;
+  color: var(--show-gold-light);
+}
+
+.game-page .finale-stars span:nth-child(2) {
+  font-size: 1.8rem;
+}
+
+.game-page .finale-overline {
+  margin: 0 0 12px;
+  color: rgba(240, 213, 140, 0.68);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+}
+
+.game-page .result-card h1 {
+  margin: 0;
+  color: var(--show-cream);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.game-page .result-subtitle {
+  margin: 15px 0 25px;
+  color: rgba(255, 250, 240, 0.65);
+  font-family: var(--font-serif, Georgia, serif);
+  font-style: italic;
+}
+
+.game-page .score-circle {
+  display: grid;
+  place-items: center;
+  width: 155px;
+  height: 155px;
+  margin: 25px auto 13px;
+  border: 1px solid var(--show-gold);
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(217, 173, 79, 0.14),
+      rgba(217, 173, 79, 0.025) 68%
+    );
+  box-shadow:
+    0 0 0 8px rgba(217, 173, 79, 0.045),
+    0 0 40px rgba(217, 173, 79, 0.12);
+}
+
+.game-page .score-inner {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.game-page .score-inner strong {
+  color: var(--show-gold-light);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 4rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.game-page .score-inner span {
+  color: rgba(255, 250, 240, 0.62);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+}
+
+.game-page .result-caption {
+  margin: 0;
+  color: rgba(240, 213, 140, 0.66);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.56rem;
+  letter-spacing: 0.18em;
+}
+
+.game-page .winner-label {
+  margin: 0 0 12px;
+  color: rgba(240, 213, 140, 0.65);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.56rem;
+  letter-spacing: 0.18em;
+}
+
+.game-page .result-card h2 {
+  margin: 0 auto 16px;
+  color: var(--show-gold-light);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1.55rem, 4vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.game-page .result-message {
+  max-width: 450px;
+  margin: 0 auto;
+  color: rgba(255, 250, 240, 0.75);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.game-page .finale-ticket {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  width: min(310px, 100%);
+  margin: 30px auto;
+  padding: 18px;
+  border: 1px dashed rgba(240, 213, 140, 0.48);
+  background: rgba(255, 250, 240, 0.035);
+  color: var(--show-gold-light);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.53rem;
+  letter-spacing: 0.17em;
+}
+
+.game-page .finale-ticket strong {
+  color: var(--show-cream);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+.game-page .result-love {
+  max-width: 420px;
+  margin: 0 auto 28px;
+  color: rgba(255, 250, 240, 0.7);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 0.9rem;
+  font-style: italic;
+  line-height: 1.8;
+}
+
+.game-page .replay-button {
+  min-width: 190px;
+}
+
+.game-page .back-home {
+  display: block;
+  width: fit-content;
+  margin: 24px auto 0;
+  color: rgba(240, 213, 140, 0.75);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 0.82rem;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.game-page .back-home:hover {
+  color: var(--show-cream);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* =====================================================
+   RESPONSIVE TABLET
+   ===================================================== */
+
+@media (max-width: 800px) {
+  .game-page .game-intro {
+    min-height: 760px;
+  }
+
+  .game-page .curtain {
+    width: 13%;
+    opacity: 0.55;
+  }
+
+  .game-page .intro-content {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .game-page .quiz-section {
+    padding-top: 100px;
+  }
+}
+
+/* =====================================================
+   RESPONSIVE MOBILE
+   ===================================================== */
+
+@media (max-width: 600px) {
+  .game-page .game-intro {
+    min-height: 760px;
+    padding: 90px 15px 80px;
+  }
+
+  .game-page .curtain {
+    width: 8%;
+    opacity: 0.35;
+  }
+
+  .game-page .intro-content {
+    padding: 40px 8px;
+  }
+
+  .game-page .game-kicker {
+    font-size: 0.53rem;
+    letter-spacing: 0.16em;
+  }
+
+  .game-page .show-emblem {
+    margin: 27px auto 22px;
+  }
+
+  .game-page .game-intro h1 {
+    font-size: clamp(2.7rem, 13vw, 4.2rem);
+  }
+
+  .game-page .game-tagline {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .game-page .game-description {
+    font-size: 0.86rem;
+    line-height: 1.75;
+  }
+
+  .game-page .game-details {
+    gap: 8px;
+    font-size: 0.48rem;
+    letter-spacing: 0.08em;
+  }
+
+  .game-page .game-button {
+    min-height: 50px;
+    padding: 13px 19px;
+    font-size: 0.62rem;
+  }
+
+  .game-page .stage-bottom {
+    right: 15px;
+    bottom: 18px;
+    left: 15px;
+    font-size: 0.45rem;
+  }
+
+  .game-page .quiz-section {
+    min-height: 800px;
+    padding: 95px 14px 50px;
+  }
+
+  .game-page .quiz-header {
+    margin-bottom: 27px;
+  }
+
+  .game-page .quiz-header h1 {
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+
+  .game-page .round-subtitle {
+    font-size: 0.86rem;
+  }
+
+  .game-page .progress-info {
+    font-size: 0.5rem;
+  }
+
+  .game-page .question-card {
+    padding: 25px 17px 28px;
+  }
+
+  .game-page .question-card h2 {
+    font-size: 1.32rem;
+    line-height: 1.45;
+  }
+
+  .game-page .answer-option {
+    gap: 10px;
+    min-height: 54px;
+    padding: 10px 11px;
+    font-size: 0.82rem;
+  }
+
+  .game-page .answer-letter {
+    flex-basis: 27px;
+    width: 27px;
+    height: 27px;
+    font-size: 0.6rem;
+  }
+
+  .game-page .answer-feedback {
+    gap: 10px;
+    padding: 14px 12px;
+  }
+
+  .game-page .answer-feedback p {
+    font-size: 0.8rem;
+  }
+
+  .game-page .quiz-footer {
+    font-size: 0.43rem;
+    letter-spacing: 0.1em;
+  }
+
+  .game-page .result-section {
+    min-height: 800px;
+    padding: 95px 14px 60px;
+  }
+
+  .game-page .result-card {
+    padding: 36px 19px;
+  }
+
+  .game-page .result-card h1 {
+    font-size: 3.1rem;
+  }
+
+  .game-page .score-circle {
+    width: 135px;
+    height: 135px;
+  }
+
+  .game-page .score-inner strong {
+    font-size: 3.4rem;
+  }
+
+  .game-page .result-message,
+  .game-page .result-love {
+    font-size: 0.83rem;
+  }
+}
+
+@media (max-width: 370px) {
+  .game-page .game-details {
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .game-page .game-details span:nth-child(even) {
+    display: none;
+  }
+
+  .game-page .game-intro h1 {
+    font-size: 2.55rem;
+  }
+
+  .game-page .quiz-footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+/* =====================================================
+   ACCESSIBILITÀ — MOVIMENTO RIDOTTO
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .game-page *,
+  .game-page *::before,
+  .game-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

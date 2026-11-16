@@ -11,7 +11,12 @@ export const routes: Routes = [
       import('./features/home/pages/home-page/home-page')
         .then(m => m.HomePage)
   },
-
+  {
+    path: 'gioco',
+    loadComponent: () =>
+      import('./features/gioco/pages/gioco-page/gioco-page')
+        .then(m => m.GiocoPage)
+  },
   // PAGINE PUBBLICHE DEL MATRIMONIO
   {
     path: 'giornata',

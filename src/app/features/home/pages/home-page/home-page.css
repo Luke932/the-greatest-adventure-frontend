@@ -1700,3 +1700,127 @@
     }
 
 }
+
+
+/* =========================================
+   GAME PREVIEW
+   ========================================= */
+
+.game-preview-section {
+  min-height: 480px;
+
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+
+  align-items: center;
+  gap: 50px;
+
+  padding: 85px max(25px, 7vw);
+
+  position: relative;
+}
+
+.game-preview-content {
+  max-width: 650px;
+}
+
+.game-preview-decoration {
+  position: relative;
+
+  min-height: 330px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.film-ticket {
+  width: 220px;
+  height: 260px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  border: 1px solid var(--gold);
+  outline: 1px solid rgba(240, 213, 140, 0.3);
+  outline-offset: 8px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 250, 240, 0.08),
+      rgba(23, 37, 27, 0.5)
+    );
+
+  color: var(--gold-light);
+
+  transform: rotate(5deg);
+
+  box-shadow: var(--shadow-soft);
+
+  transition: transform 0.4s ease;
+}
+
+.game-preview-decoration:hover .film-ticket {
+  transform: rotate(0deg) scale(1.04);
+}
+
+.film-ticket span {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+}
+
+.film-ticket strong {
+  color: var(--cream);
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+.film-star {
+  position: absolute;
+  color: var(--gold-light);
+  font-size: 1.8rem;
+}
+
+.film-star:first-child {
+  top: 15%;
+  left: 15%;
+}
+
+.film-star:last-child {
+  right: 12%;
+  bottom: 15%;
+}
+
+.film-reel {
+  position: absolute;
+  right: 15%;
+  top: 12%;
+  color: var(--gold);
+  font-size: 3rem;
+}
+
+@media (max-width: 700px) {
+
+  .game-preview-section {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 40px 20px;
+  }
+
+  .game-preview-decoration {
+    min-height: 280px;
+  }
+
+  .film-ticket {
+    width: 180px;
+    height: 220px;
+  }
+
+}
+

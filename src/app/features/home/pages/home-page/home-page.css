@@ -748,7 +748,7 @@
 
   .envelope-letter {
     height: 200px;
-    padding: 1000px 16px;
+    padding-top: 100px;
   }
 
   .letter-content {
@@ -1470,7 +1470,7 @@
 
 
   .hero-description {
-    padding-top: 50px;
+    padding-top: 80px;
     font-size: 0.88rem;
   }
 

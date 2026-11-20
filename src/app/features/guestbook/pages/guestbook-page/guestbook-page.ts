@@ -1,5 +1,4 @@
-
-import { RouterLink } from '@angular/router';
+import { Navbar } from '../../../../shared/components/navbar/navbar';
 import {
   Component,
   OnInit,
@@ -18,7 +17,7 @@ import {
 @Component({
   selector: 'app-guestbook-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, Navbar],
   templateUrl: './guestbook-page.html',
   styleUrl: './guestbook-page.css'
 })

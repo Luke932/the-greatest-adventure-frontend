@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Navbar } from '../../../../shared/components/navbar/navbar';
-import { Footer } from '../../../../shared/components/footer/footer';
 
 import {
   SERIES_QUESTIONS,
@@ -26,7 +25,7 @@ interface QuizRound {
 @Component({
   selector: 'app-gioco-page',
   standalone: true,
-  imports: [RouterLink, Navbar, Footer],
+  imports: [RouterLink, Navbar],
   templateUrl: './gioco-page.html',
   styleUrl: './gioco-page.css'
 })

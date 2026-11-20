@@ -4,7 +4,13 @@ import { RouterLink } from '@angular/router';
 import { Navbar } from '../../../../shared/components/navbar/navbar';
 import { Footer } from '../../../../shared/components/footer/footer';
 
-interface QuizQuestion {
+import {
+  SERIES_QUESTIONS,
+  COUPLE_QUESTIONS,
+  PERSONAL_QUESTIONS
+} from './quiz-question-banks';
+
+export interface QuizQuestion {
   question: string;
   answers: string[];
   correctAnswer: number;
@@ -33,255 +39,27 @@ export class GiocoPage {
   score = 0;
   selectedAnswer: number | null = null;
 
-  // Le tre categorie originali: le domande non vengono modificate.
+  // Le tre categorie del quiz.
+  // Le domande vengono caricate dagli archivi esterni.
   readonly rounds: QuizRound[] = [
     {
       title: 'Guess the Show',
-      subtitle: 'Riconosci la serie dagli indizi!',      
-      questions: [
-        {
-          question:
-            'Un gruppo di amici, un divano arancione, un bar e una serie infinita di appuntamenti sentimentali. Di quale serie parliamo?',
-          answers: [
-            'The Big Bang Theory',
-            'Friends',
-            'Modern Family',
-            'Stranger Things'
-          ],
-          correctAnswer: 1,
-          explanation:
-            'Esatto! Friends. E ricordate: saremo sempre lì per voi!'
-        },
-        {
-          question:
-            'Un gruppo di ragazzi, biciclette, luci che lampeggiano e un mondo parallelo decisamente poco ospitale. Qual è la serie?',
-          answers: [
-            'How I Met Your Mother',
-            'Friends',
-            'Stranger Things',
-            'Brooklyn Nine-Nine'
-          ],
-          correctAnswer: 2,
-          explanation:
-            'Giusto! Stranger Things. Speriamo che il nostro matrimonio non nasconda un Sottosopra!'
-        },
-        {
-          question:
-            'Una famiglia decisamente fuori dagli schemi, tre nuclei familiari, una telecamera sempre pronta a riprendere e tante situazioni esilaranti. Qual è la serie?',
-          answers: [
-            'The Big Bang Theory',
-            'Modern Family',
-            'Friends',
-            'How I Met Your Mother'
-          ],
-          correctAnswer: 1,
-          explanation:
-            'Esatto! Modern Family! Perché ogni famiglia è un piccolo, meraviglioso caos!'
-        },
-        {
-          question:
-            'Un distretto di polizia di New York, un detective amante dei film d’azione, un capitano serissimo e un grido diventato leggendario: "Nine-Nine!". Qual è la serie?',
-          answers: [
-            'Sherlock',
-            'Brooklyn Nine-Nine',
-            'The Big Bang Theory',
-            'Stranger Things'
-          ],
-          correctAnswer: 1,
-          explanation:
-            'Nine-Nine! Brooklyn Nine-Nine! La squadra è pronta... e anche gli invitati!'
-        },
-        {
-          question:
-            'Un gruppo di amici, un bar chiamato MacLaren’s, un ombrello giallo e un papà che racconta ai figli una storia lunghissima. Qual è la serie?',
-          answers: [
-            'Friends',
-            'How I Met Your Mother',
-            'Modern Family',
-            'The Big Bang Theory'
-          ],
-          correctAnswer: 1,
-          explanation:
-            'Legend... wait for it... dary! How I Met Your Mother!'
-        },
-        {
-          question:
-            'Scienziati, fumetti, videogiochi e una quantità impressionante di battute incomprensibili ai comuni mortali. Qual è la serie?',
-          answers: [
-            'The Big Bang Theory',
-            'Modern Family',
-            'Friends',
-            'How I Met Your Mother'
-          ],
-          correctAnswer: 0,
-          explanation:
-            'Bazinga! È The Big Bang Theory!'
-        }
-      ]
+      subtitle: 'Riconosci la serie dagli indizi!',
+      questions: []
     },
     {
       title: 'Couple Goals',
       subtitle: 'Quanto conoscete le coppie più famose?',
-      questions: [
-        {
-          question:
-            'Quale coppia ha avuto una relazione decisamente complicata tra pause, ritorni e incomprensioni?',
-          answers: [
-            'Jim e Pam',
-            'Ross e Rachel',
-            'Monica e Chandler',
-            'Lily e Marshall'
-          ],
-          correctAnswer: 1,
-          explanation:
-            'Ross e Rachel! E speriamo che Erika e Luca non debbano mai discutere di una pausa!'
-        },
-        {
-          question:
-            'Quale coppia dimostra che anche due persone molto diverse possono essere una squadra perfetta?',
-          answers: [
-            'Morticia e Gomez',
-            'Jim e Pam',
-            'Ross e Rachel',
-            'Ted e Robin'
-          ],
-          correctAnswer: 1,
-          explanation:
-            'Jim e Pam! Una coppia che sa capirsi anche senza troppe parole.'
-        },
-        {
-          question:
-            'Quale coppia è famosa per un amore intenso, romantico e decisamente fuori dagli schemi?',
-          answers: [
-            'Ted e Robin',
-            'Monica e Chandler',
-            'Morticia e Gomez',
-            'Barney e Robin'
-          ],
-          correctAnswer: 2,
-          explanation:
-            'Morticia e Gomez! Un amore che supera davvero ogni limite.'
-        }
-      ]
+      questions: []
     },
     {
       title: 'How Well Do You Know Us?',
       subtitle: 'Adesso si parla dei veri protagonisti!',
-      questions: [
-        {
-          question:
-            'Chi dei due dice "arrivo subito" e poi sparisce nel tempo?',
-          answers: ['Luca', 'Erika'],
-          correctAnswer: 1,
-          explanation:
-            'Erika! Il concetto di puntualità è decisamente soggettivo.'
-        },
-        {
-          question:
-            'Chi potrebbe perdere una cosa mentre ce l’ha in mano?',
-          answers: ['Luca', 'Erika'],
-          correctAnswer: 1,
-          explanation:
-            'Erika! L’ordine non è evidentemente il suo superpotere.'
-        },
-        {
-          question:
-            'Chi ha avuto il coraggio di fare la prima mossa?',
-          answers: ['Erika', 'Luca'],
-          correctAnswer: 1,
-          explanation:
-            'Luca! Almeno qualcuno doveva pur iniziare questa storia.'
-        },
-        {
-          question:
-            'Chi è più geloso?',
-          answers: [
-            'Erika',
-            'Luca',
-            'Entrambi',
-            'Il pubblico non ha ancora prove sufficienti!'
-          ],
-          correctAnswer: 3,
-          explanation:
-            'Caso ancora aperto. Le indagini proseguiranno dopo il matrimonio.'
-        },
-        {
-          question:
-            'Chi se la prende più facilmente?',
-          answers: ['Erika', 'Luca'],
-          correctAnswer: 1,
-          explanation:
-            'Luca! Attenzione: maneggiare con cura.'
-        },
-        {
-          question:
-            'Chi è più spendaccione?',
-          answers: [
-            'Erika',
-            'Luca',
-            'Entrambi, senza possibilità di appello!'
-          ],
-          correctAnswer: 2,
-          explanation:
-            'Entrambi! Il conto in banca preferisce non commentare.'
-        },
-        {
-          question:
-            'Chi è il più testardo dei due?',
-          answers: [
-            'Erika',
-            'Luca',
-            'Luca, finché a un certo punto si spegne completamente!'
-          ],
-          correctAnswer: 2,
-          explanation:
-            'Luca! Luca ha abbandonato la discussione. Riprovare più tardi.'
-        },
-        {
-          question:
-            'Chi non sopporta perdere?',
-          answers: [
-            'Erika',
-            'Luca',
-            'Entrambi, ma Luca la vive come una questione di principio!'
-          ],
-          correctAnswer: 2,
-          explanation:
-            'Luca! Non è importante vincere, è importante dimostrare che l’altro ha barato.'
-        },
-        {
-          question:
-            'Chi diventa insopportabile quando ha fame?',
-          answers: ['Erika', 'Luca'],
-          correctAnswer: 1,
-          explanation:
-            'Luca! Somministrare cibo immediatamente. Non tentare di ragionare con lui.'
-        },
-        {
-          question:
-            'Chi fa pace per primo dopo un litigio?',
-          answers: ['Erika', 'Luca'],
-          correctAnswer: 0,
-          explanation:
-            'Erika! Ha attivato il protocollo di pace. Luca sta ancora elaborando.'
-        },
-        {
-          question:
-            'Chi è il più romantico?',
-          answers: [
-            'Erika',
-            'Luca',
-            'Entrambi, a modo loro!'
-          ],
-          correctAnswer: 2,
-          explanation:
-            'Entrambi! Due cuori, un solo grande amore.'
-        }
-      ]
+      questions: []
     }
   ];
 
-  // Copia di gioco: viene mescolata senza alterare l'array originale.
+  // Copia di gioco: viene mescolata senza modificare gli archivi originali.
   gameRounds: QuizRound[] = [];
 
   get currentRound(): QuizRound {
@@ -293,10 +71,7 @@ export class GiocoPage {
   }
 
   get totalQuestions(): number {
-    return this.rounds.reduce(
-      (total, round) => total + round.questions.length,
-      0
-    );
+    return 20;
   }
 
   get completedQuestions(): number {
@@ -384,11 +159,24 @@ export class GiocoPage {
     return Math.round((this.score / this.totalQuestions) * 100);
   }
 
+  // Avvia una nuova partita con domande casuali.
   startGame(): void {
-    this.gameRounds = this.rounds.map(round => ({
-      ...round,
-      questions: this.shuffle([...round.questions])
-    }));
+    this.gameRounds = this.rounds.map((round, index) => {
+      let questions: QuizQuestion[];
+
+      if (index === 0) {
+        questions = this.shuffle([...SERIES_QUESTIONS]).slice(0, 7);
+      } else if (index === 1) {
+        questions = this.shuffle([...COUPLE_QUESTIONS]).slice(0, 7);
+      } else {
+        questions = this.shuffle([...PERSONAL_QUESTIONS]).slice(0, 6);
+      }
+
+      return {
+        ...round,
+        questions
+      };
+    });
 
     this.stage = 'playing';
     this.roundIndex = 0;
@@ -397,16 +185,7 @@ export class GiocoPage {
     this.selectedAnswer = null;
   }
 
-  private shuffle<T>(items: T[]): T[] {
-    // Fisher-Yates: ogni elemento compare una sola volta.
-    for (let i = items.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [items[i], items[j]] = [items[j], items[i]];
-    }
-
-    return items;
-  }
-
+  // Registra la risposta selezionata.
   selectAnswer(index: number): void {
     if (this.selectedAnswer !== null) {
       return;
@@ -419,6 +198,7 @@ export class GiocoPage {
     }
   }
 
+  // Passa alla domanda successiva o alla categoria successiva.
   nextQuestion(): void {
     if (this.selectedAnswer === null) {
       return;
@@ -443,7 +223,18 @@ export class GiocoPage {
     this.stage = 'result';
   }
 
+  // Ricomincia una partita con nuove domande casuali.
   restartGame(): void {
     this.startGame();
+  }
+
+  // Mescolamento casuale Fisher-Yates.
+  private shuffle<T>(items: T[]): T[] {
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+
+    return items;
   }
 }

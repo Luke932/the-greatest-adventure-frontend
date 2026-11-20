@@ -37,7 +37,7 @@ export class GiocoPage {
   readonly rounds: QuizRound[] = [
     {
       title: 'Guess the Show',
-      subtitle: 'Riconosci la serie dagli indizi!',
+      subtitle: 'Riconosci la serie dagli indizi!',      
       questions: [
         {
           question:
@@ -59,11 +59,37 @@ export class GiocoPage {
             'How I Met Your Mother',
             'Friends',
             'Stranger Things',
-            'The Office'
+            'Brooklyn Nine-Nine'
           ],
           correctAnswer: 2,
           explanation:
             'Giusto! Stranger Things. Speriamo che il nostro matrimonio non nasconda un Sottosopra!'
+        },
+        {
+          question:
+            'Una famiglia decisamente fuori dagli schemi, tre nuclei familiari, una telecamera sempre pronta a riprendere e tante situazioni esilaranti. Qual è la serie?',
+          answers: [
+            'The Big Bang Theory',
+            'Modern Family',
+            'Friends',
+            'How I Met Your Mother'
+          ],
+          correctAnswer: 1,
+          explanation:
+            'Esatto! Modern Family! Perché ogni famiglia è un piccolo, meraviglioso caos!'
+        },
+        {
+          question:
+            'Un distretto di polizia di New York, un detective amante dei film d’azione, un capitano serissimo e un grido diventato leggendario: "Nine-Nine!". Qual è la serie?',
+          answers: [
+            'Sherlock',
+            'Brooklyn Nine-Nine',
+            'The Big Bang Theory',
+            'Stranger Things'
+          ],
+          correctAnswer: 1,
+          explanation:
+            'Nine-Nine! Brooklyn Nine-Nine! La squadra è pronta... e anche gli invitati!'
         },
         {
           question:

@@ -15,6 +15,6 @@ export class TestimoniPage {
   alessandro = 
   { telefono: '3805952885', whatsapp: '3805952885', email: '' };
   eleonora =
-  { telefono: '3895560379', whatsapp: '3895560379', email: '' }; 
+  { telefono: '3285333608', whatsapp: '3285333608', email: '' }; 
   chiara =
-  { telefono: '3285333608', whatsapp: '3285333608', email: '' }; }
+  { telefono: '3895560379', whatsapp: '3895560379', email: '' }; }

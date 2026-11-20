@@ -1,0 +1,215 @@
+
+<div class="wedding-page guestbook-page">
+
+  <main class="guestbook-container">
+
+    <!-- INTESTAZIONE -->
+    <header class="page-header">
+      <span class="section-kicker">
+        CHAPTER III — THE BOOK OF MEMORIES
+      </span>
+
+      <h1 class="wedding-title">The Guestbook</h1>
+
+      <p class="wedding-description">
+        Ogni storia d'amore è fatta anche delle persone che la accompagnano.
+        Qui raccogliamo i vostri pensieri, i vostri auguri e i ricordi
+        che renderanno ancora più speciale il nostro giorno.
+      </p>
+    </header>
+
+    <!-- TORNA ALLA HOME -->
+    <div class="back-home-container">
+        <a routerLink="/" class="back-home-button">
+            <span>←</span>
+            Torna alla Home
+        </a>
+    </div>
+
+    <!-- INVITO A LASCIARE UN PENSIERO -->
+    <section class="add-message-section">
+
+      @if (!showForm) {
+        <div class="add-message-intro">
+
+          <span class="section-kicker">YOUR TURN</span>
+
+          <h2>Vuoi lasciarci un pensiero?</h2>
+
+          <p>
+            Ci farebbe davvero piacere custodire anche un tuo ricordo.
+          </p>
+
+          <button
+            type="button"
+            class="wedding-button add-thought-button"
+            (click)="openForm()"
+          >
+            ✧ Lascia un pensiero ✧
+          </button>
+
+        </div>
+      }
+
+      <!-- MODULO -->
+      @if (showForm) {
+        <div class="guestbook-form">
+
+          <span class="form-kicker">A LITTLE NOTE FOR US</span>
+
+          <h2>Scrivi il tuo messaggio</h2>
+
+          <p class="form-description">
+            Ogni parola sarà un ricordo speciale da conservare.
+          </p>
+
+          <form (ngSubmit)="submitMessage()" #guestbookForm="ngForm">
+
+            <div class="form-group">
+              <label for="authorName">Il vostro nome</label>
+
+              <input
+                id="authorName"
+                type="text"
+                name="authorName"
+                [(ngModel)]="authorName"
+                placeholder="Come vi chiamiamo?"
+                maxlength="80"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="message">Il vostro messaggio</label>
+
+              <textarea
+                id="message"
+                name="message"
+                [(ngModel)]="message"
+                placeholder="Scrivete qui il vostro augurio..."
+                maxlength="1000"
+                rows="5"
+                required
+              ></textarea>
+
+              <span class="character-counter">
+                {{ remainingCharacters }} caratteri disponibili
+              </span>
+            </div>
+
+            <div class="form-actions">
+
+              <button
+                type="button"
+                class="cancel-button"
+                (click)="closeForm()"
+                [disabled]="isSubmitting"
+              >
+                Annulla
+              </button>
+
+              <button
+                type="submit"
+                class="wedding-button submit-button"
+                [disabled]="
+                  !guestbookForm.valid ||
+                  !authorName.trim() ||
+                  !message.trim() ||
+                  isSubmitting
+                "
+              >
+                {{ isSubmitting ? 'Invio in corso...' : 'Pubblica il pensiero' }}
+              </button>
+
+            </div>
+
+          </form>
+
+          @if (errorMessage) {
+            <p class="error-message">
+              {{ errorMessage }}
+            </p>
+          }
+
+        </div>
+      }
+
+      @if (submitted) {
+        <p class="success-message">
+          Grazie di cuore! Il vostro pensiero è stato pubblicato. ❤️
+        </p>
+      }
+
+    </section>
+
+    <!-- MESSAGGI DEGLI INVITATI -->
+    <section class="messages-section">
+
+      <div class="section-heading">
+        <span class="section-kicker">WORDS TO REMEMBER</span>
+
+        <h2>I vostri pensieri</h2>
+
+        <p>Piccoli messaggi, grandi ricordi.</p>
+      </div>
+
+      @if (isLoading) {
+        <p class="loading-message">
+          Stiamo raccogliendo i vostri pensieri...
+        </p>
+      }
+
+      @if (!isLoading && displayedMessages.length === 0) {
+        <div class="empty-state">
+          <span class="empty-icon">✧</span>
+
+          <h3>La prima dedica potrebbe essere la tua</h3>
+
+          <p>
+            Non ci sono ancora messaggi. Inaugurate voi il nostro Guestbook!
+          </p>
+        </div>
+      }
+
+      @if (!isLoading && displayedMessages.length > 0) {
+        <div class="messages-grid">
+
+          @for (item of displayedMessages; track item.id) {
+            <article class="message-card">
+
+              <span class="message-decoration">✧</span>
+
+              <p class="message-text">
+                “{{ item.message }}”
+              </p>
+
+              <div class="message-footer">
+
+                <span class="message-author">
+                  {{ item.authorName }}
+                </span>
+
+                <time [attr.datetime]="item.createdAt">
+                  {{ item.createdAt | date:'dd MMMM yyyy' }}
+                </time>
+
+              </div>
+
+            </article>
+          }
+
+        </div>
+      }
+
+      @if (messages.length > maxVisibleMessages) {
+        <p class="messages-note">
+          Tra tutti i vostri bellissimi pensieri, ne abbiamo scelti
+          alcuni da mostrarvi.
+        </p>
+      }
+
+    </section>
+
+  </main>
+
+</div>

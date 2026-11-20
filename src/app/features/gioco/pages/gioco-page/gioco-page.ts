@@ -93,6 +93,19 @@ export class GiocoPage {
         },
         {
           question:
+            'Un gruppo di amici, un bar chiamato MacLaren’s, un ombrello giallo e un papà che racconta ai figli una storia lunghissima. Qual è la serie?',
+          answers: [
+            'Friends',
+            'How I Met Your Mother',
+            'Modern Family',
+            'The Big Bang Theory'
+          ],
+          correctAnswer: 1,
+          explanation:
+            'Legend... wait for it... dary! How I Met Your Mother!'
+        },
+        {
+          question:
             'Scienziati, fumetti, videogiochi e una quantità impressionante di battute incomprensibili ai comuni mortali. Qual è la serie?',
           answers: [
             'The Big Bang Theory',

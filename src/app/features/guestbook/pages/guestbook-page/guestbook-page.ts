@@ -1,8 +1,14 @@
 
 import { RouterLink } from '@angular/router';
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectorRef
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { finalize } from 'rxjs';
 
 import {
   GuestbookService,
@@ -19,6 +25,7 @@ import {
 export class GuestbookPage implements OnInit {
 
   private guestbookService = inject(GuestbookService);
+  private cdr = inject(ChangeDetectorRef);
 
   messages: GuestbookMessage[] = [];
   displayedMessages: GuestbookMessage[] = [];
@@ -42,39 +49,54 @@ export class GuestbookPage implements OnInit {
 
   // CARICAMENTO MESSAGGI
   loadMessages(): void {
+
     this.isLoading = true;
     this.loadingError = '';
 
-    this.guestbookService.getApprovedMessages().subscribe({
-      next: (messages) => {
-        console.log('Guestbook - messaggi ricevuti:', messages);
+    this.cdr.markForCheck();
 
-        this.messages = Array.isArray(messages) ? messages : [];
+    this.guestbookService.getApprovedMessages()
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+          this.cdr.markForCheck();
+        })
+      )
+      .subscribe({
 
-        this.selectRandomMessages();
+        next: (messages) => {
 
-        this.isLoading = false;
-      },
+          console.log('Messaggi ricevuti:', messages);
 
-      error: (error) => {
-        console.error('Errore caricamento Guestbook:', error);
+          this.messages = Array.isArray(messages) ? messages : [];
 
-        this.messages = [];
-        this.displayedMessages = [];
+          this.selectRandomMessages();
 
-        this.loadingError =
-          'Non è stato possibile caricare i messaggi. Riprova più tardi.';
+          this.cdr.markForCheck();
+        },
 
-        this.isLoading = false;
-      }
-    });
+        error: (error) => {
+
+          console.error('Errore caricamento:', error);
+
+          this.messages = [];
+          this.displayedMessages = [];
+
+          this.loadingError =
+            'Non è stato possibile caricare i messaggi. Riprova più tardi.';
+
+          this.cdr.markForCheck();
+        }
+      });
   }
 
-  // SELEZIONE CASUALE DI MASSIMO 6 MESSAGGI
+  // SELEZIONE CASUALE
   private selectRandomMessages(): void {
+
     const shuffled = [...this.messages];
 
     for (let i = shuffled.length - 1; i > 0; i--) {
+
       const j = Math.floor(Math.random() * (i + 1));
 
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -88,26 +110,32 @@ export class GuestbookPage implements OnInit {
 
   // APERTURA FORM
   openForm(): void {
+
     this.showForm = true;
     this.submitted = false;
     this.errorMessage = '';
+
+    this.cdr.markForCheck();
   }
 
   // CHIUSURA FORM
   closeForm(): void {
+
     if (this.isSubmitting) {
       return;
     }
 
     this.showForm = false;
     this.errorMessage = '';
-
     this.authorName = '';
     this.message = '';
+
+    this.cdr.markForCheck();
   }
 
-  // PUBBLICAZIONE MESSAGGIO
+  // PUBBLICAZIONE
   submitMessage(): void {
+
     const authorName = this.authorName.trim();
     const message = this.message.trim();
 
@@ -119,41 +147,58 @@ export class GuestbookPage implements OnInit {
     this.errorMessage = '';
     this.submitted = false;
 
+    this.cdr.markForCheck();
+
     this.guestbookService.createMessage({
       authorName,
       message
-    }).subscribe({
+    })
+    .pipe(
+      finalize(() => {
+        this.isSubmitting = false;
+        this.cdr.markForCheck();
+      })
+    )
+    .subscribe({
 
-      next: () => {
-        console.log('Guestbook - messaggio pubblicato correttamente');
+      next: (response) => {
 
-        // PULIZIA CAMPI
+        console.log('Messaggio pubblicato:', response);
+
         this.authorName = '';
         this.message = '';
 
-        // CHIUSURA FORM
         this.showForm = false;
-        this.isSubmitting = false;
-
-        // CONFERMA PUBBLICAZIONE
         this.submitted = true;
 
-        // RICARICA MESSAGGI DAL BACKEND
+        // Mostra immediatamente il messaggio appena salvato
+        if (response) {
+          this.messages = [
+            response,
+            ...this.messages.filter(item => item.id !== response.id)
+          ];
+
+          this.selectRandomMessages();
+        }
+
+        this.cdr.markForCheck();
+
+        // Ricarica la lista completa dal database
         this.loadMessages();
       },
 
       error: (error) => {
-        console.error('Errore pubblicazione Guestbook:', error);
+
+        console.error('Errore pubblicazione:', error);
 
         this.errorMessage =
           'Ops! Non siamo riusciti a inviare il tuo messaggio. Riprova.';
 
-        this.isSubmitting = false;
+        this.cdr.markForCheck();
       }
     });
   }
 
-  // CARATTERI RIMANENTI
   get remainingCharacters(): number {
     return 1000 - this.message.length;
   }

@@ -5,6 +5,7 @@
 
     <!-- INTESTAZIONE -->
     <header class="page-header">
+
       <span class="section-kicker">
         CHAPTER III — THE BOOK OF MEMORIES
       </span>
@@ -16,20 +17,24 @@
         Qui raccogliamo i vostri pensieri, i vostri auguri e i ricordi
         che renderanno ancora più speciale il nostro giorno.
       </p>
+
     </header>
 
     <!-- TORNA ALLA HOME -->
     <div class="back-home-container">
+
       <a routerLink="/" class="back-home-button">
         <span>←</span>
         Torna alla Home
       </a>
+
     </div>
 
     <!-- INVITO A LASCIARE UN PENSIERO -->
     <section class="add-message-section">
 
       @if (!showForm) {
+
         <div class="add-message-intro">
 
           <span class="section-kicker">YOUR TURN</span>
@@ -49,10 +54,12 @@
           </button>
 
         </div>
+
       }
 
       <!-- MODULO -->
       @if (showForm) {
+
         <div class="guestbook-form">
 
           <span class="form-kicker">A LITTLE NOTE FOR US</span>
@@ -63,10 +70,16 @@
             Ogni parola sarà un ricordo speciale da conservare.
           </p>
 
-          <form (ngSubmit)="submitMessage()" #guestbookForm="ngForm">
+          <form
+            (ngSubmit)="submitMessage()"
+            #guestbookForm="ngForm"
+          >
 
             <div class="form-group">
-              <label for="authorName">Il vostro nome</label>
+
+              <label for="authorName">
+                Il vostro nome
+              </label>
 
               <input
                 id="authorName"
@@ -77,10 +90,14 @@
                 maxlength="80"
                 required
               />
+
             </div>
 
             <div class="form-group">
-              <label for="message">Il vostro messaggio</label>
+
+              <label for="message">
+                Il vostro messaggio
+              </label>
 
               <textarea
                 id="message"
@@ -95,6 +112,7 @@
               <span class="character-counter">
                 {{ remainingCharacters }} caratteri disponibili
               </span>
+
             </div>
 
             <div class="form-actions">
@@ -118,28 +136,41 @@
                   isSubmitting
                 "
               >
-                {{ isSubmitting ? 'Invio in corso...' : 'Pubblica il pensiero' }}
+                {{
+                  isSubmitting
+                    ? 'Invio in corso...'
+                    : 'Pubblica il pensiero'
+                }}
               </button>
 
             </div>
 
           </form>
 
+          <!-- ERRORE PUBBLICAZIONE -->
           @if (errorMessage) {
-            <p class="error-message">
+
+            <p class="error-message" role="alert">
               {{ errorMessage }}
             </p>
+
           }
 
         </div>
+
       }
 
       <!-- CONFERMA PUBBLICAZIONE -->
       @if (submitted) {
-        <p class="success-message" role="status">
-          Grazie di cuore! Il vostro pensiero è stato pubblicato. ❤️
-        </p>
-      }
+        <div class="success-message">
+            <span class="success-heart">♥</span>
+            <div class="success-content">
+            <h3>Grazie di cuore!</h3>
+            <p>Il vostro pensiero è stato pubblicato.</p>
+            </div>
+            <span class="success-heart">♥</span>
+        </div>
+        }
 
     </section>
 
@@ -147,29 +178,50 @@
     <section class="messages-section">
 
       <div class="section-heading">
-        <span class="section-kicker">WORDS TO REMEMBER</span>
+
+        <span class="section-kicker">
+          WORDS TO REMEMBER
+        </span>
 
         <h2>I vostri pensieri</h2>
 
         <p>Piccoli messaggi, grandi ricordi.</p>
+
       </div>
 
       <!-- CARICAMENTO -->
       @if (isLoading) {
+
         <p class="loading-message" role="status">
           Stiamo raccogliendo i vostri pensieri...
         </p>
+
       }
 
-      <!-- ERRORE DI CARICAMENTO -->
-      @if (!isLoading && errorMessage && messages.length === 0) {
-        <p class="error-message">
-          {{ errorMessage }}
+      <!-- ERRORE CARICAMENTO -->
+      @if (!isLoading && loadingError) {
+
+        <p class="error-message" role="alert">
+          {{ loadingError }}
         </p>
+
+        <button
+          type="button"
+          class="wedding-button"
+          (click)="loadMessages()"
+        >
+          Riprova
+        </button>
+
       }
 
       <!-- NESSUN MESSAGGIO -->
-      @if (!isLoading && !errorMessage && displayedMessages.length === 0) {
+      @if (
+        !isLoading &&
+        !loadingError &&
+        displayedMessages.length === 0
+      ) {
+
         <div class="empty-state">
 
           <span class="empty-icon">✧</span>
@@ -177,17 +229,25 @@
           <h3>La prima dedica potrebbe essere la tua</h3>
 
           <p>
-            Non ci sono ancora messaggi. Inaugurate voi il nostro Guestbook!
+            Non ci sono ancora messaggi.
+            Inaugurate voi il nostro Guestbook!
           </p>
 
         </div>
+
       }
 
       <!-- GRIGLIA MESSAGGI -->
-      @if (!isLoading && displayedMessages.length > 0) {
+      @if (
+        !isLoading &&
+        !loadingError &&
+        displayedMessages.length > 0
+      ) {
+
         <div class="messages-grid">
 
           @for (item of displayedMessages; track item.id) {
+
             <article class="message-card">
 
               <span class="message-decoration">✧</span>
@@ -209,17 +269,25 @@
               </div>
 
             </article>
+
           }
 
         </div>
+
       }
 
       <!-- NOTA MESSAGGI -->
-      @if (!isLoading && messages.length > maxVisibleMessages) {
+      @if (
+        !isLoading &&
+        !loadingError &&
+        messages.length > maxVisibleMessages
+      ) {
+
         <p class="messages-note">
           Tra tutti i vostri bellissimi pensieri, ne abbiamo scelti
           alcuni da mostrarvi.
         </p>
+
       }
 
     </section>

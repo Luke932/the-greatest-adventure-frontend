@@ -20,10 +20,10 @@
 
     <!-- TORNA ALLA HOME -->
     <div class="back-home-container">
-        <a routerLink="/" class="back-home-button">
-            <span>←</span>
-            Torna alla Home
-        </a>
+      <a routerLink="/" class="back-home-button">
+        <span>←</span>
+        Torna alla Home
+      </a>
     </div>
 
     <!-- INVITO A LASCIARE UN PENSIERO -->
@@ -134,8 +134,9 @@
         </div>
       }
 
+      <!-- CONFERMA PUBBLICAZIONE -->
       @if (submitted) {
-        <p class="success-message">
+        <p class="success-message" role="status">
           Grazie di cuore! Il vostro pensiero è stato pubblicato. ❤️
         </p>
       }
@@ -153,14 +154,24 @@
         <p>Piccoli messaggi, grandi ricordi.</p>
       </div>
 
+      <!-- CARICAMENTO -->
       @if (isLoading) {
-        <p class="loading-message">
+        <p class="loading-message" role="status">
           Stiamo raccogliendo i vostri pensieri...
         </p>
       }
 
-      @if (!isLoading && displayedMessages.length === 0) {
+      <!-- ERRORE DI CARICAMENTO -->
+      @if (!isLoading && errorMessage && messages.length === 0) {
+        <p class="error-message">
+          {{ errorMessage }}
+        </p>
+      }
+
+      <!-- NESSUN MESSAGGIO -->
+      @if (!isLoading && !errorMessage && displayedMessages.length === 0) {
         <div class="empty-state">
+
           <span class="empty-icon">✧</span>
 
           <h3>La prima dedica potrebbe essere la tua</h3>
@@ -168,9 +179,11 @@
           <p>
             Non ci sono ancora messaggi. Inaugurate voi il nostro Guestbook!
           </p>
+
         </div>
       }
 
+      <!-- GRIGLIA MESSAGGI -->
       @if (!isLoading && displayedMessages.length > 0) {
         <div class="messages-grid">
 
@@ -201,7 +214,8 @@
         </div>
       }
 
-      @if (messages.length > maxVisibleMessages) {
+      <!-- NOTA MESSAGGI -->
+      @if (!isLoading && messages.length > maxVisibleMessages) {
         <p class="messages-note">
           Tra tutti i vostri bellissimi pensieri, ne abbiamo scelti
           alcuni da mostrarvi.

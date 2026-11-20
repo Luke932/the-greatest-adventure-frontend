@@ -1,299 +1,75 @@
 
-/* SEZIONE AGGIUNTA PENSIERO */
+/* =========================================
+   PAGINA GUESTBOOK
+========================================= */
 
-.add-message-section {
-  max-width: 650px;
-  margin: 75px auto 30px;
-  text-align: center;
+.guestbook-page {
+  min-height: 100vh;
 }
 
-.add-message-intro {
-  padding: 35px 20px;
-}
-
-.add-message-intro h2 {
-  margin: 15px 0;
-  color: var(--cream);
-  font-family: var(--font-serif);
-  font-size: clamp(1.7rem, 4vw, 2.3rem);
-  font-weight: 400;
-}
-
-.add-message-intro p {
-  margin-bottom: 28px;
-  color: var(--text-secondary);
-  line-height: 1.7;
-}
-
-.add-message-intro .wedding-button {
-  cursor: pointer;
-}
-
-.guestbook-form {
-  padding: 38px 42px;
-  animation: guestbookFormAppear 0.35s ease both;
-}
-
-.form-actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 30px;
-}
-
-.form-actions .submit-button {
-  margin: 0;
-}
-
-.cancel-button {
-  padding: 12px 22px;
-  border: 1px solid var(--border-subtle);
-  border-radius: 30px;
-  background: transparent;
-  color: var(--text-secondary);
-  font-family: var(--font-sans);
-  cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.cancel-button:hover {
-  color: var(--gold-light);
-  border-color: var(--gold);
-}
-
-.cancel-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.messages-note {
-  margin-top: 28px;
-  color: var(--text-muted);
-  font-family: var(--font-serif);
-  font-style: italic;
-  text-align: center;
-  line-height: 1.7;
-}
-
-@keyframes guestbookFormAppear {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 650px) {
-  .guestbook-form {
-    padding: 28px 20px;
-  }
-
-  .form-actions {
-    flex-direction: column-reverse;
-  }
-
-  .form-actions button {
-    width: 100%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .guestbook-form {
-    animation: none;
-  }
-}
-
-
-/* STATO VUOTO DEL GUESTBOOK */
-
-.empty-state {
+.guestbook-container {
   width: 100%;
-  max-width: 650px;
-  margin: 35px auto;
-  padding: 55px 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px 80px;
   box-sizing: border-box;
-
-  border: 1px solid var(--border-gold);
-  border-radius: 5px;
-  background: rgba(255, 250, 240, 0.04);
 }
 
-.empty-state .empty-icon {
+/* =========================================
+   INTESTAZIONE
+========================================= */
+
+.guestbook-page .page-header {
+  text-align: center;
+}
+
+.guestbook-page .page-header .section-kicker {
   display: block;
-  margin-bottom: 20px;
-  color: var(--gold);
-  font-size: 2.5rem;
-}
-
-.empty-state h3 {
-  width: 100%;
-  margin: 0 0 15px;
-  color: var(--cream);
-  font-family: var(--font-serif);
-  font-size: 1.7rem;
-  font-weight: 400;
   text-align: center;
 }
 
-.empty-state p {
-  max-width: 450px;
-  margin: 0 auto;
-  color: var(--text-secondary);
+/* =========================================
+   TORNA ALLA HOME
+========================================= */
+
+.back-home-container {
+  display: flex;
+  justify-content: center;
+  margin: 25px auto 45px;
+}
+
+.back-home-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 24px;
+
+  color: var(--gold-light);
   font-family: var(--font-sans);
-  font-size: 0.95rem;
-  line-height: 1.8;
-  text-align: center;
-}
-
-@media (max-width: 650px) {
-  .empty-state {
-    padding: 40px 20px;
-  }
-
-  .empty-state h3 {
-    font-size: 1.4rem;
-  }
-}
-
-/* INTESTAZIONE SEZIONE PENSIERI */
-
-.messages-section {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.messages-section .section-heading {
-  width: 100%;
-  max-width: 750px;
-  margin: 0 auto 45px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.messages-section .section-heading .section-kicker {
-  width: 100%;
-  text-align: center;
-}
-
-.messages-section .section-heading h2 {
-  width: 100%;
-  margin: 15px 0;
-  text-align: center;
-}
-
-.messages-section .section-heading p {
-  width: 100%;
-  max-width: 550px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.messages-grid {
-  width: 100%;
-}
-
-
-/* =========================================
-   SEZIONE PENSIERI
-========================================= */
-
-.guestbook-page .messages-section {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.guestbook-page .messages-section .section-heading {
-  width: 100%;
-  max-width: 750px;
-  margin: 0 auto 45px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.guestbook-page .messages-section .section-heading .section-kicker,
-.guestbook-page .messages-section .section-heading h2,
-.guestbook-page .messages-section .section-heading p {
-  width: 100%;
-  text-align: center;
-}
-
-.guestbook-page .messages-section .section-heading h2 {
-  margin: 15px 0;
-}
-
-.guestbook-page .messages-section .section-heading p {
-  max-width: 550px;
-  margin: 0 auto;
-}
-
-.guestbook-page .messages-grid {
-  width: 100%;
-}
-
-/* =========================================
-   STATO VUOTO
-========================================= */
-
-.guestbook-page .empty-state {
-  width: 100%;
-  max-width: 650px;
-  margin: 35px auto;
-  padding: 55px 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  text-align: center;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
 
   border: 1px solid var(--border-gold);
-  border-radius: 5px;
-  background: rgba(255, 250, 240, 0.04);
+  border-radius: 30px;
+  background: rgba(217, 173, 79, 0.06);
+
+  transition: all 0.3s ease;
 }
 
-.guestbook-page .empty-state .empty-icon {
-  margin-bottom: 20px;
-  color: var(--gold);
-  font-size: 2.5rem;
+.back-home-button span {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
 }
 
-.guestbook-page .empty-state h3 {
-  width: 100%;
-  margin: 0 0 15px;
-  color: var(--cream);
-  font-family: var(--font-serif);
-  font-size: 1.7rem;
-  font-weight: 400;
-  text-align: center;
+.back-home-button:hover {
+  background: rgba(217, 173, 79, 0.16);
+  border-color: var(--gold-light);
+  transform: translateY(-2px);
 }
 
-.guestbook-page .empty-state p {
-  max-width: 450px;
-  margin: 0 auto;
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.8;
-  text-align: center;
+.back-home-button:hover span {
+  transform: translateX(-4px);
 }
 
 /* =========================================
@@ -348,8 +124,6 @@
   text-align: center;
 }
 
-/* Pulsante principale: più evidente */
-
 .guestbook-page .add-message-intro .wedding-button {
   display: inline-flex;
   align-items: center;
@@ -377,6 +151,7 @@
     0 8px 25px rgba(0, 0, 0, 0.22);
 
   cursor: pointer;
+
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
@@ -386,6 +161,7 @@
 .guestbook-page .add-message-intro .wedding-button:hover {
   transform: translateY(-3px);
   filter: brightness(1.08);
+
   box-shadow:
     0 0 0 6px rgba(217, 173, 79, 0.13),
     0 12px 30px rgba(0, 0, 0, 0.3);
@@ -435,8 +211,6 @@
   text-align: center;
 }
 
-/* Struttura form */
-
 .guestbook-page .guestbook-form form {
   width: 100%;
   display: flex;
@@ -479,7 +253,10 @@
   border-radius: 4px;
 
   outline: none;
-  transition: border-color 0.25s ease, background 0.25s ease;
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease;
 }
 
 .guestbook-page .guestbook-form input {
@@ -502,7 +279,7 @@
   background: rgba(23, 37, 27, 0.95);
 }
 
-/* Contatore */
+/* Contatore caratteri */
 
 .guestbook-page .guestbook-form .character-counter {
   color: var(--text-muted);
@@ -511,7 +288,7 @@
   text-align: right;
 }
 
-/* Pulsanti del modulo */
+/* Pulsanti form */
 
 .guestbook-page .guestbook-form .form-actions {
   display: flex;
@@ -528,6 +305,7 @@
 
 .guestbook-page .guestbook-form .cancel-button {
   padding: 13px 25px;
+
   color: var(--text-secondary);
   font-family: var(--font-sans);
   font-size: 0.9rem;
@@ -551,10 +329,12 @@
   transform: none;
 }
 
-/* Messaggi di errore e conferma */
+/* =========================================
+   ERRORI E CONFERME
+========================================= */
 
 .guestbook-page .error-message {
-  margin-top: 18px;
+  margin: 18px auto 0;
   color: #e6a09a;
   font-size: 0.88rem;
   line-height: 1.6;
@@ -562,9 +342,212 @@
 }
 
 .guestbook-page .success-message {
-  margin-top: 25px;
+  width: 100%;
+  margin: 25px auto 0;
+  padding: 18px 20px;
+  box-sizing: border-box;
+
   color: var(--sage-light);
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  text-align: center;
+
+  border: 1px solid rgba(169, 189, 150, 0.4);
+  border-radius: 5px;
+  background: rgba(169, 189, 150, 0.07);
+}
+
+.guestbook-page .loading-message {
+  margin: 30px auto;
+  color: var(--text-secondary);
+  font-family: var(--font-serif);
+  font-style: italic;
+  text-align: center;
+}
+
+/* =========================================
+   SEZIONE PENSIERI
+========================================= */
+
+.guestbook-page .messages-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.guestbook-page .messages-section .section-heading {
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto 45px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.guestbook-page .messages-section .section-heading .section-kicker,
+.guestbook-page .messages-section .section-heading h2,
+.guestbook-page .messages-section .section-heading p {
+  width: 100%;
+  text-align: center;
+}
+
+.guestbook-page .messages-section .section-heading h2 {
+  margin: 15px 0;
+}
+
+.guestbook-page .messages-section .section-heading p {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.guestbook-page .messages-grid {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+}
+
+/* =========================================
+   CARD DEI PENSIERI PUBBLICATI
+========================================= */
+
+.guestbook-page .message-card {
+  position: relative;
+  min-width: 0;
+  min-height: 190px;
+  padding: 32px 28px 25px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 250, 240, 0.075),
+      rgba(255, 250, 240, 0.025)
+    );
+
+  border: 1px solid var(--border-gold);
+  border-radius: 5px;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.guestbook-page .message-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 250, 240, 0.09);
+  border-color: var(--gold-light);
+}
+
+.guestbook-page .message-decoration {
+  position: absolute;
+  top: 13px;
+  right: 18px;
+
+  color: var(--gold);
+  font-size: 1.3rem;
+}
+
+.guestbook-page .message-text {
+  margin: 10px 0 25px;
+
+  color: var(--cream);
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.8;
+
+  overflow-wrap: anywhere;
+}
+
+.guestbook-page .message-footer {
+  margin-top: auto;
+  padding-top: 15px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  border-top: 1px solid var(--border-subtle);
+}
+
+.guestbook-page .message-author {
+  color: var(--gold-light);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.guestbook-page .message-footer time {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+/* =========================================
+   STATO VUOTO
+========================================= */
+
+.guestbook-page .empty-state {
+  width: 100%;
+  max-width: 650px;
+  margin: 35px auto;
+  padding: 55px 30px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  text-align: center;
+
+  border: 1px solid var(--border-gold);
+  border-radius: 5px;
+  background: rgba(255, 250, 240, 0.04);
+}
+
+.guestbook-page .empty-state .empty-icon {
+  display: block;
+  margin-bottom: 20px;
+
+  color: var(--gold);
+  font-size: 2.5rem;
+}
+
+.guestbook-page .empty-state h3 {
+  width: 100%;
+  margin: 0 0 15px;
+
+  color: var(--cream);
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.guestbook-page .empty-state p {
+  max-width: 450px;
+  margin: 0 auto;
+
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
   font-size: 0.95rem;
+  line-height: 1.8;
   text-align: center;
 }
 
@@ -572,6 +555,7 @@
 
 .guestbook-page .messages-note {
   margin-top: 28px;
+
   color: var(--text-muted);
   font-family: var(--font-serif);
   font-style: italic;
@@ -579,7 +563,9 @@
   line-height: 1.7;
 }
 
-/* Animazione */
+/* =========================================
+   ANIMAZIONI
+========================================= */
 
 @keyframes guestbookFormAppear {
   from {
@@ -593,15 +579,36 @@
   }
 }
 
-/* Responsive */
+/* =========================================
+   RESPONSIVE
+========================================= */
 
-@media (max-width: 650px) {
-  .guestbook-page .empty-state {
-    padding: 40px 20px;
+@media (max-width: 700px) {
+
+  .guestbook-page .messages-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 
-  .guestbook-page .empty-state h3 {
-    font-size: 1.4rem;
+  .guestbook-page .message-card {
+    min-height: 160px;
+    padding: 28px 22px 22px;
+  }
+
+  .guestbook-page .message-text {
+    font-size: 1rem;
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  .guestbook-container {
+    padding: 0 18px 55px;
+  }
+
+  .back-home-container {
+    margin: 20px auto 35px;
   }
 
   .guestbook-page .add-message-section {
@@ -630,64 +637,37 @@
   .guestbook-page .guestbook-form .form-actions button {
     width: 100%;
   }
+
+  .guestbook-page .empty-state {
+    padding: 40px 20px;
+  }
+
+  .guestbook-page .empty-state h3 {
+    font-size: 1.4rem;
+  }
+
 }
 
-/* Rispetto animazioni ridotte */
+/* =========================================
+   ACCESSIBILITÀ
+========================================= */
 
 @media (prefers-reduced-motion: reduce) {
+
   .guestbook-page .guestbook-form {
     animation: none;
   }
 
-  .guestbook-page .add-message-intro .wedding-button {
-    transition: none;
-  }
-}
-
-/* PULSANTE TORNA ALLA HOME */
-.back-home-container {
-  display: flex;
-  justify-content: center;
-  margin: 25px auto 45px;
-}
-
-.back-home-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 11px 24px;
-
-  color: var(--gold-light);
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-
-  border: 1px solid var(--border-gold);
-  border-radius: 30px;
-  background: rgba(217, 173, 79, 0.06);
-
-  transition: all 0.3s ease;
-}
-
-.back-home-button span {
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-}
-
-.back-home-button:hover {
-  background: rgba(217, 173, 79, 0.16);
-  border-color: var(--gold-light);
-  transform: translateY(-2px);
-}
-
-.back-home-button:hover span {
-  transform: translateX(-4px);
-}
-
-@media (prefers-reduced-motion: reduce) {
+  .guestbook-page .add-message-intro .wedding-button,
   .back-home-button,
-  .back-home-button span {
+  .back-home-button span,
+  .guestbook-page .message-card {
     transition: none;
   }
+
+  .back-home-button:hover,
+  .guestbook-page .message-card:hover {
+    transform: none;
+  }
+
 }
